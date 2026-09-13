@@ -373,3 +373,8 @@ footer.credit{ text-align:center; font-size:.78rem; color:var(--muted); padding:
   display:inline-flex; align-items:center; gap:8px; background:var(--ink); color:#fff; padding:10px 18px;
   border-radius:999px; font-size:.85rem; font-weight:600;
 }
+.illus-frame{
+  margin-top:14px; flex-grow:1; border-radius:10px; background:var(--card-2);
+  display:flex; align-items:center; justify-content:center; padding:12px; min-height:100px;
+}
+.illus-frame svg{ width:100%; height:auto; max-height:120px; }
