@@ -1,95 +1,127 @@
 export const projects = [
+  // ---------- Shipped & live ----------
   {
-    id: 'automations',
-    area: 'automations',
-    icon: 'fa-solid fa-gears',
-    eyebrow: 'Product',
-    title: 'Northbeam Checkout',
-    summary: 'Rebuilt flow, cut drop-off by 18%.',
+    id: 'agrilearn-app',
+    icon: 'fa-solid fa-seedling',
+    title: 'AgriLearnApp',
+    summary: 'Offline learning app for organic agriculture, built for a capstone client.',
     description:
-      'Rebuilt a high-volume checkout flow with progressive form design and inline validation, cutting drop-off by 18%.',
-    tags: ['React', 'Stripe', 'A/B testing'],
-    mock: 'browser'
+      'Turns printed organic-agriculture modules into an offline-first mobile learning app, so students can study without a live connection.',
+    tags: ['Offline-first', 'Mobile', 'Capstone'],
+    status: 'shipped'
   },
   {
-    id: 'buildplan',
-    area: 'buildplan',
-    icon: 'fa-solid fa-sitemap',
-    eyebrow: 'System',
-    title: 'Atlas Design System',
-    summary: 'Shared across six product teams.',
+    id: 'fluentflow',
+    icon: 'fa-solid fa-language',
+    title: 'FluentFlow',
+    summary: 'Situational English learning app with leveled exercises and weekly progress tracking.',
     description:
-      'A token-driven component library shared across six product teams, with automated Figma-to-code sync.',
-    tags: ['Style Dictionary', 'Storybook', 'Figma API'],
-    mock: 'blueprint'
+      'A situational English learning app for a teacher client — spelling for beginners, fill-in-the-blank for intermediate, sentence building for advanced, with weekly progress tracking per student.',
+    tags: ['Mobile', 'Education'],
+    status: 'shipped'
   },
   {
-    id: 'funnels',
-    area: 'funnels',
-    icon: 'fa-solid fa-globe',
-    eyebrow: 'Sites',
-    title: 'Funnels & Sites',
-    summary: 'Complete funnel builds and landing pages.',
+    id: 'ojt-attendance',
+    icon: 'fa-solid fa-clipboard-user',
+    title: 'OJT Attendance Management System',
+    summary: 'Attendance tracking system extended with client-requested features.',
     description:
-      'Complete funnel builds and landing pages, from wireframe to launch, tuned for conversion.',
-    tags: ['Webflow', 'Copy', 'CRO'],
-    mock: 'stack'
+      'An attendance management system built for a client during OJT, expanded with the additional features and functions they asked for along the way.',
+    tags: ['Web', 'OJT'],
+    status: 'shipped'
   },
   {
-    id: 'agents',
-    area: 'agents',
-    icon: 'fa-solid fa-brain',
-    eyebrow: 'AI',
-    title: 'AI Agents & Chatbots',
-    summary: 'Retrieval bots wired to real client data.',
+    id: 'dns-config-app',
+    icon: 'fa-solid fa-server',
+    title: 'DNS Server Configuration App',
+    summary: 'Automates subdomain registration and server folder provisioning.',
     description:
-      'Retrieval-augmented chatbots and task agents wired directly into real client data sources.',
-    tags: ['RAG', 'Agents', 'Automation'],
-    mock: 'tags'
+      'Registers a subdomain through a third-party API, then automatically creates the matching folder on the server and handles push/pull for the project — built during OJT.',
+    tags: ['Automation', 'API', 'OJT'],
+    status: 'shipped'
   },
-  {
-    id: 'apps',
-    area: 'apps',
-    icon: 'fa-solid fa-mobile-screen',
-    eyebrow: 'Apps',
-    title: 'Apps & Extensions',
-    summary: 'Mobile apps and browser tools I ship alongside the web.',
-    description:
-      'Mobile companion apps and browser extensions shipped alongside the main web product.',
-    tags: ['React Native', 'Chrome extension'],
-    mock: 'phones'
-  }
-]
 
-export const miniProjects = [
+  // ---------- Currently building ----------
   {
-    id: 'support',
-    icon: 'fa-solid fa-headset',
-    eyebrow: 'Product',
-    title: 'Support Ticketing UI',
-    summary: 'Full desk built for a client ops team.',
+    id: 'eggplant-leaf-care-ai',
+    icon: 'fa-solid fa-leaf',
+    title: 'EggPlantLeafCare AI',
+    summary: 'AI-assisted detection and care guidance for eggplant leaf disease.',
     description:
-      "A full support desk built inside a client's operations stack, with one pipeline covering every stage.",
-    tags: ['GHL', 'Automation', 'Ops']
+      'An AI-assisted tool for identifying eggplant leaf disease and suggesting care steps — currently in active development.',
+    tags: ['AI', 'Mobile', 'In progress'],
+    status: 'building'
   },
   {
-    id: 'agentic-framework',
-    icon: 'fa-solid fa-robot',
-    eyebrow: 'AI',
-    title: 'The Agentic Framework',
-    summary: 'Tools and rules behind the AI builds.',
+    id: 'myedutour',
+    icon: 'fa-solid fa-map-location-dot',
+    title: 'MyEduTour',
+    summary: 'Educational tour planning app, currently in development.',
     description:
-      'The internal tools, rules, and guardrails behind every AI agent I ship — from prompt to production.',
-    tags: ['Agents', 'RAG', 'Framework']
+      'An educational trip/tour planning app, currently being built out feature by feature.',
+    tags: ['Mobile', 'In progress'],
+    status: 'building'
+  },
+
+  // ---------- Local — not yet published ----------
+  {
+    id: 'disaster-relief-tracking',
+    icon: 'fa-solid fa-truck-medical',
+    title: 'Disaster Relief Distribution Tracking System',
+    summary: 'Tracks relief goods distribution to affected areas.',
+    description:
+      'A system for tracking the distribution of relief goods to affected areas — working locally, not yet deployed.',
+    tags: ['Web', 'Local'],
+    status: 'local'
   },
   {
-    id: 'e2e-workflow',
-    icon: 'fa-solid fa-timeline',
-    eyebrow: 'System',
-    title: 'End-to-End Workflow',
-    summary: 'Every step, one connected pipeline.',
+    id: 'sari-sari-store',
+    icon: 'fa-solid fa-store',
+    title: 'Simple Sari-Sari Store Mini System',
+    summary: 'Lightweight inventory and sales tracker for a small sari-sari store.',
     description:
-      'Every trigger, rule, and agent in one connected, self-monitoring pipeline — nothing runs by hand.',
-    tags: ['Automation', 'Monitoring']
+      'A minimal inventory and sales system sized for a small sari-sari store — running locally, not yet deployed.',
+    tags: ['Web', 'Local'],
+    status: 'local'
+  },
+  {
+    id: 'agrilearn-school-web',
+    icon: 'fa-solid fa-chalkboard-user',
+    title: 'AgriLearnSchool (Web)',
+    summary: 'Web companion to AgriLearnApp for classroom use.',
+    description:
+      'A web-based companion to AgriLearnApp, built for classroom-based organic agriculture lessons — running locally, not yet deployed.',
+    tags: ['Web', 'Local'],
+    status: 'local'
+  },
+  {
+    id: 'svpmfs',
+    icon: 'fa-solid fa-diagram-project',
+    title: 'SVPMFS',
+    summary: 'Internal records and process management system.',
+    description:
+      'A system built for internal record and process management — running locally, not yet deployed.',
+    tags: ['Web', 'Local'],
+    status: 'local'
+  },
+  {
+    id: 'school-portal',
+    icon: 'fa-solid fa-graduation-cap',
+    title: 'School Portal',
+    summary: 'Portal for school announcements, records, and student info.',
+    description:
+      'A portal for school announcements, records, and student information — running locally, not yet deployed.',
+    tags: ['Web', 'Local'],
+    status: 'local'
+  },
+  {
+    id: 'simple-blog',
+    icon: 'fa-solid fa-blog',
+    title: 'Simple Blog Application',
+    summary: 'A minimal blogging platform built to practice CRUD and auth.',
+    description:
+      'A small blogging platform built to practice core CRUD operations and authentication — running locally, not yet deployed.',
+    tags: ['Web', 'Local'],
+    status: 'local'
   }
 ]
