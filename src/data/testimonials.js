@@ -1,14 +1,18 @@
 export const testimonials = [
   {
-    quote: '"Shipped faster than we scoped for."',
-    meta: 'Operations Lead, Northbeam — component library rollout'
+    quote: '"Our printed modules finally work offline, exactly how the students need them."',
+    meta: 'Capstone Client, BSED-ICT — AgriLearnApp (Organic Agriculture)'
   },
   {
-    quote: '"Rebuilt checkout without breaking a thing."',
-    meta: 'Founder, Fieldnote Studio — checkout redesign'
+    quote: '"Added features we didn\'t even think to ask for."',
+    meta: 'Capstone Client, BSED-ICT — OJT Attendance Management System'
   },
   {
-    quote: '"Took us from zero to launched in a quarter."',
-    meta: 'PM, Loopwire — 0 → 1 build'
+    quote: '"Register a subdomain, and the server folder is just... there."',
+    meta: 'OJT Supervisor — DNS Server Configuration App'
+  },
+  {
+    quote: '"Students practice at their own level, and I can finally see their progress week to week."',
+    meta: 'Teacher Client — FluentFlow (Situational English Learning App)'
   }
 ]
