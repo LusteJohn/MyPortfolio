@@ -1,29 +1,50 @@
 <script setup>
 import { ref } from 'vue'
-import { CONTACT_EMAIL } from '../../data/commands'
+import emailjs from '@emailjs/browser'
+
+const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID
+const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID
+const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
 
 const name = ref('')
 const email = ref('')
 const budget = ref('')
 const message = ref('')
-const showToast = ref(false)
-let toastTimer = null
 
-function handleSubmit() {
-  const subject = encodeURIComponent(`New project inquiry from ${name.value.trim() || 'website visitor'}`)
-  const bodyLines = [
-    message.value.trim(),
-    '',
-    budget.value.trim() ? `Looking for: ${budget.value.trim()}` : '',
-    `Reply to: ${email.value.trim()}`
-  ].filter(Boolean).join('\n')
-  const body = encodeURIComponent(bodyLines)
+const status = ref('idle') // 'idle' | 'sending' | 'success' | 'error'
+let statusTimer = null
 
-  showToast.value = true
-  window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`
+function resetStatusAfterDelay() {
+  clearTimeout(statusTimer)
+  statusTimer = setTimeout(() => (status.value = 'idle'), 6000)
+}
 
-  clearTimeout(toastTimer)
-  toastTimer = setTimeout(() => (showToast.value = false), 6000)
+async function handleSubmit() {
+  status.value = 'sending'
+
+  try {
+    await emailjs.send(
+      SERVICE_ID,
+      TEMPLATE_ID,
+      {
+        from_name: name.value.trim(),
+        reply_to: email.value.trim(),
+        budget: budget.value.trim() || 'Not specified',
+        message: message.value.trim()
+      },
+      { publicKey: PUBLIC_KEY }
+    )
+    status.value = 'success'
+    name.value = ''
+    email.value = ''
+    budget.value = ''
+    message.value = ''
+  } catch (err) {
+    console.error('EmailJS error:', err)
+    status.value = 'error'
+  }
+
+  resetStatusAfterDelay()
 }
 </script>
 
@@ -51,10 +72,19 @@ function handleSubmit() {
         <textarea id="fMessage" v-model="message" required placeholder="A little about the role or project…"></textarea>
       </div>
     </div>
-    <button type="submit" class="form-submit">Send message <i class="fa-solid fa-arrow-right"></i></button>
-    <div class="form-toast" :class="{ show: showToast }">
-      <i class="fa-solid fa-circle-check"></i> Opening your email client with this message…
+
+    <button type="submit" class="form-submit" :disabled="status === 'sending'">
+      <template v-if="status === 'sending'">Sending… <i class="fa-solid fa-spinner fa-spin"></i></template>
+      <template v-else>Send message <i class="fa-solid fa-arrow-right"></i></template>
+    </button>
+
+    <div class="form-toast" :class="{ show: status === 'success' }">
+      <i class="fa-solid fa-circle-check"></i> Message sent — I'll get back to you soon.
     </div>
-    <p class="form-note">This opens a pre-filled email in your mail app — nothing is sent from this page directly.</p>
+    <div class="form-toast" :class="{ show: status === 'error' }" style="color:#b3261e;background:#fbe9e7;border-color:#f3c6bf;">
+      <i class="fa-solid fa-circle-exclamation"></i> Something went wrong — try again, or email me directly.
+    </div>
+
+    <p class="form-note">Sent directly from this form — no email client required.</p>
   </form>
 </template>
