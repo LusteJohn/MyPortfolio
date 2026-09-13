@@ -53,6 +53,6 @@ function select(page) {
       <kbd>⌘K</kbd>
     </div>
 
-    <div class="sidebar-foot">© 2026 Maya Delacroix</div>
+    <div class="sidebar-foot">© 2026 John Mark Luste</div>
   </aside>
 </template>

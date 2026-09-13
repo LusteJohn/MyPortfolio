@@ -1,6 +1,6 @@
 export const services = [
-  { label: 'Design systems', count: 12 },
-  { label: 'Product UI', count: 21 },
-  { label: 'A11y audits', count: 9 },
-  { label: 'Motion & polish', count: 15 }
+  { label: 'Personal projects', count: 'Solo' },
+  { label: 'Capstone systems', count: 'Solo' },
+  { label: 'Client customization', count: 'Solo' },
+  { label: 'App development', count: 'OJT — Team' }
 ]

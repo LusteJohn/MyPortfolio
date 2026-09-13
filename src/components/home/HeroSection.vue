@@ -4,7 +4,7 @@ import StatRow from './StatRow.vue'
 import { useTypewriter } from '../../composables/useTypewriter'
 import { CONTACT_EMAIL } from '../../data/commands'
 
-const roles = ['Product Engineer', 'Design Systems Lead', 'Frontend Architect', 'Accessibility Advocate']
+const roles = ['Web Developer', 'Design Systems Lead', 'App Developer Offline', 'Simplicity Advocate']
 const { text: typedRole } = useTypewriter(roles)
 </script>
 
