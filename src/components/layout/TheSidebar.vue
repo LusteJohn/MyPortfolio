@@ -1,5 +1,6 @@
 <script setup>
 import { ref } from 'vue'
+import profileImage from '../../assets/images/profile.png'
 import { useNavigation } from '../../composables/useNavigation'
 import { useCommandPalette } from '../../composables/useCommandPalette'
 import { socials } from '../../data/social'
@@ -22,9 +23,9 @@ function select(page) {
 
 <template>
   <aside class="sidebar">
-    <div class="avatar">MD</div>
-    <div class="name">Maya Delacroix <i class="fa-solid fa-circle-check"></i></div>
-    <div class="handle">@mayadesigns</div>
+    <img class="avatar" :src="profileImage" alt="John Mark Luste">
+    <div class="name">John Mark Luste <i class="fa-solid fa-circle-check"></i></div>
+    <div class="handle">@myDevDesign</div>
 
     <div class="social-row">
       <a v-for="s in socials" :key="s.label" :href="s.href" :aria-label="s.label">
