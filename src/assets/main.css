@@ -378,3 +378,33 @@ footer.credit{ text-align:center; font-size:.78rem; color:var(--muted); padding:
   display:flex; align-items:center; justify-content:center; padding:12px; min-height:100px;
 }
 .illus-frame svg{ width:100%; height:auto; max-height:120px; }
+/* ---------- PROJECT STATUS PILLS ---------- */
+.status-pill{
+  display:inline-flex; align-items:center; gap:6px; font-size:.68rem; font-weight:700;
+  letter-spacing:.04em; text-transform:uppercase; padding:4px 10px; border-radius:999px;
+  margin-bottom:10px; width:fit-content;
+}
+.status-pill::before{ content:""; width:6px; height:6px; border-radius:50%; flex-shrink:0; }
+.status-pill--shipped{ background:#e7f6ec; color:#2e7d4f; }
+.status-pill--shipped::before{ background:#3fa66a; }
+.status-pill--building{ background:var(--orange-soft); color:var(--orange); }
+.status-pill--building::before{ background:var(--orange); }
+.status-pill--local{ background:var(--card-2); color:var(--muted); border:1px solid var(--line); }
+.status-pill--local::before{ background:var(--muted-2); }
+
+/* ---------- PROJECT STATUS SECTIONS (Projects page) ---------- */
+.project-section{ margin-bottom:40px; }
+.project-section:last-child{ margin-bottom:0; }
+.project-section-title{
+  display:flex; align-items:center; gap:10px; font-size:1.02rem; margin-bottom:16px; color:var(--ink);
+}
+.status-dot-sm{ width:9px; height:9px; border-radius:50%; flex-shrink:0; }
+.status-dot-sm--shipped{ background:#3fa66a; }
+.status-dot-sm--building{ background:var(--orange); }
+.status-dot-sm--local{ background:var(--muted-2); }
+
+.project-grid{
+  display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:16px;
+}
+.illus-frame--sm{ min-height:76px; padding:10px; }
+.illus-frame--sm svg{ max-height:84px; }
