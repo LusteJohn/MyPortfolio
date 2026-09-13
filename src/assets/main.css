@@ -35,9 +35,14 @@ a:focus-visible, button:focus-visible{ outline:2px solid var(--orange); outline-
   padding:28px 22px; display:flex; flex-direction:column; z-index:50;
 }
 .avatar{
-  width:56px; height:56px; border-radius:14px; background:linear-gradient(135deg,var(--orange),#F4A261);
-  display:flex; align-items:center; justify-content:center; color:#fff; font-weight:700;
-  font-family:'Space Grotesk',sans-serif; font-size:1.2rem; margin-bottom:14px;
+  width:120px; height: 120pxpx; border-radius:14px; background:linear-gradient(135deg,var(--orange),#F4A261);
+  display:block; align-items:center; justify-content:center; color:#fff; font-weight:700;
+  font-family:'Space Grotesk',sans-serif; font-size:1.2rem; margin:0 auto 14px; object-fit:cover;
+  animation:avatarFloat 3s ease-in-out infinite;
+}
+@keyframes avatarFloat{
+  0%, 100%{ transform:translateY(0); }
+  50%{ transform:translateY(-5px); }
 }
 .sidebar .name{ font-size:1.02rem; font-weight:700; display:flex; align-items:center; gap:6px; }
 .sidebar .name i{ color:var(--orange); font-size:.85rem; }
