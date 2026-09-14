@@ -92,12 +92,10 @@ button:focus-visible {
 
 .avatar {
   width: 120px;
-  height: 120pxpx;
+  height: 120px;
   border-radius: 14px;
   background: linear-gradient(135deg, var(--orange), #F4A261);
   display: block;
-  align-items: center;
-  justify-content: center;
   color: #fff;
   font-weight: 700;
   font-family: 'Space Grotesk', sans-serif;
@@ -116,6 +114,12 @@ button:focus-visible {
 
   50% {
     transform: translateY(-5px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .avatar {
+    animation: none;
   }
 }
 
@@ -234,6 +238,8 @@ button:focus-visible {
     margin: 0 10px 0 0;
     font-size: .9rem;
     border-radius: 10px;
+    object-fit: cover;
+    animation: none;
   }
 
   .sidebar .name,
@@ -455,10 +461,6 @@ main.content {
   grid-template-areas: "projects projects about aibuilds" "credentials services testimonials testimonials";
 }
 
-.bento-work {
-  grid-template-areas: "automations automations buildplan sidestack" "funnels agents apps sidestack";
-}
-
 .bento-contact {
   grid-template-areas: "form form email social" "form form availability location";
 }
@@ -469,7 +471,6 @@ main.content {
   }
 
   .bento-home,
-  .bento-work,
   .bento-contact {
     grid-template-areas: none;
   }
@@ -528,15 +529,13 @@ main.content {
   margin: 0;
 }
 
-.b-card .tag-row {
+.tag-row {
   display: flex;
   gap: 6px;
   flex-wrap: wrap;
-  margin-top: auto;
-  padding-top: 14px;
 }
 
-.b-card .tag-row span {
+.tag-row span {
   font-size: .72rem;
   color: var(--muted);
   background: var(--card-2);
@@ -545,11 +544,103 @@ main.content {
   border-radius: 6px;
 }
 
-#sidestack {
-  grid-area: sidestack;
+.b-card .tag-row {
+  margin-top: auto;
+  padding-top: 14px;
+}
+
+/* ---------- PROJECT STATUS PILLS ---------- */
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 999px;
+  margin-bottom: 10px;
+  width: fit-content;
+}
+
+.status-pill::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.status-pill--shipped {
+  background: #e7f6ec;
+  color: #2e7d4f;
+}
+
+.status-pill--shipped::before {
+  background: #3fa66a;
+}
+
+.status-pill--building {
+  background: var(--orange-soft);
+  color: var(--orange);
+}
+
+.status-pill--building::before {
+  background: var(--orange);
+}
+
+.status-pill--local {
+  background: var(--card-2);
+  color: var(--muted);
+  border: 1px solid var(--line);
+}
+
+.status-pill--local::before {
+  background: var(--muted-2);
+}
+
+/* ---------- PROJECT STATUS SECTIONS (Projects page) ---------- */
+.project-section {
+  margin-bottom: 40px;
+}
+
+.project-section:last-child {
+  margin-bottom: 0;
+}
+
+.project-section-title {
   display: flex;
-  flex-direction: column;
-  gap: 14px;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.02rem;
+  margin-bottom: 16px;
+  color: var(--ink);
+}
+
+.status-dot-sm {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.status-dot-sm--shipped {
+  background: #3fa66a;
+}
+
+.status-dot-sm--building {
+  background: var(--orange);
+}
+
+.status-dot-sm--local {
+  background: var(--muted-2);
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 16px;
 }
 
 /* ---------- CONTACT FORM ---------- */
@@ -918,6 +1009,33 @@ main.content {
   color: var(--orange);
 }
 
+.illus-frame {
+  margin-top: 14px;
+  flex-grow: 1;
+  border-radius: 10px;
+  background: var(--card-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  min-height: 72px;
+}
+
+.illus-frame svg {
+  width: 100%;
+  height: auto;
+  max-height: 88px;
+}
+
+.illus-frame--sm {
+  min-height: 76px;
+  padding: 10px;
+}
+
+.illus-frame--sm svg {
+  max-height: 84px;
+}
+
 footer.credit {
   text-align: center;
   font-size: .78rem;
@@ -1257,170 +1375,220 @@ footer.credit {
 }
 
 /* ---------- PROJECT MODAL ---------- */
-.modal-backdrop{
-  position:fixed; inset:0; background:rgba(23,27,36,.5); backdrop-filter:blur(2px);
-  display:flex; align-items:center; justify-content:center; padding:20px; z-index:200;
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(23, 27, 36, .5);
+  backdrop-filter: blur(2px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 200;
 }
-.modal-panel{
-  width:min(460px,100%); max-height:88vh; overflow-y:auto; background:var(--card); border:1px solid var(--line);
-  border-radius:18px; padding:26px; position:relative; animation:fadeSlide .25s ease;
+
+.modal-panel {
+  width: min(460px, 100%);
+  max-height: 88vh;
+  overflow-y: auto;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 26px;
+  position: relative;
+  animation: fadeSlide .25s ease;
 }
+
 /* Widened only for projects that actually have screenshots, to fit the two-column layout below */
-.modal-panel--wide{ width:min(820px,95vw); }
+.modal-panel--wide {
+  width: min(820px, 95vw);
+}
+
 /* A landscape image stacks full-width instead of sitting in a narrow side column,
    so it doesn't get squeezed down to a sliver — the panel only needs to be medium-wide. */
-.modal-panel--tall{ width:min(560px,95vw); }
- 
-.modal-close{
-  position:absolute; top:16px; right:16px; width:30px; height:30px; border-radius:9px; background:var(--card-2);
-  border:1px solid var(--line); display:flex; align-items:center; justify-content:center; cursor:pointer; color:var(--muted);
+.modal-panel--tall {
+  width: min(560px, 95vw);
 }
-.modal-close:hover{ color:var(--orange); border-color:var(--orange); }
-.modal-panel .b-icon{ margin-bottom:16px; }
- 
+
+.modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+  background: var(--card-2);
+  border: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--muted);
+}
+
+.modal-close:hover {
+  color: var(--orange);
+  border-color: var(--orange);
+}
+
+.modal-panel .b-icon {
+  margin-bottom: 16px;
+}
+
 /* Default (portrait images / no images): text left, narrow tall image column right.
    Landscape images flip this to stacked (image on top, full width, text below) via .modal-body--landscape,
    since a wide image squeezed into a narrow side column would end up tiny. */
-.modal-body{ display:flex; gap:24px; align-items:flex-start; }
-.modal-info{ flex:1; min-width:0; }
-.modal-media{ width:320px; flex-shrink:0; display:flex; flex-direction:column; gap:8px; }
- 
-.modal-body--landscape{ flex-direction:column; }
-.modal-body--landscape .modal-media{ width:100%; order:-1; }
-.modal-body--landscape .modal-gallery-main-wrap{ min-height:0; }
-.modal-body--landscape .modal-gallery-main{ max-height:min(60vh,480px); }
- 
+.modal-body {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.modal-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.modal-media {
+  width: 320px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.modal-body--landscape {
+  flex-direction: column;
+}
+
+.modal-body--landscape .modal-media {
+  width: 100%;
+  order: -1;
+}
+
+.modal-body--landscape .modal-gallery-main-wrap {
+  min-height: 0;
+}
+
+.modal-body--landscape .modal-gallery-main {
+  max-height: min(60vh, 480px);
+}
+
 /* Main image auto-fits either orientation (object-fit: contain, capped by max-height/max-width)
    instead of cropping — the "section" box keeps a consistent footprint, the image scales inside it.
    Portrait images get real vertical room (viewport-relative) instead of a small fixed cap. */
-.modal-gallery-main-wrap{
-  background:var(--card-2); border:1px solid var(--line); border-radius:12px;
-  display:flex; align-items:center; justify-content:center; padding:8px; min-height:180px;
-}
-.modal-gallery-main{
-  max-width:100%; max-height:min(70vh,600px); width:auto; height:auto; object-fit:contain; border-radius:8px; display:block;
-}
-.modal-gallery-thumbs{ display:flex; gap:8px; flex-wrap:wrap; }
-.modal-gallery-thumb{
-  width:52px; height:42px; padding:0; border-radius:6px; overflow:hidden; border:2px solid transparent;
-  cursor:pointer; background:var(--card-2); opacity:.6; transition:opacity .2s ease, border-color .2s ease; flex-shrink:0;
-}
-.modal-gallery-thumb img{ width:100%; height:100%; object-fit:cover; display:block; }
-.modal-gallery-thumb:hover{ opacity:.9; }
-.modal-gallery-thumb.active{ opacity:1; border-color:var(--orange); }
- 
-@media (max-width:700px){
-  .modal-body{ flex-direction:column; }
-  .modal-media{ width:100%; order:0; }
-}
- 
-.modal-panel h3{ font-size:1.2rem; margin-bottom:8px; }
-.modal-panel p{ font-size:.9rem; color:var(--muted); margin-bottom:16px; }
-.modal-panel .tag-row{ margin-bottom:20px; }
-.modal-cta{
-  display:inline-flex; align-items:center; gap:8px; background:var(--ink); color:#fff; padding:10px 18px;
-  border-radius:999px; font-size:.85rem; font-weight:600;
+.modal-gallery-main-wrap {
+  background: var(--card-2);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  min-height: 180px;
 }
 
-/* ---------- PROJECT STATUS PILLS ---------- */
-.status-pill {
+.modal-gallery-main {
+  max-width: 100%;
+  max-height: min(70vh, 600px);
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 8px;
+  display: block;
+}
+
+.modal-gallery-thumbs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.modal-gallery-thumb {
+  width: 52px;
+  height: 42px;
+  padding: 0;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 2px solid transparent;
+  cursor: pointer;
+  background: var(--card-2);
+  opacity: .6;
+  transition: opacity .2s ease, border-color .2s ease;
+  flex-shrink: 0;
+}
+
+.modal-gallery-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.modal-gallery-thumb:hover {
+  opacity: .9;
+}
+
+.modal-gallery-thumb.active {
+  opacity: 1;
+  border-color: var(--orange);
+}
+
+@media (max-width:700px) {
+  .modal-body {
+    flex-direction: column;
+  }
+
+  .modal-media {
+    width: 100%;
+    order: 0;
+  }
+}
+
+.modal-panel h3 {
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+}
+
+.modal-panel p {
+  font-size: .9rem;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+
+.modal-panel .tag-row {
+  margin-bottom: 20px;
+}
+
+.modal-cta {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  font-size: .68rem;
+  gap: 8px;
+  background: var(--ink);
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-size: .85rem;
+  font-weight: 600;
+}
+
+.modal-tools {
+  margin-top: 22px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+}
+
+.modal-tools-label {
+  font-size: .72rem;
   font-weight: 700;
   letter-spacing: .04em;
   text-transform: uppercase;
-  padding: 4px 10px;
-  border-radius: 999px;
-  margin-bottom: 10px;
-  width: fit-content;
-}
-
-.status-pill::before {
-  content: "";
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-
-.status-pill--shipped {
-  background: #e7f6ec;
-  color: #2e7d4f;
-}
-
-.status-pill--shipped::before {
-  background: #3fa66a;
-}
-
-.status-pill--building {
-  background: var(--orange-soft);
-  color: var(--orange);
-}
-
-.status-pill--building::before {
-  background: var(--orange);
-}
-
-.status-pill--local {
-  background: var(--card-2);
   color: var(--muted);
-  border: 1px solid var(--line);
+  margin-bottom: 10px;
 }
 
-.status-pill--local::before {
-  background: var(--muted-2);
-}
-
-/* ---------- PROJECT STATUS SECTIONS (Projects page) ---------- */
-.project-section {
-  margin-bottom: 40px;
-}
-
-.project-section:last-child {
-  margin-bottom: 0;
-}
-
-.project-section-title {
+.tool-row {
   display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 1.02rem;
-  margin-bottom: 16px;
-  color: var(--ink);
-}
-
-.status-dot-sm {
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
-
-.status-dot-sm--shipped {
-  background: #3fa66a;
-}
-
-.status-dot-sm--building {
-  background: var(--orange);
-}
-
-.status-dot-sm--local {
-  background: var(--muted-2);
-}
-
-.project-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-  gap: 16px;
-}
-
-.illus-frame--sm {
-  min-height: 76px;
-  padding: 10px;
-}
-
-.illus-frame--sm svg {
-  max-height: 84px;
+  gap: 8px;
+  flex-wrap: wrap;
 }

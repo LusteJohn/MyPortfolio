@@ -3,6 +3,7 @@ import { ref, computed, watch } from 'vue'
 import { useProjectModal } from '../../composables/useProjectModal'
 import { statusMeta } from '../../data/projectStatus'
 import { getProjectImages } from '../../utils/projectImages'
+import { getToolIcon } from '../../data/toolIcons'
 
 const { state, close } = useProjectModal()
 
@@ -53,6 +54,15 @@ function onImageLoad(e) {
             Visit project <i class="fa-solid fa-arrow-up-right-from-square"></i>
           </a>
           <span v-else-if="state.project?.status" class="form-note">Not deployed yet — happy to walk through the code on request.</span>
+
+          <div v-if="state.project?.tools?.length" class="modal-tools">
+            <div class="modal-tools-label">Built with</div>
+            <div class="tool-row">
+              <span v-for="tool in state.project.tools" :key="tool" class="tool-pill">
+                <i :class="getToolIcon(tool)"></i> {{ tool }}
+              </span>
+            </div>
+          </div>
         </div>
 
         <!-- Right (portrait) / top (landscape): image gallery -->
