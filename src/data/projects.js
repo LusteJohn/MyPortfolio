@@ -9,7 +9,8 @@ export const projects = [
       'Turns printed organic-agriculture modules into an offline-first mobile learning app, so students can study without a live connection.',
     tags: ['Offline-first', 'Mobile', 'Capstone'],
     status: 'shipped',
-    images: 'agrilearn'
+    images: 'agrilearn',
+    tools: ['React Native', 'SQLite', 'Expo']
   },
   {
     id: 'fluentflow',
