@@ -8,4 +8,4 @@ export const commands = [
   { icon: 'fa-brands fa-linkedin-in', label: 'Open LinkedIn', sub: 'Link', type: 'link', target: '#' }
 ]
 
-export const CONTACT_EMAIL = 'hello@mayadelacroix.dev'
+export const CONTACT_EMAIL = 'luste.johnmark19@gmail.com'
