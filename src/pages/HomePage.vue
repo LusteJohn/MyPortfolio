@@ -36,7 +36,7 @@ import { services } from '../data/services'
 
       <BentoCard area="about" icon="fa-solid fa-user" eyebrow="About" :reveal-index="1">
         <h3>Who I am and how I work.</h3>
-        <p>Web and System Developer, 2 years in.</p>
+        <p>Web and System Developer, 3 years in.</p>
         <div class="illus-frame">
           <svg viewBox="0 0 343 200" xmlns="http://www.w3.org/2000/svg">
             <circle cx="50" cy="42" r="18" fill="#FBE6D4"/>

@@ -18,7 +18,7 @@ useCommandPaletteShortcut(closeModal)
     <router-view />
   </main>
 
-  <footer class="credit">© 2026 Maya Delacroix — placeholder content, swap in your own.</footer>
+  <footer class="credit">© 2026 John Mark Luste.</footer>
 
   <CommandPalette />
   <ProjectModal />
