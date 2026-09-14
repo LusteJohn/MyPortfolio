@@ -30,7 +30,9 @@ export const projects = [
     description:
       'An attendance management system built for a client during OJT, expanded with the additional features and functions they asked for along the way.',
     tags: ['Web', 'OJT'],
-    status: 'shipped'
+    status: 'shipped',
+    images: 'ojt-attendance',
+    tools: ['Vue.js', 'PHP', 'Render', 'Firebase', 'Superbase']
   },
   {
     id: 'dns-config-app',
