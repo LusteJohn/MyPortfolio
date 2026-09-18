@@ -4,7 +4,7 @@ import ToolsMarquee from '../components/common/ToolsMarquee.vue'
 import BentoCard from '../components/common/BentoCard.vue'
 import TestimonialCarousel from '../components/home/TestimonialCarousel.vue'
 import { useProjectModal } from '../composables/useProjectModal'
-import { credentials } from '../data/credentials'
+import { credentials } from '../data/credentials-list.js'
 import { services } from '../data/services'
 
 const { open } = useProjectModal()
