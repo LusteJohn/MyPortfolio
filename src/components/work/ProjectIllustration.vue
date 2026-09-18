@@ -63,6 +63,33 @@ defineProps({
     <ellipse cx="122" cy="20" rx="6" ry="12" fill="none" stroke="#171B24" stroke-width="1.4"/>
   </svg>
 
+  <!-- Green Nest: plant + leaf + pot -->
+   <svg v-else-if="id === 'green-nest'" viewBox="0 0 160 100" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="65" cy="50" r="34" fill="#FBE6D4"/>
+    <path d="M65 25 q26 8 14 40 q-16 -2 -20 -22 q-2 12 6 22 q-22 -4 -22 -28 q0 -16 22 -12z" fill="#EE7B33"/>
+    <circle cx="112" cy="68" r="15" fill="none" stroke="#171B24" stroke-width="4"/>
+    <line x1="122" y1="78" x2="136" y2="92" stroke="#171B24" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="38" cy="18" r="3" fill="#171B24"/>
+    <circle cx="50" cy="12" r="3" fill="#171B24"/>
+    <line x1="38" y1="18" x2="50" y2="12" stroke="#171B24" stroke-width="1.5"/>
+  </svg>
+
+  <!-- Barangay Explore: map + pin + info -->
+  <svg v-else-if="id === 'barangay-explore'" viewBox="0 0 160 100" xmlns="http://www.w3.org/2000/svg">
+    <rect x="30" y="25" width="60" height="55" rx="4" fill="#FFFDF8" stroke="#E7E0CE" stroke-width="2"/>
+    <rect x="40" y="35" width="40" height="5" rx="2" fill="#EE7B33"/>
+    <rect x="40" y="46" width="40" height="5" rx="2" fill="#E7E0CE"/>
+    <rect x="40" y="57" width="28" height="5" rx="2" fill="#E7E0CE"/>
+    <circle cx="118" cy="55" r="20" fill="#FBE6D4"/>
+    <circle cx="118" cy="55" r="9" fill="none" stroke="#171B24" stroke-width="4"/>
+    <g stroke="#171B24" stroke-width="4">
+      <line x1="118" y1="38" x2="118" y2="44"/>
+      <line x1="118" y1="66" x2="118" y2="72"/>
+      <line x1="101" y1="55" x2="107" y2="55"/>
+      <line x1="129" y1="55" x2="135" y2="55"/>
+    </g>
+  </svg>
+
   <!-- EggPlantLeafCare AI: leaf + magnifying glass + node dots -->
   <svg v-else-if="id === 'eggplant-leaf-care-ai'" viewBox="0 0 160 100" xmlns="http://www.w3.org/2000/svg">
     <circle cx="65" cy="50" r="34" fill="#FBE6D4"/>

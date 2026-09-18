@@ -49,7 +49,8 @@ function onImageLoad(e) {
           <p>{{ state.project?.description }}</p>
           <div v-if="state.project?.credentials?.length" class="credential-list">
             <div v-for="credential in state.project.credentials" :key="credential.title" class="credential-item">
-              <div class="credential-icon"><i class="fa-solid fa-certificate"></i></div>
+              <img v-if="credential.image" :src="credential.image" :alt="`${credential.title} certificate`" class="credential-image">
+              <div class="credential-icon" v-else><i class="fa-solid fa-certificate"></i></div>
               <div>
                 <h4>{{ credential.title }}</h4>
                 <span>{{ credential.issuer }}</span>

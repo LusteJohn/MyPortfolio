@@ -1576,6 +1576,15 @@ footer.credit {
   background: var(--card-2);
 }
 
+.credential-image {
+  width: 260px;
+  height: 190px;
+  flex-shrink: 0;
+  object-fit: contain;
+  border-radius: 8px;
+  background: var(--card);
+}
+
 .credential-icon {
   width: 34px;
   height: 34px;
@@ -1604,6 +1613,13 @@ footer.credit {
   margin: 5px 0 0;
   color: var(--muted);
   font-size: .78rem;
+}
+
+@media (max-width:700px) {
+  .credential-image {
+    width: 220px;
+    height: 160px;
+  }
 }
 
 .modal-cta {
