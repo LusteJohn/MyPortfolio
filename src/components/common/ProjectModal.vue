@@ -47,7 +47,18 @@ function onImageLoad(e) {
 
           <h3>{{ state.project?.title }}</h3>
           <p>{{ state.project?.description }}</p>
-          <div class="tag-row">
+          <div v-if="state.project?.credentials?.length" class="credential-list">
+            <div v-for="credential in state.project.credentials" :key="credential.title" class="credential-item">
+              <img v-if="credential.image" :src="credential.image" :alt="`${credential.title} certificate`" class="credential-image">
+              <div class="credential-icon" v-else><i class="fa-solid fa-certificate"></i></div>
+              <div>
+                <h4>{{ credential.title }}</h4>
+                <span>{{ credential.issuer }}</span>
+                <p>{{ credential.details }}</p>
+              </div>
+            </div>
+          </div>
+          <div v-else class="tag-row">
             <span v-for="tag in state.project?.tags" :key="tag">{{ tag }}</span>
           </div>
           <a v-if="state.project?.status === 'shipped'" class="modal-cta" href="#">

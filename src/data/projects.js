@@ -20,7 +20,9 @@ export const projects = [
     description:
       'A situational English learning app for a teacher client — spelling for beginners, fill-in-the-blank for intermediate, sentence building for advanced, with weekly progress tracking per student.',
     tags: ['Mobile', 'Education'],
-    status: 'shipped'
+    status: 'shipped',
+    images: 'fluentflow',
+    tools: ['React Native', 'SQLite', 'Expo']
   },
   {
     id: 'ojt-attendance',
@@ -42,7 +44,33 @@ export const projects = [
     description:
       'Registers a subdomain through a third-party API, then automatically creates the matching folder on the server and handles push/pull for the project — built during OJT.',
     tags: ['Automation', 'API', 'OJT'],
-    status: 'shipped'
+    status: 'shipped',
+    images: 'dns',
+    tools: ['Python', 'Flask']
+  },
+  {
+    id: 'green-nest',
+    icon: 'fa-solid fa-leaf',
+    title: 'Green Nest',
+    summary: 'A small business website for a local plant shop.',
+    description:
+      'A small business website for a local plant shop, built to showcase their products and services.',
+    tags: ['Web', 'Personal Project', 'Small Business'],
+    status: 'shipped',
+    images: 'green-nest',
+    tools: ['HTML', 'CSS', 'JavaScript'],
+  },
+  {
+    id: 'barangay-explore',
+    icon: 'fa-solid fa-city',
+    title: 'Barangay Explore',
+    summary: 'A personal web application for exploring Philippine barangays through an interactive map and filtering interface.',
+    description:
+      'A personal web application for exploring Philippine barangays through an interactive map and filtering interface, built to practice API integration and front-end development.',
+    tags: ['Web', 'Personal Project'],
+    status: 'shipped',
+    images: 'barangay-explore',
+    tools: ['HTML', 'CSS', 'JavaScript', 'Leaflet', 'JSON']
   },
 
   // ---------- Currently building ----------

@@ -3,7 +3,15 @@ import HeroSection from '../components/home/HeroSection.vue'
 import ToolsMarquee from '../components/common/ToolsMarquee.vue'
 import BentoCard from '../components/common/BentoCard.vue'
 import TestimonialCarousel from '../components/home/TestimonialCarousel.vue'
+import { useProjectModal } from '../composables/useProjectModal'
+import { credentials } from '../data/credentials'
 import { services } from '../data/services'
+
+const { open } = useProjectModal()
+
+function openCredentials() {
+  open(credentials)
+}
 </script>
 
 <template>
@@ -78,7 +86,7 @@ import { services } from '../data/services'
         <div class="tag-row"><span>ERD</span><span>DFD</span><span>Use case</span><span>Class</span><span>Activity</span><span>Component</span><span>Sequence</span><span>State</span><span>Figma</span></div>
       </BentoCard>
 
-      <BentoCard area="credentials" icon="fa-solid fa-award" eyebrow="Credentials" :reveal-index="3">
+      <BentoCard area="credentials" icon="fa-solid fa-award" eyebrow="Credentials" clickable :reveal-index="3" @click="openCredentials">
         <h3>Certificates &amp; recognitions</h3>
         <div class="illus-frame">
           <svg viewBox="0 0 343 200" xmlns="http://www.w3.org/2000/svg">
@@ -103,6 +111,7 @@ import { services } from '../data/services'
           </svg>
         </div>
         <ul class="services-list">
+          <li><span>Certified Cloud System Analyst</span><span>Completed</span></li>
           <li><span>IT Innovation Showcase</span><span>Participant</span></li>
           <li><span>On-the-Job Training</span><span>Completed</span></li>
         </ul>
