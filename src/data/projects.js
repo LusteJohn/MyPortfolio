@@ -20,7 +20,9 @@ export const projects = [
     description:
       'A situational English learning app for a teacher client — spelling for beginners, fill-in-the-blank for intermediate, sentence building for advanced, with weekly progress tracking per student.',
     tags: ['Mobile', 'Education'],
-    status: 'shipped'
+    status: 'shipped',
+    images: 'fluentflow',
+    tools: ['React Native', 'SQLite', 'Expo']
   },
   {
     id: 'ojt-attendance',
@@ -42,7 +44,9 @@ export const projects = [
     description:
       'Registers a subdomain through a third-party API, then automatically creates the matching folder on the server and handles push/pull for the project — built during OJT.',
     tags: ['Automation', 'API', 'OJT'],
-    status: 'shipped'
+    status: 'shipped',
+    images: 'dns',
+    tools: ['Python', 'Flask']
   },
 
   // ---------- Currently building ----------
