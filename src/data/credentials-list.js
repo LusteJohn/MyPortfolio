@@ -1,4 +1,8 @@
 import ccsaImage from '../assets/credential/ccsa.png'
+import ojtImage from '../assets/credential/ojt.jpg'
+import orgsImage from '../assets/credential/orgs.jpg'
+import participantImage from '../assets/credential/participant.jpg'
+import seminarImage from '../assets/credential/seminar.jpg'
 
 export const credentials = {
   icon: 'fa-solid fa-award',
@@ -16,21 +20,25 @@ export const credentials = {
     {
       title: 'IT Innovation Showcase',
       issuer: 'Participant',
+      image: participantImage,
       details: 'Presented an technology project in an innovation showcase.'
     },
     {
       title: 'On-the-Job Training',
       issuer: 'Completed',
+      image: ojtImage,
       details: 'Applied web and system development skills in a professional workplace.'
     },
     {
       title: 'University Organization',
       issuer: 'Completed',
+      image: orgsImage,
       details: 'Learn and adopt on modern web development, and networking on seminar and sessions.'
     },
     {
       title: 'Figma UX/UI Seminar',
       issuer: 'Completed',
+      image: seminarImage,
       details: 'Learn about UX/UI on Figma for modern web development mockups and design.'
     }
   ]
