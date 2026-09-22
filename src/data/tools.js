@@ -9,7 +9,10 @@ export const tools = [
   { icon: 'fa-brands fa-vuejs', label: 'Vue.js' },
   { icon: 'fa-brands fa-laravel', label: 'Laravel' },
   { icon: 'fa-brands fa-react native', label: 'React Native' },
-  { icon: 'fa-brands fa-expo', label: 'Expo' },
+  { icon: 'fa-brands fa-react native', label: 'Expo' },
+  { icon: 'fa-solid fa-database', label: 'SQLite'},
+  { icon: 'fa-solid fa-database', label: 'MySQL'},
+  { icon: 'fa-solid fa-database', label: 'PostgreSQL'},
   { icon: 'fa-brands fa-php', label: 'PHP' },
   { icon: 'fa-brands fa-python', label: 'Python' },
   { icon: 'fa-brands fa-figma', label: 'Figma' },
@@ -17,6 +20,8 @@ export const tools = [
   { icon: 'fa-brands fa-github', label: 'GitHub' },
   { icon: 'fa-solid fa-diagram-project', label: 'Linear' },
   { icon: 'fa-solid fa-bolt', label: 'Vercel' },
+  { icon: 'fa-solid fa-fire', label: 'Firebase'},
+  { icon: 'fa-solid fa-bolt', label: 'Supabase'},
+  { icon: 'fa-solid fa-bolt', label: 'Render'},
   { icon: 'fa-solid fa-code', label: 'VS Code' },
-  { icon: 'fa-brands fa-slack', label: 'Slack' }
 ]

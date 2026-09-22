@@ -31,7 +31,7 @@ export const projects = [
     summary: 'Attendance tracking system extended with client-requested features.',
     description:
       'An attendance management system built for a client during OJT, expanded with the additional features and functions they asked for along the way.',
-    tags: ['Web', 'OJT'],
+    tags: ['PWA', 'OJT'],
     status: 'shipped',
     images: 'ojt-attendance',
     tools: ['Vue.js', 'PHP', 'Render', 'Firebase', 'Superbase']
@@ -81,7 +81,7 @@ export const projects = [
     summary: 'AI-assisted detection and care guidance for eggplant leaf disease.',
     description:
       'An AI-assisted tool for identifying eggplant leaf disease and suggesting care steps — currently in active development.',
-    tags: ['AI', 'Mobile', 'In progress'],
+    tags: ['AI', 'PWA', 'In progress'],
     status: 'building'
   },
   {
@@ -91,7 +91,7 @@ export const projects = [
     summary: 'Educational tour planning app, currently in development.',
     description:
       'An educational trip/tour planning app, currently being built out feature by feature.',
-    tags: ['Mobile', 'In progress'],
+    tags: ['PWA', 'In progress'],
     status: 'building'
   },
 

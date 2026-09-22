@@ -113,7 +113,7 @@ function openCredentials() {
         <ul class="services-list">
           <li><span>Certified Cloud System Analyst</span><span>Completed</span></li>
           <li><span>IT Innovation Showcase</span><span>Participant</span></li>
-          <li><span>On-the-Job Training</span><span>Completed</span></li>
+          <li><span>More...</span><span>Completed</span></li>
         </ul>
       </BentoCard>
 

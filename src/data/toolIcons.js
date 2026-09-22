@@ -24,6 +24,7 @@ const iconMap = {
   postgresql: 'fa-solid fa-database',
   mongodb: 'fa-solid fa-leaf',
   firebase: 'fa-solid fa-fire',
+  supabase: 'fa-solid fa-bolt',
   git: 'fa-brands fa-git-alt',
   github: 'fa-brands fa-github',
   docker: 'fa-brands fa-docker',
