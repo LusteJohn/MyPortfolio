@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted, onUnmounted, computed } from 'vue'
 import profileImage from '../../assets/images/profile.png'
 import { useNavigation } from '../../composables/useNavigation'
 import { useCommandPalette } from '../../composables/useCommandPalette'
@@ -8,6 +8,19 @@ import { socials } from '../../data/social'
 const { currentPage, goTo } = useNavigation()
 const { open: openCmdk } = useCommandPalette()
 const isMobileNavOpen = ref(false)
+const isMobile = ref(false)
+
+const avatarInitials = computed(() => 'JM')
+
+function onResize() {
+  isMobile.value = window.matchMedia('(max-width: 900px)').matches
+}
+
+onMounted(() => {
+  onResize()
+  window.addEventListener('resize', onResize)
+})
+onUnmounted(() => window.removeEventListener('resize', onResize))
 
 const navItems = [
   { page: 'home', icon: 'fa-solid fa-house', label: 'Home' },
@@ -23,7 +36,10 @@ function select(page) {
 
 <template>
   <aside class="sidebar">
-    <img class="avatar" :src="profileImage" alt="John Mark Luste">
+    <div v-if="!isMobile" class="avatar">
+      <img class="avatar-img" :src="profileImage" alt="John Mark Luste">
+    </div>
+    <div v-else class="avatar avatar-initials">{{ avatarInitials }}</div>
     <div class="name">John Mark Luste <i class="fa-solid fa-circle-check"></i></div>
     <div class="handle">@myDevDesign</div>
 
