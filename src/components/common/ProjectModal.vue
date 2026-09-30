@@ -1,22 +1,59 @@
 <script setup>
-import { ref, computed, watch } from 'vue'
+import { ref, computed, watch, nextTick } from 'vue'
 import { useProjectModal } from '../../composables/useProjectModal'
 import { statusMeta } from '../../data/projectStatus'
 import { getProjectImages } from '../../utils/projectImages'
 import { getToolIcon } from '../../data/toolIcons'
+import { createImageZoom } from '../../utils/imageZoom'
 
 const { state, close } = useProjectModal()
 
 const activeImage = ref(0)
 const isLandscape = ref(false)
 const images = computed(() => getProjectImages(state.project?.images))
+const imageRef = ref(null)
+const galleryWrapRef = ref(null)
+let zoom = null
 
-// Reset back to the first image whenever a new project is opened
-watch(() => state.project, () => { activeImage.value = 0 })
+watch(
+  () => state.isOpen,
+  async (open) => {
+    if (open) {
+      await nextTick()
+      initZoom()
+    } else if (zoom) {
+      zoom.reset()
+      zoom = null
+    }
+  }
+)
 
-// Re-checked every time the displayed image changes (the <img> re-fires @load on src change)
+watch(
+  () => state.project,
+  () => {
+    activeImage.value = 0
+    isLandscape.value = false
+    zoom?.reset()
+  }
+)
+
+watch(activeImage, async () => {
+  await nextTick()
+  zoom?.reset()
+})
+
+function initZoom() {
+  if (!imageRef.value || !galleryWrapRef.value) return
+  if (zoom) {
+    zoom.reset()
+  } else {
+    zoom = createImageZoom(imageRef.value, galleryWrapRef.value)
+  }
+}
+
 function onImageLoad(e) {
   isLandscape.value = e.target.naturalWidth >= e.target.naturalHeight
+  zoom?.reset()
 }
 </script>
 
@@ -78,8 +115,9 @@ function onImageLoad(e) {
 
         <!-- Right (portrait) / top (landscape): image gallery -->
         <div v-if="images.length" class="modal-media">
-          <div class="modal-gallery-main-wrap">
+          <div class="modal-gallery-main-wrap" ref="galleryWrapRef">
             <img
+              ref="imageRef"
               :src="images[activeImage]"
               :alt="state.project?.title"
               class="modal-gallery-main"
