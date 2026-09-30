@@ -2,6 +2,7 @@
 import StatusBadge from '../components/common/StatusBadge.vue'
 import BentoCard from '../components/common/BentoCard.vue'
 import ContactForm from '../components/contact/ContactForm.vue'
+import ResumeModal from '../components/common/ResumeModal.vue'
 import { socials } from '../data/social'
 import { CONTACT_EMAIL } from '../data/commands'
 </script>
@@ -27,7 +28,7 @@ import { CONTACT_EMAIL } from '../data/commands'
         <h3>Email &amp; résumé</h3>
         <div class="contact-list">
           <a :href="`mailto:${CONTACT_EMAIL}`"><i class="fa-regular fa-envelope"></i> {{ CONTACT_EMAIL }}</a>
-          <a href="#" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-file-arrow-down"></i> Download résumé (PDF)</a>
+          <ResumeModal />
         </div>
       </BentoCard>
 

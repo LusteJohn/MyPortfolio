@@ -9,6 +9,12 @@ const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY
 const name = ref('')
 const email = ref('')
 const budget = ref('')
+const budgetOptions = [
+  'Full-time role',
+  'Contract',
+  'Specific project',
+  'Part-time / consulting'
+]
 const message = ref('')
 
 const status = ref('idle') // 'idle' | 'sending' | 'success' | 'error'
@@ -63,7 +69,16 @@ async function handleSubmit() {
     <div class="form-row">
       <div class="form-field full">
         <label for="fBudget">What are you looking for?</label>
-        <input id="fBudget" v-model="budget" type="text" placeholder="Full-time role, contract, or a specific project">
+        <input
+          id="fBudget"
+          list="budget-options"
+          v-model="budget"
+          type="text"
+          placeholder="Full-time role, contract, or a specific project"
+        >
+        <datalist id="budget-options">
+          <option v-for="option in budgetOptions" :key="option" :value="option"></option>
+        </datalist>
       </div>
     </div>
     <div class="form-row">
