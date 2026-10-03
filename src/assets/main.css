@@ -290,6 +290,28 @@ main.content {
   flex-wrap: wrap;
 }
 
+.topbar > div:first-child {
+  flex: 1 1 420px;
+  min-width: 0;
+}
+
+.hero-side {
+  flex: 0 1 460px;
+  min-width: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 14px;
+}
+
+.hero-side .cta-pill {
+  align-self: flex-start;
+}
+
+@media (max-width: 900px) {
+  .hero-side { flex: 1 1 100%; }
+}
+
 .eyebrow {
   font-size: .76rem;
   font-weight: 700;
@@ -1124,6 +1146,16 @@ footer.credit {
   font-size: 1.5rem;
   display: block;
   color: var(--ink);
+  transition: color .2s ease, transform .2s ease;
+}
+
+.stat-item {
+  transition: transform .2s ease;
+}
+
+.stat-item:hover b {
+  color: var(--orange);
+  transform: translateY(-2px);
 }
 
 .stat-item span {

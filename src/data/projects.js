@@ -72,8 +72,6 @@ export const projects = [
     images: 'barangay-explore',
     tools: ['HTML', 'CSS', 'JavaScript', 'Leaflet', 'JSON']
   },
-
-  // ---------- Currently building ----------
   {
     id: 'eggplant-leaf-care-ai',
     icon: 'fa-solid fa-leaf',
@@ -82,8 +80,12 @@ export const projects = [
     description:
       'An AI-assisted tool for identifying eggplant leaf disease and suggesting care steps — currently in active development.',
     tags: ['AI', 'PWA', 'In progress'],
-    status: 'building'
+    status: 'shipped',
+    images: 'egg_plant_ai',
+    tools: ['Vue.js', 'Express.js', 'Python', 'Supabase', 'Render', 'Firebase']
   },
+
+  // ---------- Currently building ----------
   {
     id: 'myedutour',
     icon: 'fa-solid fa-map-location-dot',
@@ -104,7 +106,9 @@ export const projects = [
     description:
       'A system for tracking the distribution of relief goods to affected areas — working locally, not yet deployed.',
     tags: ['Web', 'Local'],
-    status: 'local'
+    status: 'local',
+    images: 'drdts',
+    tools: ['PHP', 'PostgreSQL', 'Laravel', 'tailwindcss']
   },
   {
     id: 'sari-sari-store',
@@ -134,7 +138,9 @@ export const projects = [
     description:
       'A system built for internal record and process management — running locally, not yet deployed.',
     tags: ['Web', 'Local'],
-    status: 'local'
+    status: 'local',
+    images: 'svpmfs',
+    tools: ['PHP', 'PostgreSQL', 'Laravel', 'tailwindcss']
   },
   {
     id: 'school-portal',
