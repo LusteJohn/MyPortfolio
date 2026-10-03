@@ -1146,6 +1146,16 @@ footer.credit {
   font-size: 1.5rem;
   display: block;
   color: var(--ink);
+  transition: color .2s ease, transform .2s ease;
+}
+
+.stat-item {
+  transition: transform .2s ease;
+}
+
+.stat-item:hover b {
+  color: var(--orange);
+  transform: translateY(-2px);
 }
 
 .stat-item span {

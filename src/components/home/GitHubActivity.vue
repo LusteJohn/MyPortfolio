@@ -9,6 +9,30 @@ const {
 
 const isOpen = ref(false)
 
+const hovered = ref(null)
+
+function showCell(cell, evt) {
+  const rect = evt.currentTarget.getBoundingClientRect()
+  hovered.value = {
+    date: cell.date,
+    count: cell.count,
+    level: level(cell.count),
+    left: rect.left + rect.width / 2,
+    top: rect.top
+  }
+}
+
+function hideCell() {
+  hovered.value = null
+}
+
+function formatDate(iso) {
+  const [y, m, d] = iso.split('-').map(Number)
+  const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+  const DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+  return `${DAYS[new Date(y, m - 1, d).getDay()]}, ${MONTHS[m - 1]} ${d}, ${y}`
+}
+
 function onKey(e) {
   if (e.key === 'Escape') isOpen.value = false
 }
@@ -63,7 +87,8 @@ onUnmounted(() => {
               :key="cell.date"
               class="gh-cell"
               :class="`lv-${level(cell.count)}`"
-              :title="`${cell.count} contribution${cell.count === 1 ? '' : 's'} on ${cell.date}`"
+              @mouseenter="showCell(cell, $event)"
+              @mouseleave="hideCell"
             ></span>
           </div>
         </div>
@@ -79,6 +104,18 @@ onUnmounted(() => {
       <i class="gh-cell lv-4"></i>
       <span>More</span>
     </div>
+
+    <Transition name="gh-tip">
+      <div
+        v-if="hovered"
+        class="gh-tip"
+        :style="{ left: `${hovered.left}px`, top: `${hovered.top}px` }"
+      >
+        <b>{{ hovered.count }}</b>
+        {{ hovered.count === 1 ? 'contribution' : 'contributions' }}
+        <span class="gh-tip-date">{{ formatDate(hovered.date) }}</span>
+      </div>
+    </Transition>
 
     <div class="gh-foot">
       <ul class="gh-stats">
@@ -279,6 +316,15 @@ onUnmounted(() => {
   border-radius: 2px;
   background: var(--line);
   display: block;
+  transition: transform .12s ease, outline-color .12s ease;
+  outline: 2px solid transparent;
+}
+
+.gh-cell:hover {
+  transform: scale(1.35);
+  outline-color: var(--orange);
+  position: relative;
+  z-index: 2;
 }
 
 .gh-cell.lv-1 { background: #f7c9a8; }
@@ -299,6 +345,11 @@ onUnmounted(() => {
   width: 9px;
   height: 9px;
   aspect-ratio: auto;
+}
+
+.gh-legend .gh-cell:hover {
+  transform: none;
+  outline-color: transparent;
 }
 
 .gh-stats {
@@ -329,6 +380,54 @@ onUnmounted(() => {
   font-weight: 600;
   color: var(--ink);
   align-self: flex-end;
+}
+
+.gh-tip {
+  position: fixed;
+  z-index: 80;
+  transform: translate(-50%, calc(-100% - 8px));
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--ink);
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: .72rem;
+  white-space: nowrap;
+  pointer-events: none;
+  box-shadow: 0 6px 18px rgba(23, 27, 36, .22);
+}
+
+.gh-tip::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: var(--ink);
+}
+
+.gh-tip b {
+  font-weight: 700;
+  color: var(--orange);
+}
+
+.gh-tip-date {
+  color: rgba(255, 255, 255, .68);
+  font-size: .66rem;
+}
+
+.gh-tip-enter-active,
+.gh-tip-leave-active {
+  transition: opacity .14s ease, transform .14s ease;
+}
+
+.gh-tip-enter-from,
+.gh-tip-leave-to {
+  opacity: 0;
+  transform: translate(-50%, calc(-100% - 4px));
 }
 
 .gh-foot {
