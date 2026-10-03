@@ -290,6 +290,28 @@ main.content {
   flex-wrap: wrap;
 }
 
+.topbar > div:first-child {
+  flex: 1 1 420px;
+  min-width: 0;
+}
+
+.hero-side {
+  flex: 0 1 460px;
+  min-width: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 14px;
+}
+
+.hero-side .cta-pill {
+  align-self: flex-start;
+}
+
+@media (max-width: 900px) {
+  .hero-side { flex: 1 1 100%; }
+}
+
 .eyebrow {
   font-size: .76rem;
   font-weight: 700;
