@@ -1,6 +1,7 @@
 <script setup>
 import StatusBadge from '../common/StatusBadge.vue'
 import StatRow from './StatRow.vue'
+import GitHubActivity from './GitHubActivity.vue'
 import { useTypewriter } from '../../composables/useTypewriter'
 import { CONTACT_EMAIL } from '../../data/commands'
 
@@ -17,6 +18,9 @@ const { text: typedRole } = useTypewriter(roles)
       <p class="sub">Freelancing across personal projects, capstone builds, and client customizations — apps built offline-first, so the work keeps running whether or not the connection does.</p>
       <StatRow />
     </div>
-    <a class="cta-pill" :href="`mailto:${CONTACT_EMAIL}`">Get in touch <i class="fa-solid fa-arrow-right"></i></a>
+    <div class="hero-side">
+      <GitHubActivity />
+      <a class="cta-pill" :href="`mailto:${CONTACT_EMAIL}`">Get in touch <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
   </div>
 </template>
