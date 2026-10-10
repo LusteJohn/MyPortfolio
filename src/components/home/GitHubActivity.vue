@@ -1,6 +1,7 @@
 <script setup>
 import { ref, watch, onUnmounted } from 'vue'
 import { useGithubActivity, GITHUB_URL, timeAgo } from '../../composables/useGithubActivity'
+import { CONTACT_EMAIL } from '../../data/commands'
 
 const {
   status, grid, totalLabel, activeDays, streakLabel, topRepos, privateRepos,
@@ -201,6 +202,25 @@ onUnmounted(() => {
   align-items: flex-start;
   justify-content: space-between;
   gap: 12px;
+}
+
+.gh-contact-cta {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--ink);
+  color: #fff;
+  padding: 10px 16px;
+  font-size: .88rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform .2s ease, background .2s ease;
+}
+
+.gh-contact-cta:hover {
+  transform: translateY(-2px);
+  background: #000;
 }
 
 .gh-user {

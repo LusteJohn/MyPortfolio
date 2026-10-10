@@ -305,6 +305,10 @@ main.content {
 }
 
 .hero-side .cta-pill {
+  align-self: flex-end;
+}
+
+.hero-side .cta-pill {
   align-self: flex-start;
 }
 
@@ -806,17 +810,28 @@ main.content {
   padding: 14px 6px;
   font-size: .76rem;
   color: var(--muted);
-  transition: border-color .2s ease, color .2s ease;
+  transition: border-color .2s ease, color .2s ease, transform .2s ease, box-shadow .2s ease;
 }
 
 .social-grid a i {
   font-size: 1.05rem;
   color: var(--orange);
+  transform-box: fill-box;
+  transform-origin: center;
+  will-change: transform;
 }
 
 .social-grid a:hover {
   border-color: var(--orange);
   color: var(--ink);
+  transform: translateY(-3px);
+  box-shadow: 3px 3px 0 var(--orange);
+}
+
+.social-grid a:hover i { animation: pxWobble .6s steps(2, end) infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .social-grid a:hover i { animation: none; }
 }
 
 /* ---------- MOCK PREVIEWS ---------- */
@@ -1057,6 +1072,466 @@ footer.credit {
   font-size: .78rem;
   color: var(--muted);
   padding: 26px 0 6px;
+}
+
+/* ---------- PIXEL UI ---------- */
+body {
+  background-color: var(--bg);
+  background-image:
+    linear-gradient(rgba(23, 27, 36, .035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(23, 27, 36, .035) 1px, transparent 1px);
+  background-size: 8px 8px;
+  font-family: 'Pixelify Sans', sans-serif;
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
+}
+
+button,
+input,
+textarea,
+select {
+  font-family: 'Pixelify Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+#app h1,
+#app .display,
+#app .stat-item b,
+#app .cmdk-trigger kbd {
+  font-family: 'Silkscreen', monospace;
+  letter-spacing: 0;
+  line-height: 1.35;
+}
+
+#app h2,
+#app h3 {
+  font-family: 'Pixelify Sans', sans-serif;
+  font-weight: 700;
+  letter-spacing: .01em;
+  line-height: 1.2;
+}
+
+#app h1 {
+  font-size: clamp(1.45rem, 3.2vw, 2rem);
+}
+
+#app h2,
+#app h3 {
+  font-size: .98rem;
+}
+
+#app p,
+#app li,
+#app label,
+#app .stat-item span,
+#app .b-eyebrow,
+#app .eyebrow {
+  line-height: 1.25;
+}
+
+#app .b-card p,
+#app .topbar p.sub,
+#app .gh-desc,
+#app .form-note {
+  font-size: 1.02rem;
+  line-height: 1.25;
+}
+
+#app .b-card .b-eyebrow,
+#app .eyebrow,
+#app .stat-item span,
+#app .form-field label,
+#app .tools-strip .label,
+#app .sidebar .handle,
+#app footer.credit {
+  font-size: .78rem;
+}
+
+#app .side-nav button,
+#app .cmdk-trigger,
+#app .tool-pill,
+#app .status-badge,
+#app .form-submit,
+#app .contact-list a,
+#app .contact-list div {
+  font-size: .88rem;
+}
+
+#app .sidebar,
+#app .b-card,
+#app .gh-card,
+#app .tools-strip,
+#app .cmdk-panel,
+#app .modal-panel,
+#app .gh-modal {
+  border-width: 2px;
+  border-radius: 0;
+  box-shadow: 4px 4px 0 rgba(23, 27, 36, .14);
+}
+
+#app .illus-frame,
+  #app .illus-frame,
+  #app .mock-browser,
+  #app .avatar,
+  #app .social-row a,
+#app .side-nav button,
+#app .b-icon,
+#app .tag-row span,
+#app .status-pill,
+#app .tool-pill,
+#app .form-field input,
+#app .form-field textarea,
+#app .form-submit,
+#app .contact-list a,
+#app .contact-list div,
+#app .social-grid a,
+#app .status-badge,
+#app .cmdk-trigger,
+#app .cmdk-item,
+#app .modal-close,
+#app .gh-more,
+#app .gh-retry {
+  border-radius: 0;
+}
+
+#app .b-icon,
+#app .stat-item b,
+#app .gh-cell,
+#app .gh-dot,
+#app .status-dot,
+#app .status-dot-sm,
+#app .mock-browser .bar span,
+#app .testi-dots span {
+  image-rendering: pixelated;
+}
+
+#app .b-icon {
+  border: 2px solid var(--ink);
+  box-shadow: 3px 3px 0 var(--ink);
+}
+
+#app .b-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--orange);
+}
+
+#app .stat-row {
+  gap: 22px;
+  padding: 12px;
+  border: 2px solid var(--line);
+  background: var(--card);
+  box-shadow: 4px 4px 0 rgba(23, 27, 36, .12);
+}
+
+#app .stat-item b {
+  font-size: 1.05rem;
+  line-height: 1.4;
+}
+
+#app .gh-table {
+  border: 2px solid var(--ink);
+  border-radius: 0;
+  border-collapse: collapse;
+  font-family: 'Pixelify Sans', sans-serif;
+}
+
+#app .gh-table th,
+#app .gh-table td {
+  border: 1px solid var(--line);
+}
+
+#app .gh-table th {
+  font-family: 'Silkscreen', monospace;
+  font-size: .7rem;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+#app .gh-table td,
+#app .gh-total,
+#app .gh-stats span,
+#app .gh-streak,
+#app .gh-legend,
+#app .gh-months span,
+#app .gh-days span {
+  font-size: .82rem;
+}
+
+#app .gh-table tr:hover td {
+  background: var(--orange-soft);
+}
+
+#app .gh-cell {
+  border-radius: 0;
+  border: 1px solid rgba(23, 27, 36, .12);
+}
+
+#app .form-field input:focus,
+#app .form-field textarea:focus,
+#app .cmdk-input-row input:focus {
+  box-shadow: 3px 3px 0 var(--orange);
+}
+
+#app .modal-backdrop,
+#app .cmdk-backdrop,
+#app .gh-modal-backdrop {
+  backdrop-filter: none;
+}
+
+/* ---------- PIXEL BENTO MOTION ---------- */
+#app .illus-frame svg [class^="px-"],
+#app .illus-frame svg [class*=" px-"] {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+#app .b-card:hover .px-shake { animation: pxShake .5s steps(2, end) infinite; }
+#app .b-card:hover .px-rise { animation: pxRise .9s steps(3, end) infinite; }
+#app .b-card:hover .px-bob { animation: pxBob 1s steps(2, end) infinite; }
+#app .b-card:hover .px-blink { animation: pxBlink 1.1s steps(2, end) infinite; }
+#app .b-card:hover .px-twinkle { animation: pxTwinkle .8s steps(2, end) infinite; }
+#app .b-card:hover .px-tilt { animation: pxTilt 1.2s steps(2, end) infinite; }
+#app .b-card:hover .px-wave { animation: pxWave .6s steps(2, end) infinite; }
+#app .b-card:hover .px-sway { animation: pxSway 1s steps(2, end) infinite; }
+#app .b-card:hover .px-swing { animation: pxSwing .9s steps(2, end) infinite; }
+#app .b-card:hover .px-spin { animation: pxSpin 1.6s steps(4, end) infinite; }
+#app .b-card:hover .px-shine { animation: pxShine 1s steps(2, end) infinite; }
+#app .b-card:hover .px-writing { animation: pxWriting .7s steps(2, end) infinite; }
+#app .b-card:hover .px-march { animation: pxMarch .6s steps(2, end) infinite; }
+#app .b-card:hover .px-pop { animation: pxPop .8s steps(2, end) infinite; }
+#app .b-card:hover .px-hub { animation: pxHub 1s steps(2, end) infinite; }
+#app .b-card:hover .px-quote { animation: pxQuote .5s steps(2, end) infinite; }
+#app .b-card:hover .px-hop { animation: pxHop 1s steps(2, end) infinite; }
+#app .b-card:hover .px-hop2 { animation: pxHop 1s steps(2, end) .15s infinite; }
+#app .b-card:hover .px-hop3 { animation: pxHop 1s steps(2, end) .3s infinite; }
+
+@keyframes pxShake {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(-2px, 2px); }
+}
+
+@keyframes pxRise {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+@keyframes pxBob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-2px); }
+}
+
+@keyframes pxBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: .3; }
+}
+
+@keyframes pxTwinkle {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: .2; transform: scale(1.6); }
+}
+
+@keyframes pxTilt {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(-3deg); }
+}
+
+@keyframes pxWave {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(-12deg); }
+}
+
+@keyframes pxSway {
+  0%, 100% { transform: rotate(-6deg); }
+  50% { transform: rotate(6deg); }
+}
+
+@keyframes pxSwing {
+  0%, 100% { transform: rotate(-14deg); }
+  50% { transform: rotate(14deg); }
+}
+
+@keyframes pxSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(90deg); }
+}
+
+@keyframes pxShine {
+  0%, 100% { transform: scaleX(1); }
+  50% { transform: scaleX(1.3); }
+}
+
+@keyframes pxWriting {
+  0%, 100% { transform: scaleX(1); opacity: 1; }
+  50% { transform: scaleX(.85); opacity: .7; }
+}
+
+@keyframes pxMarch {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(4px); }
+}
+
+@keyframes pxPop {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.14); }
+}
+
+@keyframes pxHub {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+@keyframes pxQuote {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-2px); }
+}
+
+@keyframes pxHop {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+#app .b-card:hover .px-nudge { animation: pxNudge .6s steps(2, end) infinite; }
+#app .b-card:hover .px-wiggle { animation: pxWiggle 1s steps(2, end) infinite; }
+#app .b-card:hover .px-route { animation: pxRoute 1s steps(6, end) infinite; }
+#app .b-card:hover .px-roll { animation: pxRoll .6s steps(3, end) infinite; }
+#app .b-card:hover .px-scan { animation: pxScanMove 1s steps(2, end) infinite; }
+#app .b-card:hover .px-pop2 { animation: pxPop .8s steps(2, end) .15s infinite; }
+#app .b-card:hover .px-hand { animation: pxHand 6s steps(6, end) infinite; }
+
+/* rotate around the clock hub, not the hand's own box */
+#app .illus-frame svg .px-hand { transform-box: view-box; transform-origin: 80px 39px; }
+#app .b-card:hover .px-pin { animation: pxPin 1s steps(2, end) infinite; }
+#app .b-card:hover .px-ping { animation: pxPing .9s steps(2, end) infinite; }
+#app .b-card:hover .px-shadow { animation: pxShadow .9s steps(2, end) infinite; }
+
+@keyframes pxRoute {
+  from { stroke-dashoffset: 0; }
+  to { stroke-dashoffset: -18; }
+}
+
+@keyframes pxRoll {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(120deg); }
+}
+
+@keyframes pxScanMove {
+  0%, 100% { transform: translate(-2px, 2px) rotate(-10deg); }
+  50% { transform: translate(2px, -2px) rotate(10deg); }
+}
+
+@keyframes pxHand {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(90deg); }
+  50% { transform: rotate(180deg); }
+  75% { transform: rotate(270deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes pxPin {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes pxPing {
+  0% { transform: scale(.6); opacity: 0; }
+  50% { transform: scale(1.4); opacity: 1; }
+  100% { transform: scale(.6); opacity: 0; }
+}
+
+@keyframes pxShadow {
+  0%, 100% { transform: scaleX(1); opacity: 1; }
+  50% { transform: scaleX(.6); opacity: .5; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #app .b-card:hover [class^="px-"],
+  #app .b-card:hover [class*=" px-"] {
+    animation: none !important;
+  }
+}
+
+/* ---------- SIDEBAR HOVER MOTION ---------- */
+#app .social-row a,
+#app .side-nav button,
+#app .cmdk-trigger,
+#app .menu-toggle,
+#app .avatar {
+  transition: transform .2s ease, box-shadow .2s ease, background .2s ease, color .2s ease, border-color .2s ease;
+}
+
+#app .social-row a i,
+#app .side-nav button i,
+#app .cmdk-trigger i,
+#app .menu-toggle i {
+  transform-box: fill-box;
+  transform-origin: center;
+  will-change: transform;
+}
+
+#app .social-row a:hover {
+  transform: translateY(-3px);
+  box-shadow: 3px 3px 0 var(--orange);
+}
+
+#app .social-row a:hover i { animation: pxWobble .6s steps(2, end) infinite; }
+
+#app .side-nav button:hover {
+  transform: translateX(3px);
+}
+
+#app .side-nav button:hover i { animation: pxNudge .6s steps(2, end) infinite; }
+
+#app .side-nav button.active i { animation: pxWiggle 1s steps(2, end) infinite; }
+
+#app .side-nav button.active:hover { animation: pxWiggle .8s steps(2, end) infinite; }
+
+#app .cmdk-trigger:hover {
+  transform: translate(2px, 2px);
+  box-shadow: none;
+}
+
+#app .cmdk-trigger:hover i { animation: pxScan .8s steps(2, end) infinite; }
+
+#app .cmdk-trigger:hover kbd { animation: pxPop .5s steps(2, end) infinite; }
+
+#app .menu-toggle:hover i { animation: pxWiggle .5s steps(2, end) infinite; }
+
+#app .avatar:hover {
+  transform: translateY(-2px);
+  box-shadow: 4px 4px 0 var(--orange);
+}
+
+@keyframes pxWobble {
+  0%, 100% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(-12deg) scale(1.15); }
+}
+
+@keyframes pxWiggle {
+  0%, 100% { transform: rotate(-8deg) scale(1.1); }
+  50% { transform: rotate(8deg) scale(1.1); }
+}
+
+@keyframes pxNudge {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(4px); }
+}
+
+@keyframes pxScan {
+  0%, 100% { transform: translateX(-3px) rotate(-16deg); }
+  50% { transform: translateX(3px) rotate(16deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #app .social-row a:hover i,
+  #app .side-nav button:hover i,
+  #app .side-nav button.active i,
+  #app .side-nav button.active:hover,
+  #app .cmdk-trigger:hover i,
+  #app .cmdk-trigger:hover kbd,
+  #app .menu-toggle:hover i {
+    animation: none !important;
+  }
 }
 
 /* ---------- AVAILABILITY BADGE ---------- */
@@ -1344,6 +1819,18 @@ footer.credit {
   border-radius: 14px;
   box-shadow: 0 24px 60px -20px rgba(0, 0, 0, .35);
   overflow: hidden;
+  animation: cmdkPanelIn .18s steps(4, end);
+}
+
+@keyframes cmdkPanelIn {
+  from {
+    transform: translateY(-14px) scale(.97);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
 }
 
 .cmdk-input-row {
@@ -1356,6 +1843,9 @@ footer.credit {
 
 .cmdk-input-row i {
   color: var(--muted);
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: pxScan .9s steps(2, end) infinite;
 }
 
 .cmdk-input-row input {
@@ -1382,12 +1872,64 @@ footer.credit {
   border-radius: 9px;
   font-size: .88rem;
   cursor: pointer;
+  animation: cmdkItemIn .22s steps(4, end) backwards;
+}
+
+.cmdk-item:nth-child(1) { animation-delay: .02s; }
+.cmdk-item:nth-child(2) { animation-delay: .06s; }
+.cmdk-item:nth-child(3) { animation-delay: .1s; }
+.cmdk-item:nth-child(4) { animation-delay: .14s; }
+.cmdk-item:nth-child(5) { animation-delay: .18s; }
+.cmdk-item:nth-child(6) { animation-delay: .22s; }
+.cmdk-item:nth-child(7) { animation-delay: .26s; }
+.cmdk-item:nth-child(8) { animation-delay: .3s; }
+
+@keyframes cmdkItemIn {
+  from {
+    transform: translateX(-10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
 .cmdk-item i {
   color: var(--orange);
   width: 16px;
   text-align: center;
+}
+
+.cmdk-item span,
+.cmdk-item .cmdk-sub {
+  transition: transform .18s ease, color .18s ease;
+}
+
+.cmdk-item:hover {
+  background: var(--card-2);
+}
+
+.cmdk-item:hover i { animation: pxWobble .6s steps(2, end) infinite; }
+
+.cmdk-item:hover span:first-of-type {
+  transform: translateX(4px);
+  color: var(--ink);
+}
+
+.cmdk-item.hi i { animation: pxWiggle 1s steps(2, end) infinite; }
+
+#app .cmdk-input-row i { transform-box: fill-box; }
+
+/* ---------- COMMAND PALETTE MOTION GUARD ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .cmdk-panel,
+  .cmdk-item,
+  .cmdk-input-row i,
+  .cmdk-item:hover i,
+  .cmdk-item.hi i {
+    animation: none;
+  }
 }
 
 .cmdk-item.hi {
