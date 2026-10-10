@@ -810,17 +810,28 @@ main.content {
   padding: 14px 6px;
   font-size: .76rem;
   color: var(--muted);
-  transition: border-color .2s ease, color .2s ease;
+  transition: border-color .2s ease, color .2s ease, transform .2s ease, box-shadow .2s ease;
 }
 
 .social-grid a i {
   font-size: 1.05rem;
   color: var(--orange);
+  transform-box: fill-box;
+  transform-origin: center;
+  will-change: transform;
 }
 
 .social-grid a:hover {
   border-color: var(--orange);
   color: var(--ink);
+  transform: translateY(-3px);
+  box-shadow: 3px 3px 0 var(--orange);
+}
+
+.social-grid a:hover i { animation: pxWobble .6s steps(2, end) infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .social-grid a:hover i { animation: none; }
 }
 
 /* ---------- MOCK PREVIEWS ---------- */
@@ -1380,6 +1391,59 @@ select {
   50% { transform: translateY(-5px); }
 }
 
+#app .b-card:hover .px-nudge { animation: pxNudge .6s steps(2, end) infinite; }
+#app .b-card:hover .px-wiggle { animation: pxWiggle 1s steps(2, end) infinite; }
+#app .b-card:hover .px-route { animation: pxRoute 1s steps(6, end) infinite; }
+#app .b-card:hover .px-roll { animation: pxRoll .6s steps(3, end) infinite; }
+#app .b-card:hover .px-scan { animation: pxScanMove 1s steps(2, end) infinite; }
+#app .b-card:hover .px-pop2 { animation: pxPop .8s steps(2, end) .15s infinite; }
+#app .b-card:hover .px-hand { animation: pxHand 6s steps(6, end) infinite; }
+
+/* rotate around the clock hub, not the hand's own box */
+#app .illus-frame svg .px-hand { transform-box: view-box; transform-origin: 80px 39px; }
+#app .b-card:hover .px-pin { animation: pxPin 1s steps(2, end) infinite; }
+#app .b-card:hover .px-ping { animation: pxPing .9s steps(2, end) infinite; }
+#app .b-card:hover .px-shadow { animation: pxShadow .9s steps(2, end) infinite; }
+
+@keyframes pxRoute {
+  from { stroke-dashoffset: 0; }
+  to { stroke-dashoffset: -18; }
+}
+
+@keyframes pxRoll {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(120deg); }
+}
+
+@keyframes pxScanMove {
+  0%, 100% { transform: translate(-2px, 2px) rotate(-10deg); }
+  50% { transform: translate(2px, -2px) rotate(10deg); }
+}
+
+@keyframes pxHand {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(90deg); }
+  50% { transform: rotate(180deg); }
+  75% { transform: rotate(270deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes pxPin {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes pxPing {
+  0% { transform: scale(.6); opacity: 0; }
+  50% { transform: scale(1.4); opacity: 1; }
+  100% { transform: scale(.6); opacity: 0; }
+}
+
+@keyframes pxShadow {
+  0%, 100% { transform: scaleX(1); opacity: 1; }
+  50% { transform: scaleX(.6); opacity: .5; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   #app .b-card:hover [class^="px-"],
   #app .b-card:hover [class*=" px-"] {
@@ -1755,6 +1819,18 @@ select {
   border-radius: 14px;
   box-shadow: 0 24px 60px -20px rgba(0, 0, 0, .35);
   overflow: hidden;
+  animation: cmdkPanelIn .18s steps(4, end);
+}
+
+@keyframes cmdkPanelIn {
+  from {
+    transform: translateY(-14px) scale(.97);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
 }
 
 .cmdk-input-row {
@@ -1767,6 +1843,9 @@ select {
 
 .cmdk-input-row i {
   color: var(--muted);
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: pxScan .9s steps(2, end) infinite;
 }
 
 .cmdk-input-row input {
@@ -1793,12 +1872,64 @@ select {
   border-radius: 9px;
   font-size: .88rem;
   cursor: pointer;
+  animation: cmdkItemIn .22s steps(4, end) backwards;
+}
+
+.cmdk-item:nth-child(1) { animation-delay: .02s; }
+.cmdk-item:nth-child(2) { animation-delay: .06s; }
+.cmdk-item:nth-child(3) { animation-delay: .1s; }
+.cmdk-item:nth-child(4) { animation-delay: .14s; }
+.cmdk-item:nth-child(5) { animation-delay: .18s; }
+.cmdk-item:nth-child(6) { animation-delay: .22s; }
+.cmdk-item:nth-child(7) { animation-delay: .26s; }
+.cmdk-item:nth-child(8) { animation-delay: .3s; }
+
+@keyframes cmdkItemIn {
+  from {
+    transform: translateX(-10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
 .cmdk-item i {
   color: var(--orange);
   width: 16px;
   text-align: center;
+}
+
+.cmdk-item span,
+.cmdk-item .cmdk-sub {
+  transition: transform .18s ease, color .18s ease;
+}
+
+.cmdk-item:hover {
+  background: var(--card-2);
+}
+
+.cmdk-item:hover i { animation: pxWobble .6s steps(2, end) infinite; }
+
+.cmdk-item:hover span:first-of-type {
+  transform: translateX(4px);
+  color: var(--ink);
+}
+
+.cmdk-item.hi i { animation: pxWiggle 1s steps(2, end) infinite; }
+
+#app .cmdk-input-row i { transform-box: fill-box; }
+
+/* ---------- COMMAND PALETTE MOTION GUARD ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .cmdk-panel,
+  .cmdk-item,
+  .cmdk-input-row i,
+  .cmdk-item:hover i,
+  .cmdk-item.hi i {
+    animation: none;
+  }
 }
 
 .cmdk-item.hi {
