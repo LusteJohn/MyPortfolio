@@ -1,6 +1,7 @@
 <script setup>
 import { computed } from 'vue'
 import ProjectCard from '../components/work/ProjectCard.vue'
+import GitHubActivity from '../components/home/GitHubActivity.vue'
 import { projects } from '../data/projects'
 
 const shipped = computed(() => projects.filter((p) => p.status === 'shipped'))
@@ -16,6 +17,9 @@ const local = computed(() => projects.filter((p) => p.status === 'local'))
         <div class="eyebrow">Projects</div>
         <h1>Real apps you can open.</h1>
         <p class="sub">Everything here shipped as a working app — from capstone builds to client requests, sketch to release.</p>
+      </div>
+      <div class="hero-side">
+        <GitHubActivity />
       </div>
     </div>
 
