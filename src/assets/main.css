@@ -305,6 +305,10 @@ main.content {
 }
 
 .hero-side .cta-pill {
+  align-self: flex-end;
+}
+
+.hero-side .cta-pill {
   align-self: flex-start;
 }
 
@@ -1057,6 +1061,208 @@ footer.credit {
   font-size: .78rem;
   color: var(--muted);
   padding: 26px 0 6px;
+}
+
+/* ---------- PIXEL UI ---------- */
+body {
+  background-color: var(--bg);
+  background-image:
+    linear-gradient(rgba(23, 27, 36, .035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(23, 27, 36, .035) 1px, transparent 1px);
+  background-size: 8px 8px;
+  font-family: 'Pixelify Sans', sans-serif;
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
+}
+
+button,
+input,
+textarea,
+select {
+  font-family: 'Pixelify Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+#app h1,
+#app .display,
+#app .stat-item b,
+#app .cmdk-trigger kbd {
+  font-family: 'Silkscreen', monospace;
+  letter-spacing: 0;
+  line-height: 1.35;
+}
+
+#app h2,
+#app h3 {
+  font-family: 'Pixelify Sans', sans-serif;
+  font-weight: 700;
+  letter-spacing: .01em;
+  line-height: 1.2;
+}
+
+#app h1 {
+  font-size: clamp(1.45rem, 3.2vw, 2rem);
+}
+
+#app h2,
+#app h3 {
+  font-size: .98rem;
+}
+
+#app p,
+#app li,
+#app label,
+#app .stat-item span,
+#app .b-eyebrow,
+#app .eyebrow {
+  line-height: 1.25;
+}
+
+#app .b-card p,
+#app .topbar p.sub,
+#app .gh-desc,
+#app .form-note {
+  font-size: 1.02rem;
+  line-height: 1.25;
+}
+
+#app .b-card .b-eyebrow,
+#app .eyebrow,
+#app .stat-item span,
+#app .form-field label,
+#app .tools-strip .label,
+#app .sidebar .handle,
+#app footer.credit {
+  font-size: .78rem;
+}
+
+#app .side-nav button,
+#app .cmdk-trigger,
+#app .tool-pill,
+#app .status-badge,
+#app .form-submit,
+#app .contact-list a,
+#app .contact-list div {
+  font-size: .88rem;
+}
+
+#app .sidebar,
+#app .b-card,
+#app .gh-card,
+#app .tools-strip,
+#app .cmdk-panel,
+#app .modal-panel,
+#app .gh-modal {
+  border-width: 2px;
+  border-radius: 0;
+  box-shadow: 4px 4px 0 rgba(23, 27, 36, .14);
+}
+
+#app .avatar,
+#app .social-row a,
+#app .side-nav button,
+#app .b-icon,
+#app .tag-row span,
+#app .status-pill,
+#app .tool-pill,
+#app .form-field input,
+#app .form-field textarea,
+#app .form-submit,
+#app .contact-list a,
+#app .contact-list div,
+#app .social-grid a,
+#app .status-badge,
+#app .cmdk-trigger,
+#app .cmdk-item,
+#app .modal-close,
+#app .gh-more,
+#app .gh-retry {
+  border-radius: 0;
+}
+
+#app .b-icon,
+#app .stat-item b,
+#app .gh-cell,
+#app .gh-dot,
+#app .status-dot,
+#app .status-dot-sm,
+#app .mock-browser .bar span,
+#app .testi-dots span {
+  image-rendering: pixelated;
+}
+
+#app .b-icon {
+  border: 2px solid var(--ink);
+  box-shadow: 3px 3px 0 var(--ink);
+}
+
+#app .b-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--orange);
+}
+
+#app .stat-row {
+  gap: 22px;
+  padding: 12px;
+  border: 2px solid var(--line);
+  background: var(--card);
+  box-shadow: 4px 4px 0 rgba(23, 27, 36, .12);
+}
+
+#app .stat-item b {
+  font-size: 1.05rem;
+  line-height: 1.4;
+}
+
+#app .gh-table {
+  border: 2px solid var(--ink);
+  border-radius: 0;
+  border-collapse: collapse;
+  font-family: 'Pixelify Sans', sans-serif;
+}
+
+#app .gh-table th,
+#app .gh-table td {
+  border: 1px solid var(--line);
+}
+
+#app .gh-table th {
+  font-family: 'Silkscreen', monospace;
+  font-size: .7rem;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+#app .gh-table td,
+#app .gh-total,
+#app .gh-stats span,
+#app .gh-streak,
+#app .gh-legend,
+#app .gh-months span,
+#app .gh-days span {
+  font-size: .82rem;
+}
+
+#app .gh-table tr:hover td {
+  background: var(--orange-soft);
+}
+
+#app .gh-cell {
+  border-radius: 0;
+  border: 1px solid rgba(23, 27, 36, .12);
+}
+
+#app .form-field input:focus,
+#app .form-field textarea:focus,
+#app .cmdk-input-row input:focus {
+  box-shadow: 3px 3px 0 var(--orange);
+}
+
+#app .modal-backdrop,
+#app .cmdk-backdrop,
+#app .gh-modal-backdrop {
+  backdrop-filter: none;
 }
 
 /* ---------- AVAILABILITY BADGE ---------- */

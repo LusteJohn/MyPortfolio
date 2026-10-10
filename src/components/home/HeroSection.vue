@@ -19,8 +19,8 @@ const { text: typedRole } = useTypewriter(roles)
       <StatRow />
     </div>
     <div class="hero-side">
-      <GitHubActivity />
       <a class="cta-pill" :href="`mailto:${CONTACT_EMAIL}`">Get in touch <i class="fa-solid fa-arrow-right"></i></a>
+      <GitHubActivity />
     </div>
   </div>
 </template>

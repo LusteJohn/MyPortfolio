@@ -1,6 +1,6 @@
 <script setup>
 import { ref, onMounted, onUnmounted, computed } from 'vue'
-import profileImage from '../../assets/images/profile.png'
+import profileImage from '../../assets/images/profile_pixel.jpeg'
 import { useNavigation } from '../../composables/useNavigation'
 import { useCommandPalette } from '../../composables/useCommandPalette'
 import { socials } from '../../data/social'
