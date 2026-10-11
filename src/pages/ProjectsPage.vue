@@ -15,8 +15,8 @@ const local = computed(() => projects.filter((p) => p.status === 'local'))
     <div class="topbar">
       <div>
         <div class="eyebrow">Projects</div>
-        <h1>Real apps you can open.</h1>
-        <p class="sub">Everything here shipped as a working app — from capstone builds to client requests, sketch to release.</p>
+        <h1>Shipped, building, and running local.</h1>
+        <p class="sub">Deployed apps you can open today, systems still in active development, and local builds that run on the machine they were made for.</p>
       </div>
       <div class="hero-side">
         <GitHubActivity />

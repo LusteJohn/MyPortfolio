@@ -81,8 +81,8 @@ export const projects = [
     summary: 'AI-assisted detection and care guidance for eggplant leaf disease.',
     description:
       'An AI-assisted tool for identifying eggplant leaf disease and suggesting care steps — currently in active development.',
-    tags: ['AI', 'PWA', 'In progress'],
-    status: 'shipped',
+    tags: ['AI', 'PWA'],
+    status: 'building',
     images: 'egg_plant_ai',
     tools: ['Vue.js', 'Express.js', 'Python', 'Supabase', 'Render', 'Firebase']
   },
