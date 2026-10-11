@@ -66,7 +66,7 @@ function select(page) {
     </nav>
 
     <div class="cmdk-trigger" @click="openCmdk">
-      <span><i class="fa-solid fa-magnifying-glass"></i>&nbsp; Quick jump</span>
+      <span><i class="fa-solid fa-magnifying-glass"></i>&nbsp; Jump to…</span>
       <kbd>{{ modShortcut() }}</kbd>
     </div>
 
