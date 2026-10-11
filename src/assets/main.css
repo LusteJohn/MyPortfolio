@@ -116,14 +116,6 @@ button:focus-visible {
 .sidebar .name {
   font-size: 1.02rem;
   font-weight: 700;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.sidebar .name i {
-  color: var(--orange);
-  font-size: .85rem;
 }
 
 .sidebar .handle {
@@ -297,11 +289,14 @@ main.content {
 
 .hero-side {
   flex: 0 1 460px;
-  min-width: 320px;
+  min-width: 300px;
   display: flex;
   flex-direction: column;
-  align-items: stretch;
+  align-items: center;
+  justify-content: center;
   gap: 14px;
+  /* stretch to the text block's height so the art aligns, not floats */
+  align-self: stretch;
 }
 
 @media (max-width: 900px) {
@@ -465,13 +460,19 @@ main.content {
 /* ---------- TOOLS STRIP ---------- */
 .tools-strip {
   display: flex;
-  align-items: center;
-  gap: 18px;
+  flex-direction: column;
+  gap: 6px;
   background: var(--card);
   border: 1px solid var(--line);
-  border-radius: 999px;
-  padding: 10px 10px 10px 20px;
+  border-radius: 16px;
+  padding: 12px 4px;
   margin-bottom: 34px;
+}
+
+.tools-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
 }
 
 .tools-strip .label {
@@ -479,6 +480,8 @@ main.content {
   color: var(--muted);
   white-space: nowrap;
   flex-shrink: 0;
+  width: 82px;
+  padding-left: 14px;
 }
 
 .tools-strip .label b {
@@ -496,15 +499,18 @@ main.content {
   mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
 }
 
+/* slow enough to actually read; the tracks are grouped, so they carry less */
 .tool-track {
   display: flex;
   align-items: center;
   gap: 10px;
   width: max-content;
-  animation: scrollTools 22s linear infinite;
+  animation: scrollTools 60s linear infinite;
 }
 
-.tool-track-mask:hover .tool-track {
+/* pause both on hover and on keyboard focus of the strip */
+.tool-track-mask:hover .tool-track,
+.tool-track-mask:focus-within .tool-track {
   animation-play-state: paused;
 }
 
@@ -544,11 +550,15 @@ main.content {
 }
 
 @media (max-width:640px) {
+  .tools-strip {
+    padding: 10px 0;
+  }
+
   .tools-strip .label {
-    display: none;
+    width: auto;
+    padding-left: 12px;
   }
 }
-
 /* ---------- BENTO GRID ---------- */
 .bento {
   display: grid;
@@ -1701,7 +1711,7 @@ select {
 
 .hero-scene svg {
   width: 100%;
-  max-width: 260px;
+  max-width: 380px;
   height: auto;
 }
 
@@ -2016,11 +2026,28 @@ select {
   transform: translateY(-2px);
 }
 
-.stat-foot {
-  margin-top: 10px;
-  font-size: .72rem;
-  color: var(--muted);
-  max-width: 40ch;
+.stat-link {
+  margin-top: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: 'Pixelify Sans', sans-serif;
+  font-size: .8rem;
+  font-weight: 600;
+  color: var(--orange);
+  cursor: pointer;
+}
+
+.stat-link i {
+  font-size: .68rem;
+  transition: transform .2s ease;
+}
+
+.stat-link:hover i {
+  transform: translateX(3px);
 }
 
 /* ---------- REVEAL ---------- */

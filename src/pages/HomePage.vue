@@ -52,7 +52,7 @@ function openCredentials() {
 
       <BentoCard area="about" icon="fa-solid fa-user" eyebrow="About" :reveal-index="1">
         <h3>Who I am and how I work.</h3>
-        <p>Web and System Developer, 3 years in.</p>
+        <p>Web &amp; System Developer, 3 years in.</p>
         <div class="illus-frame">
           <svg viewBox="0 0 86 50" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg">
             <!-- floor -->

@@ -14,13 +14,12 @@ const { text: typedRole } = useTypewriter(roles)
     <div>
       <StatusBadge />
       <div class="eyebrow"><span class="typed-role">{{ typedRole }}</span></div>
-      <h1>Build it once. Make it work anywhere.</h1>
+      <h1>Build it once.<br>Make it work anywhere.</h1>
       <p class="sub">Offline-first — works even when the connection doesn't.</p>
       <p class="sub-support">Real databases, service workers, and local storage keep the app running on a dead connection. Capstone builds, client customizations, and solo projects across web, mobile, and systems.</p>
       <div class="proof-row">
         <span class="proof-chip"><span class="proof-dot" aria-hidden="true"></span> Works offline</span>
         <span class="proof-chip">Live demos</span>
-        <span class="proof-chip">7 shipped</span>
       </div>
       <div class="cta-row">
         <button type="button" class="cta-pill" @click="goTo('work')">
