@@ -887,6 +887,252 @@ main.content {
   gap: 16px;
 }
 
+/* featured cards: 3 across on desktop, larger typography and illustration */
+.featured-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.featured-grid .b-card h3 {
+  font-size: 1.2rem;
+}
+
+.featured-grid .illus-frame--sm svg {
+  max-height: 110px;
+}
+
+@media (max-width: 980px) {
+  .featured-grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  }
+}
+
+/* ---------- SUMMARY + FILTERS ---------- */
+.count-line {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+}
+
+.count-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: 'Pixelify Sans', sans-serif;
+  font-size: .84rem;
+  font-weight: 600;
+  color: var(--ink);
+  background: var(--card);
+  border: 2px solid var(--ink);
+  border-radius: 0;
+  padding: 4px 10px;
+}
+
+.count-pill.is-shipped::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  background: #3fa66a;
+}
+
+.count-total {
+  font-family: 'Inter', sans-serif;
+  font-size: .82rem;
+  color: var(--muted);
+}
+
+.filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 22px 0 26px;
+}
+
+.filter-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Pixelify Sans', sans-serif;
+  font-size: .8rem;
+  font-weight: 600;
+  color: var(--muted);
+  background: var(--card);
+  border: 2px solid var(--line);
+  border-radius: 0;
+  padding: 5px 11px;
+  cursor: pointer;
+  transition: color .2s ease, border-color .2s ease, transform .2s ease, box-shadow .2s ease;
+}
+
+.filter-chip b {
+  font-size: .72rem;
+  color: var(--muted-2);
+}
+
+.filter-chip:hover {
+  color: var(--ink);
+  border-color: var(--ink);
+  transform: translateY(-2px);
+}
+
+.filter-chip.active {
+  color: #fff;
+  background: var(--ink);
+  border-color: var(--ink);
+}
+
+.filter-chip.active b {
+  color: var(--orange);
+}
+
+/* ---------- LOCAL (collapsed) ---------- */
+.local-block {
+  border: 2px dashed var(--line);
+  padding: 14px;
+  margin-top: 8px;
+}
+
+.local-toggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: 'Pixelify Sans', sans-serif;
+  font-size: .95rem;
+  color: var(--ink);
+}
+
+.local-toggle > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.local-toggle b {
+  font-size: .74rem;
+  color: var(--muted-2);
+  border: 1px solid var(--line);
+  padding: 1px 7px;
+}
+
+.local-toggle i {
+  color: var(--muted);
+  transition: transform .25s ease;
+}
+
+.local-toggle i.open {
+  transform: rotate(180deg);
+}
+
+.local-note {
+  font-family: 'Inter', sans-serif;
+  font-size: .82rem;
+  color: var(--muted);
+  margin: 6px 0 0;
+}
+
+.local-list {
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.local-row {
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(150px, 1.1fr) minmax(0, 2fr) minmax(0, 1.1fr);
+  gap: 12px;
+  align-items: baseline;
+  text-align: left;
+  background: none;
+  border: none;
+  border-top: 1px solid var(--line);
+  padding: 10px 4px;
+  cursor: pointer;
+  transition: background .2s ease;
+}
+
+.local-row:hover {
+  background: var(--card-2);
+}
+
+.local-name {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: 'Pixelify Sans', sans-serif;
+  font-size: .85rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.local-status {
+  font-size: .62rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: var(--card-2);
+  border: 1px solid var(--line);
+  padding: 1px 5px;
+}
+
+.local-desc {
+  font-family: 'Inter', sans-serif;
+  font-size: .84rem;
+  line-height: 1.45;
+  color: #3A3530;
+}
+
+.local-stack {
+  font-family: 'Inter', sans-serif;
+  font-size: .76rem;
+  color: var(--muted);
+}
+
+.empty-note {
+  font-family: 'Inter', sans-serif;
+  color: var(--muted);
+  padding: 20px 0;
+}
+
+/* ---------- PAGE CLOSING CTA ---------- */
+.work-cta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 34px;
+  padding-top: 22px;
+  border-top: 2px solid var(--line);
+}
+
+.work-cta p {
+  font-family: 'Pixelify Sans', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 0;
+}
+
+@media (max-width: 760px) {
+  .local-row {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+}
+
 /* ---------- CONTACT FORM ---------- */
 .form-row {
   display: flex;
