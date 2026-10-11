@@ -9,6 +9,7 @@ export const projects = [
       'Turns printed organic-agriculture modules into an offline-first mobile learning app, so students can study without a live connection.',
     tags: ['Offline-first', 'Mobile', 'Capstone'],
     status: 'shipped',
+    offline: true,
     images: 'agrilearn',
     tools: ['React Native', 'SQLite', 'Expo']
   },
@@ -21,6 +22,7 @@ export const projects = [
       'A situational English learning app for a teacher client — spelling for beginners, fill-in-the-blank for intermediate, sentence building for advanced, with weekly progress tracking per student.',
     tags: ['Mobile', 'Education'],
     status: 'shipped',
+    offline: true,
     images: 'fluentflow',
     tools: ['React Native', 'SQLite', 'Expo']
   },

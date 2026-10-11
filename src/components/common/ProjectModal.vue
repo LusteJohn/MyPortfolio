@@ -82,6 +82,10 @@ function onImageLoad(e) {
           </div>
           <div v-else class="b-eyebrow">{{ state.project?.eyebrow }}</div>
 
+          <div v-if="state.project?.offline" class="offline-badge">
+            <span class="offline-dot" aria-hidden="true"></span> Works offline
+          </div>
+
           <h3>{{ state.project?.title }}</h3>
           <p>{{ state.project?.description }}</p>
           <div v-if="state.project?.credentials?.length" class="credential-list">
