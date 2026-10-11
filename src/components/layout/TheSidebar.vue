@@ -4,6 +4,7 @@ import profileImage from '../../assets/images/profile_pixel.jpeg'
 import { useNavigation } from '../../composables/useNavigation'
 import { useCommandPalette } from '../../composables/useCommandPalette'
 import { socials } from '../../data/social'
+import { modShortcut } from '../../utils/modKey'
 
 const { currentPage, goTo } = useNavigation()
 const { open: openCmdk } = useCommandPalette()
@@ -40,8 +41,8 @@ function select(page) {
       <img class="avatar-img" :src="profileImage" alt="John Mark Luste">
     </div>
     <div v-else class="avatar avatar-initials">{{ avatarInitials }}</div>
-    <div class="name">John Mark Luste <i class="fa-solid fa-circle-check"></i></div>
-    <div class="handle">@myDevDesign</div>
+    <div class="name">John Mark Luste</div>
+    <div class="handle">@johnmarkdev</div>
 
     <div class="social-row">
       <a v-for="s in socials" :key="s.label" :href="s.href" :aria-label="s.label">
@@ -66,7 +67,7 @@ function select(page) {
 
     <div class="cmdk-trigger" @click="openCmdk">
       <span><i class="fa-solid fa-magnifying-glass"></i>&nbsp; Quick jump</span>
-      <kbd>⌘K</kbd>
+      <kbd>{{ modShortcut() }}</kbd>
     </div>
 
     <div class="sidebar-foot">© 2026 John Mark Luste</div>

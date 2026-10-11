@@ -1,6 +1,9 @@
 <script setup>
-import { stats, statsNote } from '../../data/stats'
+import { stats } from '../../data/stats'
 import { useCounter } from '../../composables/useCounter'
+import { useNavigation } from '../../composables/useNavigation'
+
+const { goTo } = useNavigation()
 
 const items = stats.map((s) => ({
   ...s,
@@ -17,5 +20,7 @@ const items = stats.map((s) => ({
       <span class="stat-note">{{ item.note }}</span>
     </div>
   </div>
-  <p class="stat-foot">{{ statsNote }}</p>
+  <button type="button" class="stat-link" @click="goTo('work')">
+    See all projects <i class="fa-solid fa-arrow-right"></i>
+  </button>
 </template>
