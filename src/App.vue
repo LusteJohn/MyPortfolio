@@ -3,6 +3,7 @@ import TheSidebar from './components/layout/TheSidebar.vue'
 import CommandPalette from './components/common/CommandPalette.vue'
 import ProjectModal from './components/common/ProjectModal.vue'
 import PixelCursor from './components/common/PixelCursor.vue'
+import CtaBand from './components/home/CtaBand.vue'
 import { useProjectModal } from './composables/useProjectModal'
 import { useCommandPaletteShortcut } from './composables/useCommandPalette'
 import { useCursorGlow } from './composables/useCursorGlow'
@@ -21,6 +22,7 @@ useCursorGlow()
 
   <main class="content">
     <router-view />
+    <CtaBand />
   </main>
 
   <footer class="credit">© 2026 John Mark Luste.</footer>
