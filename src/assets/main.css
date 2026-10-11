@@ -304,14 +304,6 @@ main.content {
   gap: 14px;
 }
 
-.hero-side .cta-pill {
-  align-self: flex-end;
-}
-
-.hero-side .cta-pill {
-  align-self: flex-start;
-}
-
 @media (max-width: 900px) {
   .hero-side { flex: 1 1 100%; }
 }
@@ -332,10 +324,16 @@ main.content {
 }
 
 .topbar p.sub {
-  color: var(--muted);
-  font-size: 1rem;
-  max-width: 48ch;
-  margin-top: 12px;
+  color: #3A3530;
+  max-width: 44ch;
+  margin-top: 14px;
+}
+
+.cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
 }
 
 .cta-pill {
@@ -357,6 +355,18 @@ main.content {
 .cta-pill:hover {
   transform: translateY(-2px);
   background: #000;
+}
+
+.cta-pill--ghost {
+  background: transparent;
+  color: var(--ink);
+  border: 2px solid var(--ink);
+}
+
+.cta-pill--ghost:hover {
+  background: var(--orange-soft);
+  color: var(--orange);
+  border-color: var(--orange);
 }
 
 .tip-pill {
@@ -1074,6 +1084,33 @@ footer.credit {
   padding: 26px 0 6px;
 }
 
+/* ---------- POINTER GLOW ---------- */
+section[id] {
+  position: relative;
+  isolation: isolate;
+}
+
+/* soft glow that follows the pointer inside a section */
+section[id]::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: var(--glow-o, 0);
+  transition: opacity .4s ease;
+  background: radial-gradient(
+    260px 260px at var(--glow-x, 50%) var(--glow-y, 50%),
+    rgba(238, 123, 51, .14),
+    rgba(238, 123, 51, .06) 45%,
+    transparent 70%
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  section[id]::after { display: none; }
+}
+
 /* ---------- PIXEL UI ---------- */
 body {
   background-color: var(--bg);
@@ -1082,7 +1119,7 @@ body {
     linear-gradient(90deg, rgba(23, 27, 36, .035) 1px, transparent 1px);
   background-size: 8px 8px;
   font-family: 'Pixelify Sans', sans-serif;
-  font-size: 14px;
+  font-size: 15px;
   -webkit-font-smoothing: antialiased;
   text-rendering: geometricPrecision;
 }
@@ -1095,13 +1132,21 @@ select {
   -webkit-font-smoothing: antialiased;
 }
 
-#app h1,
 #app .display,
 #app .stat-item b,
 #app .cmdk-trigger kbd {
   font-family: 'Silkscreen', monospace;
   letter-spacing: 0;
   line-height: 1.35;
+}
+
+/* Silkscreen's M collapses into an H at headline sizes, so h1 uses Pixelify Sans */
+#app h1 {
+  font-family: 'Pixelify Sans', sans-serif;
+  font-weight: 700;
+  letter-spacing: .02em;
+  line-height: 1.15;
+  font-size: clamp(1.9rem, 4.2vw, 2.6rem);
 }
 
 #app h2,
@@ -1112,13 +1157,9 @@ select {
   line-height: 1.2;
 }
 
-#app h1 {
-  font-size: clamp(1.45rem, 3.2vw, 2rem);
-}
-
 #app h2,
 #app h3 {
-  font-size: .98rem;
+  font-size: 1.15rem;
 }
 
 #app p,
@@ -1127,15 +1168,36 @@ select {
 #app .stat-item span,
 #app .b-eyebrow,
 #app .eyebrow {
-  line-height: 1.25;
+  line-height: 1.35;
 }
 
 #app .b-card p,
-#app .topbar p.sub,
+#app .topbar p.sub {
+  font-size: 1.12rem;
+  line-height: 1.55;
+}
+
+/* ---------- BODY TEXT ---------- */
+/* Pixel fonts stay on headings and labels; running text uses Inter */
+#app p,
+#app .form-note,
 #app .gh-desc,
-#app .form-note {
-  font-size: 1.02rem;
-  line-height: 1.25;
+#app .gh-when,
+#app .cmdk-item span,
+#app .credential-item p {
+  font-family: 'Inter', sans-serif;
+  letter-spacing: 0;
+  line-height: 1.5;
+}
+
+/* Darken body copy: the old grey-brown on cream was tiring to read */
+#app p,
+#app .form-note,
+#app .gh-desc,
+#app .gh-when,
+#app .cmdk-item span,
+#app .credential-item p {
+  color: #3A3530;
 }
 
 #app .b-card .b-eyebrow,
@@ -1145,7 +1207,8 @@ select {
 #app .tools-strip .label,
 #app .sidebar .handle,
 #app footer.credit {
-  font-size: .78rem;
+  font-size: .72rem;
+  letter-spacing: .08em;
 }
 
 #app .side-nav button,
@@ -1171,10 +1234,8 @@ select {
 }
 
 #app .illus-frame,
-  #app .illus-frame,
-  #app .mock-browser,
-  #app .avatar,
-  #app .social-row a,
+#app .mock-browser,
+#app .avatar,
 #app .side-nav button,
 #app .b-icon,
 #app .tag-row span,

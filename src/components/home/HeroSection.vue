@@ -2,8 +2,9 @@
 import StatusBadge from '../common/StatusBadge.vue'
 import StatRow from './StatRow.vue'
 import { useTypewriter } from '../../composables/useTypewriter'
-import { CONTACT_EMAIL } from '../../data/commands'
+import { useNavigation } from '../../composables/useNavigation'
 
+const { goTo } = useNavigation()
 const roles = ['Web Developer', 'Design Systems Lead', 'App Developer Offline', 'Simplicity Advocate']
 const { text: typedRole } = useTypewriter(roles)
 </script>
@@ -15,11 +16,18 @@ const { text: typedRole } = useTypewriter(roles)
       <div class="eyebrow"><span class="typed-role">{{ typedRole }}</span></div>
       <h1>Build it once. Make it work anywhere.</h1>
       <p class="sub">Freelancing across personal projects, capstone builds, and client customizations — apps built offline-first, so the work keeps running whether or not the connection does.</p>
+      <div class="cta-row">
+        <button type="button" class="cta-pill" @click="goTo('work')">
+          View projects <i class="fa-solid fa-arrow-right"></i>
+        </button>
+        <button type="button" class="cta-pill cta-pill--ghost" @click="goTo('contact')">
+          Get in touch
+        </button>
+      </div>
       <StatRow />
     </div>
     <div class="hero-side">
-      <div
-        class="hero-scene"
+      <div class="hero-scene"
         role="img"
         aria-label="Pixel art of a developer working at a desk, standing up to walk through an invisible door to rest, then returning to work"
       >
@@ -119,7 +127,6 @@ const { text: typedRole } = useTypewriter(roles)
           <rect class="px-door-r" x="12" y="13" width="7" height="50" fill="none" stroke="#171B24" stroke-width="1"/>
         </svg>
       </div>
-      <a class="cta-pill" :href="`mailto:${CONTACT_EMAIL}`">Get in touch <i class="fa-solid fa-arrow-right"></i></a>
     </div>
   </div>
 </template>
