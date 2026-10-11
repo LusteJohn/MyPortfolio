@@ -1534,6 +1534,195 @@ select {
   }
 }
 
+/* ---------- HERO SCENE MOTION ---------- */
+.hero-scene {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.hero-scene svg {
+  width: 100%;
+  max-width: 260px;
+  height: auto;
+}
+
+.hero-scene svg [class^="px-"],
+.hero-scene svg [class*=" px-"] {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+/* ---------- 10s round trip: work → walk left → rest → walk back → work ---------- */
+.hero-scene .px-walker { transform: translateY(30px); }
+
+.hero-scene .px-walker .px-restfade {
+  animation: pxWalk 10s steps(1, end) infinite, pxRestFade 10s steps(1, end) infinite;
+}
+
+.hero-scene .px-legs {
+  animation: pxLegs 10s steps(1, end) infinite;
+}
+
+.hero-scene .px-leg-a { animation: pxStrideA .4s steps(1, end) infinite; }
+.hero-scene .px-leg-b { animation: pxStrideB .4s steps(1, end) infinite; }
+
+.hero-scene .px-swing-a { animation: pxSwingA .4s steps(1, end) infinite; }
+.hero-scene .px-swing-b { animation: pxSwingB .4s steps(1, end) infinite; }
+
+.hero-scene .px-typing-arms {
+  animation: pxTypeOn 10s steps(1, end) infinite;
+}
+
+.hero-scene .px-walk-arms {
+  animation: pxTypeOff 10s steps(1, end) infinite;
+}
+
+.hero-scene .px-arm { animation: pxType .28s steps(1, end) infinite; }
+.hero-scene .px-arm2 { animation: pxType .28s steps(1, end) .14s infinite; }
+.hero-scene .px-keys { animation: pxTypeOn 10s steps(1, end) infinite; }
+
+.hero-scene .px-key { animation: pxKey .56s steps(1, end) infinite; }
+.hero-scene .px-key2 { animation: pxKey .56s steps(1, end) .19s infinite; }
+.hero-scene .px-key3 { animation: pxKey .56s steps(1, end) .38s infinite; }
+
+.hero-scene .px-door-l { animation: pxDoorL 10s steps(1, end) infinite; }
+.hero-scene .px-door-r { animation: pxDoorR 10s steps(1, end) infinite; }
+
+.hero-scene .px-zzz { animation: pxZzz 10s steps(1, end) infinite; }
+
+.hero-scene .px-code { animation: pxWrite .9s steps(3, end) infinite; }
+.hero-scene .px-code2 { animation: pxWrite .9s steps(3, end) .3s infinite; }
+.hero-scene .px-code3 { animation: pxWrite .9s steps(3, end) .6s infinite; }
+.hero-scene .px-star { animation: pxBlink 1.6s steps(2, end) infinite; }
+.hero-scene .px-star2 { animation: pxBlink 1.6s steps(2, end) .8s infinite; }
+.hero-scene .px-star3 { animation: pxBlink 1.6s steps(2, end) .4s infinite; }
+.hero-scene .px-steam { animation: pxSteam 2.2s ease-out infinite; }
+.hero-scene .px-steam2 { animation: pxSteam 2.2s ease-out .7s infinite; }
+.hero-scene .px-steam3 { animation: pxSteam 2.2s ease-out 1.4s infinite; }
+.hero-scene .px-fly { animation: pxFloat 2s steps(2, end) infinite; }
+.hero-scene .px-fly2 { animation: pxFloat 2s steps(2, end) .5s infinite; }
+.hero-scene .px-fly3 { animation: pxFloat 2s steps(2, end) 1s infinite; }
+.hero-scene .px-note { animation: pxNote 2.6s steps(2, end) infinite; }
+.hero-scene .px-note2 { animation: pxNote 2.6s steps(2, end) .8s infinite; }
+
+@keyframes pxType {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(1px); }
+}
+
+@keyframes pxKey {
+  0%, 100% { transform: translateY(0); opacity: 1; }
+  50% { transform: translateY(1px); opacity: .4; }
+}
+
+@keyframes pxWrite {
+  0%, 100% { transform: scaleX(1); opacity: 1; }
+  50% { transform: scaleX(.6); opacity: .5; }
+}
+
+@keyframes pxSteam {
+  0% { transform: translateY(0) scale(1); opacity: 0; }
+  30% { opacity: .9; }
+  100% { transform: translateY(-10px) scale(1.4); opacity: 0; }
+}
+
+@keyframes pxFloat {
+  0%, 100% { transform: translateY(0); opacity: 1; }
+  50% { transform: translateY(-6px); opacity: .6; }
+}
+
+@keyframes pxNote {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-2px); }
+}
+
+/* 0–2s at the desk · 2–4s walk left · 4–6s resting inside · 6–8s walk back · 8–10s working */
+@keyframes pxWalk {
+  0%, 18% { transform: translateX(40px); }
+  22% { transform: translateX(34px); }
+  26% { transform: translateX(27px); }
+  30% { transform: translateX(21px); }
+  34% { transform: translateX(15px); }
+  37% { transform: translateX(10px); }
+  40%, 56% { transform: translateX(8px); }
+  60% { transform: translateX(11px); }
+  64% { transform: translateX(16px); }
+  68% { transform: translateX(22px); }
+  72% { transform: translateX(28px); }
+  76% { transform: translateX(34px); }
+  79%, 100% { transform: translateX(40px); }
+}
+
+@keyframes pxRestFade {
+  0%, 37% { opacity: 1; }
+  41%, 55% { opacity: 0; }
+  59%, 100% { opacity: 1; }
+}
+
+@keyframes pxLegs {
+  0%, 18% { opacity: 0; }
+  21%, 78% { opacity: 1; }
+  81%, 100% { opacity: 0; }
+}
+
+@keyframes pxStrideA {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-1px); }
+}
+
+@keyframes pxStrideB {
+  0%, 100% { transform: translateY(-1px); }
+  50% { transform: translateY(0); }
+}
+
+@keyframes pxSwingA {
+  0%, 100% { transform: rotate(-18deg); }
+  50% { transform: rotate(18deg); }
+}
+
+@keyframes pxSwingB {
+  0%, 100% { transform: rotate(18deg); }
+  50% { transform: rotate(-18deg); }
+}
+
+@keyframes pxTypeOn {
+  0%, 18% { opacity: 1; }
+  21%, 78% { opacity: 0; }
+  81%, 100% { opacity: 1; }
+}
+
+@keyframes pxTypeOff {
+  0%, 18% { opacity: 0; }
+  21%, 78% { opacity: 1; }
+  81%, 100% { opacity: 0; }
+}
+
+@keyframes pxDoorL {
+  0%, 36% { transform: translateX(0); }
+  40%, 56% { transform: translateX(-8px); }
+  60%, 100% { transform: translateX(0); }
+}
+
+@keyframes pxDoorR {
+  0%, 36% { transform: translateX(0); }
+  40%, 56% { transform: translateX(8px); }
+  60%, 100% { transform: translateX(0); }
+}
+
+@keyframes pxZzz {
+  0%, 39% { opacity: 0; }
+  43%, 53% { opacity: 1; }
+  57%, 100% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-scene svg [class^="px-"],
+  .hero-scene svg [class*=" px-"] {
+    animation: none;
+  }
+}
+
 /* ---------- AVAILABILITY BADGE ---------- */
 .status-badge {
   display: inline-flex;
