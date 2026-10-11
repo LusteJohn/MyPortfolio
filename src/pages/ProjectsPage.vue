@@ -16,15 +16,11 @@ const { open } = useProjectModal()
 
 const filters = [
   { key: 'all', label: 'All', match: () => true },
-  { key: 'offline', label: 'Offline-first', match: (p) => p.tags.includes('Offline-first') },
-  { key: 'mobile', label: 'Mobile', match: (p) => p.tags.includes('Mobile') || p.tools?.includes('React Native') },
-  { key: 'web', label: 'Web', match: (p) => p.tags.includes('Web') || p.tags.includes('PWA') },
-  { key: 'ai', label: 'AI', match: (p) => p.tags.includes('AI') },
-  {
-    key: 'client',
-    label: 'Client work',
-    match: (p) => p.tags.includes('Client work') || p.tags.includes('Capstone') || p.tags.includes('OJT')
-  }
+  { key: 'offline', label: 'Offline-first', match: (p) => p.traits?.includes('offline-first') },
+  { key: 'mobile', label: 'Mobile', match: (p) => p.platform === 'mobile' },
+  { key: 'web', label: 'Web', match: (p) => p.platform === 'web' },
+  { key: 'ai', label: 'AI', match: (p) => p.traits?.includes('ai') },
+  { key: 'client', label: 'Client work', match: (p) => p.context?.some((c) => /Capstone|OJT|Small business|Client|Local build/.test(c)) }
 ]
 
 const activeFilter = ref('all')
@@ -76,7 +72,7 @@ function stack(p) {
 
 <template>
   <section id="work">
-    <div class="tip-pill"><i class="fa-solid fa-hand-pointer"></i> Click a card to open it</div>
+    <div class="tip-pill"><i class="fa-solid fa-hand-pointer"></i> Open any card for screenshots, stack, and outcome</div>
     <div class="topbar">
       <div>
         <div class="eyebrow">Projects</div>
