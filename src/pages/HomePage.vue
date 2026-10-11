@@ -3,8 +3,10 @@ import HeroSection from '../components/home/HeroSection.vue'
 import ToolsMarquee from '../components/common/ToolsMarquee.vue'
 import BentoCard from '../components/common/BentoCard.vue'
 import TestimonialCarousel from '../components/home/TestimonialCarousel.vue'
+import CredentialViewer from '../components/home/CredentialViewer.vue'
 import { useProjectModal } from '../composables/useProjectModal'
 import { useNavigation } from '../composables/useNavigation'
+import { ref } from 'vue'
 import { credentials } from '../data/credentials-list.js'
 import { services } from '../data/services'
 import { projects } from '../data/projects'
@@ -16,6 +18,13 @@ const { open } = useProjectModal()
 const { goTo } = useNavigation()
 
 const credentialPreview = credentials.credentials.slice(0, 3)
+
+// index of the credential shown in the lightbox, null when closed
+const viewing = ref(null)
+
+function viewCredential(i) {
+  viewing.value = i
+}
 
 function openCredentials() {
   open(credentials)
@@ -76,12 +85,25 @@ function openFeatured(p) {
       <BentoCard area="credentials" icon="fa-solid fa-award" eyebrow="Credentials" clickable :reveal-index="3" @click="openCredentials">
         <h3>Certificates &amp; recognitions</h3>
         <div class="cred-thumbs">
-          <img v-for="c in credentialPreview" :key="c.title" :src="c.image" :alt="`${c.title} certificate`" loading="lazy">
+          <button
+            v-for="(c, i) in credentialPreview"
+            :key="c.title"
+            type="button"
+            class="cred-thumb"
+            :title="`View ${c.title}`"
+            @click.stop="viewCredential(i)"
+          >
+            <img :src="c.image" :alt="`${c.title} certificate`" loading="lazy">
+            <span class="cred-thumb-zoom"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
+          </button>
         </div>
         <ul class="services-list">
-          <li v-for="c in credentialPreview" :key="c.title">
-            <span>{{ c.title }}</span>
-            <span class="cred-issuer">{{ c.issuer }}</span>
+          <li v-for="(c, i) in credentialPreview" :key="c.title">
+            <button type="button" class="cred-row" @click.stop="viewCredential(i)">
+              <span>{{ c.title }}</span>
+              <span class="cred-issuer">{{ c.issuer }}</span>
+              <i class="fa-solid fa-magnifying-glass-plus cred-row-icon"></i>
+            </button>
           </li>
         </ul>
         <div class="card-more">
@@ -130,5 +152,7 @@ function openFeatured(p) {
         <TestimonialCarousel />
       </BentoCard>
     </div>
+
+    <CredentialViewer :items="credentials.credentials" :index="viewing" @close="viewing = null" />
   </section>
 </template>

@@ -58,7 +58,7 @@ export const projects = [
     platform: 'web',
     traits: ['ai', 'pwa'],
     featured: true,
-    role: 'Solo',
+    role: 'Client',
     year: 2026,
     images: 'egg_plant_ai'
   },
@@ -109,7 +109,7 @@ export const projects = [
     tools: ['HTML', 'CSS', 'JavaScript'],
     status: 'shipped',
     platform: 'web',
-    role: 'Client',
+    role: 'Solo',
     year: 2026,
     images: 'green-nest'
   },
