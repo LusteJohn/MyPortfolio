@@ -324,9 +324,85 @@ main.content {
 }
 
 .topbar p.sub {
-  color: #3A3530;
-  max-width: 44ch;
+  font-family: 'Pixelify Sans', sans-serif;
+  letter-spacing: .01em;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 1.25rem;
+  max-width: 30ch;
   margin-top: 14px;
+  line-height: 1.35;
+}
+
+.topbar p.sub::before {
+  content: '';
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-right: 8px;
+  background: var(--orange);
+  box-shadow: 2px 2px 0 var(--ink);
+  vertical-align: 2px;
+}
+
+/* supporting copy: quieter than the subhead, still readable */
+.topbar p.sub-support {
+  font-family: 'Inter', sans-serif;
+  letter-spacing: 0;
+  color: var(--muted);
+  font-size: .92rem;
+  max-width: 52ch;
+  margin-top: 10px;
+  line-height: 1.55;
+}
+
+.proof-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.proof-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: .76rem;
+  font-weight: 600;
+  color: var(--ink);
+  background: var(--card);
+  border: 2px solid var(--line);
+  border-radius: 0;
+  padding: 5px 10px;
+}
+
+.proof-dot {
+  width: 8px;
+  height: 8px;
+  background: #3fa66a;
+  box-shadow: 2px 2px 0 var(--ink);
+}
+
+/* project-card offline badge */
+.offline-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: -6px;
+  font-size: .74rem;
+  font-weight: 600;
+  color: var(--ink);
+  background: var(--orange-soft);
+  border: 2px solid var(--ink);
+  border-radius: 0;
+  padding: 4px 9px;
+}
+
+.offline-dot {
+  width: 8px;
+  height: 8px;
+  background: #3fa66a;
+  box-shadow: 2px 2px 0 var(--ink);
 }
 
 .cta-row {
@@ -1162,6 +1238,27 @@ select {
   font-size: 1.15rem;
 }
 
+/* Bento cards read as pixel UI blocks on every page */
+#app .b-card h3,
+#app .b-card p,
+#app .b-card li,
+#app .b-card span,
+#app .b-card a,
+#app .b-card div:not(.illus-frame):not(.mock-browser) {
+  font-family: 'Pixelify Sans', sans-serif;
+  letter-spacing: .01em;
+  line-height: 1.3;
+}
+
+#app .b-card .tag-row span {
+  font-size: .78rem;
+  letter-spacing: .04em;
+}
+
+#app .b-card p {
+  color: #3A3530;
+}
+
 #app p,
 #app li,
 #app label,
@@ -1861,9 +1958,28 @@ select {
 /* ---------- STAT ROW ---------- */
 .stat-row {
   display: flex;
-  gap: 34px;
+  flex-wrap: nowrap;
   margin-top: 26px;
-  flex-wrap: wrap;
+  width: 100%;
+  max-width: 100%;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1 1 0;
+  min-width: 0;
+  padding: 0 12px;
+  transition: transform .2s ease, color .2s ease;
+}
+
+.stat-item:first-child {
+  padding-left: 0;
+}
+
+.stat-item + .stat-item {
+  border-left: 1px solid var(--line);
 }
 
 .stat-item b {
@@ -1874,8 +1990,25 @@ select {
   transition: color .2s ease, transform .2s ease;
 }
 
-.stat-item {
-  transition: transform .2s ease;
+.stat-item span {
+  font-size: .78rem;
+  color: var(--muted);
+}
+
+.stat-item .stat-label {
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.3;
+}
+
+.stat-item .stat-note {
+  font-size: .68rem;
+  color: var(--muted-2);
+  line-height: 1.3;
+}
+
+.stat-item:hover {
+  transform: translateY(-2px);
 }
 
 .stat-item:hover b {
@@ -1883,9 +2016,11 @@ select {
   transform: translateY(-2px);
 }
 
-.stat-item span {
-  font-size: .78rem;
+.stat-foot {
+  margin-top: 10px;
+  font-size: .72rem;
   color: var(--muted);
+  max-width: 40ch;
 }
 
 /* ---------- REVEAL ---------- */

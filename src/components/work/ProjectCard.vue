@@ -17,6 +17,9 @@ const { open } = useProjectModal()
     <div class="status-pill" :class="statusMeta[project.status]?.class">
       {{ statusMeta[project.status]?.label }}
     </div>
+    <div v-if="project.offline" class="offline-badge" title="Works without a connection">
+      <span class="offline-dot" aria-hidden="true"></span> Works offline
+    </div>
     <h3>{{ project.title }}</h3>
     <p>{{ project.summary }}</p>
     <div class="illus-frame illus-frame--sm">
