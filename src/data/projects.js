@@ -146,8 +146,6 @@ export const projects = [
     year: 2026,
     images: 'edutour'
   },
-
-  // ---------- Local — not yet published ----------
   {
     id: 'disaster-relief-tracking',
     icon: 'fa-solid fa-truck-medical',
@@ -158,9 +156,11 @@ export const projects = [
     challenge: 'Keeping inventory and allocation consistent when relief arrives in uneven, overlapping batches.',
     context: ['Local build'],
     tools: ['PHP', 'Laravel', 'PostgreSQL', 'Tailwind'],
-    status: 'local',
+    status: 'shipped',
     platform: 'system',
-    role: 'Client',
+    traits: ['pwa'],
+    role: 'Solo',
+    year: 2026,
     images: 'drdts'
   },
   {
@@ -173,11 +173,15 @@ export const projects = [
     challenge: 'Modeling an existing offline process faithfully before automating it.',
     context: ['Local build'],
     tools: ['PHP', 'Laravel', 'PostgreSQL', 'Tailwind'],
-    status: 'local',
+    status: 'shipped',
     platform: 'system',
-    role: 'Client',
+    traits: ['pwa'],
+    role: 'Solo',
+    year: 2026,
     images: 'svpmfs'
   },
+
+  // ---------- Local — not yet published ----------
   {
     id: 'sari-sari-store',
     icon: 'fa-solid fa-store',
