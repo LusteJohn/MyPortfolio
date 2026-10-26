@@ -139,10 +139,12 @@ export const projects = [
     challenge: 'Shaping data models for trips that vary widely between schools.',
     context: ['Personal project'],
     tools: ['Vue.js', 'Laravel', 'PostgreSQL'],
-    status: 'building',
+    status: 'shipped',
     platform: 'web',
     traits: ['pwa'],
-    role: 'Solo'
+    role: 'Solo',
+    year: 2026,
+    images: 'edutour'
   },
 
   // ---------- Local — not yet published ----------
@@ -185,7 +187,7 @@ export const projects = [
     outcome: 'A daily sales log with running stock counts, sized to fit one screen for one person.',
     challenge: 'Keeping the interface small enough to actually be used during a busy day.',
     context: ['Personal project'],
-    tools: ['PHP', 'Laravel', 'MySQL'],
+    tools: ['PHP', 'React Native', 'Vue.js', 'MySQL', 'Expo'],
     status: 'local',
     platform: 'system',
     role: 'Solo'

@@ -1,6 +1,6 @@
 import agri1 from '../assets/projects/agrilearn/pic1.jpg'
 import barangay1 from '../assets/projects/barangay-explore/Screenshot 2026-09-18 233126.png'
-import ojt1 from '../assets/projects/ojt-attendance/Screenshot 2026-09-14 173431.png'
+import ojt1 from '../assets/projects/ojt-attendance/Screenshot 2026-10-26 135912.png'
 import fluent1 from '../assets/projects/fluentflow/dashboard.jpg'
 
 /**
