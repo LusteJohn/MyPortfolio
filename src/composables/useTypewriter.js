@@ -1,40 +1,62 @@
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
 
-export function useTypewriter(words, options = {}) {
-  const { typeSpeed = 70, deleteSpeed = 40, pause = 1400, betweenWords = 300 } = options
-  const text = ref('')
-  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-
-  let ri = 0
-  let ci = 0
-  let deleting = false
+/**
+ * Types and deletes each word in turn.
+ * - Starts with the first word already shown (no empty flash / layout shift)
+ * - Cleans up its timer on unmount
+ * - Respects prefers-reduced-motion by swapping words without typing
+ */
+export function useTypewriter(
+  words,
+  { typeMs = 70, deleteMs = 35, holdMs = 1800, gapMs = 300 } = {}
+) {
+  const text = ref(words[0] ?? '')
   let timer = null
+  let index = 0
+  let deleting = true // first word is already visible, so hold, then delete
+
+  const schedule = (ms, fn) => { timer = setTimeout(fn, ms) }
 
   function step() {
-    const word = words[ri]
-    ci += deleting ? -1 : 1
-    text.value = word.slice(0, ci)
+    const word = words[index]
 
-    let delay = deleting ? deleteSpeed : typeSpeed
-    if (!deleting && ci === word.length) {
-      delay = pause
-      deleting = true
-    } else if (deleting && ci === 0) {
-      deleting = false
-      ri = (ri + 1) % words.length
-      delay = betweenWords
+    if (!deleting) {
+      text.value = word.slice(0, text.value.length + 1)
+      if (text.value === word) {
+        deleting = true
+        return schedule(holdMs, step)
+      }
+      return schedule(typeMs, step)
     }
-    timer = setTimeout(step, delay)
+
+    text.value = word.slice(0, Math.max(0, text.value.length - 1))
+    if (text.value === '') {
+      deleting = false
+      index = (index + 1) % words.length
+      return schedule(gapMs, step)
+    }
+    return schedule(deleteMs, step)
   }
 
   onMounted(() => {
-    if (prefersReduced || !words.length) {
-      text.value = words[0] || ''
+    if (words.length < 2) return
+
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (reduced) {
+      // Plain swap every few seconds, no per-letter animation
+      timer = setInterval(() => {
+        index = (index + 1) % words.length
+        text.value = words[index]
+      }, 3000)
       return
     }
-    step()
+    schedule(holdMs, step)
   })
-  onUnmounted(() => clearTimeout(timer))
+
+  onBeforeUnmount(() => {
+    clearTimeout(timer)
+    clearInterval(timer)
+  })
 
   return { text }
 }
