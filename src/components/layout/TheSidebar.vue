@@ -4,6 +4,9 @@ import profileImage from '../../assets/images/profile_pixel.jpeg'
 import { useNavigation } from '../../composables/useNavigation'
 import { useCommandPalette } from '../../composables/useCommandPalette'
 import { socials } from '../../data/social'
+import { modShortcut } from '../../utils/modKey'
+import ResumeModal from '../common/ResumeModal.vue'
+import ThemeToggle from '../common/ThemeToggle.vue'
 
 const { currentPage, goTo } = useNavigation()
 const { open: openCmdk } = useCommandPalette()
@@ -40,8 +43,17 @@ function select(page) {
       <img class="avatar-img" :src="profileImage" alt="John Mark Luste">
     </div>
     <div v-else class="avatar avatar-initials">{{ avatarInitials }}</div>
-    <div class="name">John Mark Luste <i class="fa-solid fa-circle-check"></i></div>
-    <div class="handle">@myDevDesign</div>
+    <div class="name">John Mark Luste</div>
+    <div class="handle">@johnmarkdev</div>
+    <div class="sidebar-status"><span></span> Open to new roles</div>
+    <ResumeModal show-download source="sidebar" label="Resume" />
+    <div class="mobile-actions">
+      <ThemeToggle />
+
+      <button class="menu-toggle" aria-label="Toggle menu" :aria-expanded="isMobileNavOpen" @click="isMobileNavOpen = !isMobileNavOpen">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
 
     <div class="social-row">
       <a v-for="s in socials" :key="s.label" :href="s.href" :aria-label="s.label">
@@ -49,24 +61,23 @@ function select(page) {
       </a>
     </div>
 
-    <button class="menu-toggle" aria-label="Toggle menu" @click="isMobileNavOpen = !isMobileNavOpen">
-      <i class="fa-solid fa-bars"></i>
-    </button>
-
     <nav class="side-nav" :class="{ open: isMobileNavOpen }">
       <button
         v-for="item in navItems"
         :key="item.page"
         :class="{ active: currentPage === item.page }"
+        :aria-current="currentPage === item.page ? 'page' : undefined"
         @click="select(item.page)"
       >
-        <i :class="item.icon"></i> {{ item.label }}
+        <i :class="item.icon"></i>
+        <span>{{ item.label }}</span>
+        <b aria-hidden="true">→</b>
       </button>
     </nav>
 
     <div class="cmdk-trigger" @click="openCmdk">
-      <span><i class="fa-solid fa-magnifying-glass"></i>&nbsp; Quick jump</span>
-      <kbd>⌘K</kbd>
+      <span><i class="fa-solid fa-magnifying-glass"></i>&nbsp; Jump to…</span>
+      <kbd>{{ modShortcut() }}</kbd>
     </div>
 
     <div class="sidebar-foot">© 2026 John Mark Luste</div>

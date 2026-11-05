@@ -1,53 +1,195 @@
 <script setup>
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import ProjectCard from '../components/work/ProjectCard.vue'
+import ProjectHeroIllustration from '../components/work/ProjectHeroIllustration.vue'
 import GitHubActivity from '../components/home/GitHubActivity.vue'
-import { projects } from '../data/projects'
+import {
+  projects,
+  featuredProjectIds,
+  projectStatusMeta,
+  projectCounts
+} from '../data/projects'
+import { useNavigation } from '../composables/useNavigation'
+import { useProjectModal } from '../composables/useProjectModal'
 
-const shipped = computed(() => projects.filter((p) => p.status === 'shipped'))
-const building = computed(() => projects.filter((p) => p.status === 'building'))
-const local = computed(() => projects.filter((p) => p.status === 'local'))
+const { goTo } = useNavigation()
+const { open } = useProjectModal()
+
+const filters = [
+  { key: 'all', label: 'All', match: () => true },
+  { key: 'offline', label: 'Offline-first', match: (p) => p.traits?.includes('offline-first') },
+  { key: 'mobile', label: 'Mobile', match: (p) => p.platform === 'mobile' },
+  { key: 'web', label: 'Web', match: (p) => p.platform === 'web' },
+  { key: 'ai', label: 'AI', match: (p) => p.traits?.includes('ai') },
+  { key: 'client', label: 'Client work', match: (p) => p.context?.some((c) => /Capstone|OJT|Small business|Client|Local build/.test(c)) }
+]
+
+const activeFilter = ref('all')
+const sortMode = ref('newest')
+const localOpen = ref(false)
+
+const active = computed(() => filters.find((f) => f.key === activeFilter.value) || filters[0])
+
+function matches(p) {
+  if (active.value.key === 'all') return true
+  return active.value.match(p)
+}
+
+function sortProjects(list) {
+  return [...list].sort((a, b) => {
+    if (sortMode.value === 'featured') return Number(Boolean(b.featured)) - Number(Boolean(a.featured)) || (b.year || 0) - (a.year || 0)
+    if (sortMode.value === 'mobile') return Number(b.platform === 'mobile') - Number(a.platform === 'mobile') || (b.year || 0) - (a.year || 0)
+    if (sortMode.value === 'offline') return Number(b.traits?.includes('offline-first')) - Number(a.traits?.includes('offline-first')) || (b.year || 0) - (a.year || 0)
+    return (b.year || 0) - (a.year || 0)
+  })
+}
+
+const featured = computed(() =>
+  sortProjects(projects.filter((p) => featuredProjectIds.includes(p.id)).filter(matches))
+)
+
+const regular = computed(() =>
+  sortProjects(projects.filter((p) => !featuredProjectIds.includes(p.id) && p.status !== 'local').filter(matches))
+)
+
+const local = computed(() => sortProjects(projects.filter((p) => p.status === 'local').filter(matches)))
+
+/** Per-filter counts so the chips show what's behind them. */
+const counts = computed(() =>
+  filters.reduce((acc, f) => {
+    acc[f.key] = projects.filter(f.match).length
+    return acc
+  }, {})
+)
+
+const summary = computed(() => {
+  const c = projectCounts()
+  const parts = [
+    `${c.shipped} live`,
+    `${c.building} in progress`,
+    `${c.local} local`
+  ]
+  return { text: parts.join(' · '), total: c.total }
+})
+
+function statusChip(p) {
+  return projectStatusMeta[p.status]?.chip || p.status
+}
+
+function stack(p) {
+  return (p.tools || []).slice(0, 4).join(', ')
+}
 </script>
 
 <template>
   <section id="work">
-    <div class="tip-pill"><i class="fa-solid fa-hand-pointer"></i> Click a card to open it</div>
-    <div class="topbar">
+    <div class="tip-pill"><i class="fa-solid fa-hand-pointer"></i> Open any card for screenshots, stack, and outcome</div>
+    <div class="topbar page-intro">
       <div>
         <div class="eyebrow">Projects</div>
-        <h1>Real apps you can open.</h1>
-        <p class="sub">Everything here shipped as a working app — from capstone builds to client requests, sketch to release.</p>
+        <h1>Shipped, building, and running local.</h1>
+        <p class="sub">Deployed apps you can open today, systems still in active development, and local builds that run on the machine they were made for.</p>
+        <p class="count-line">
+          <span class="count-pill is-shipped">{{ summary.text }}</span>
+          <span class="count-total">{{ summary.total }} projects total</span>
+        </p>
       </div>
       <div class="hero-side">
+        <ProjectHeroIllustration />
+        <div class="project-signal" aria-hidden="true">
+          <span class="signal-line"></span>
+          <span class="signal-dot"></span>
+          <span class="signal-label">BUILD / SHIP / REPEAT</span>
+        </div>
         <GitHubActivity />
       </div>
     </div>
 
-    <div class="project-section">
-      <h2 class="project-section-title">
-        <span class="status-dot-sm status-dot-sm--shipped"></span> Shipped &amp; live
-      </h2>
-      <div class="project-grid">
-        <ProjectCard v-for="(p, i) in shipped" :key="p.id" :project="p" :reveal-index="i" />
+    <div class="project-toolbar">
+      <div class="filter-row" role="group" aria-label="Filter projects">
+        <button
+          v-for="f in filters"
+          :key="f.key"
+          type="button"
+          class="filter-chip"
+          :class="{ active: activeFilter === f.key }"
+          @click="activeFilter = f.key"
+        >
+          {{ f.label }}
+          <b>{{ counts[f.key] }}</b>
+        </button>
       </div>
+      <label class="sort-control">
+        <span>Sort</span>
+        <select v-model="sortMode" aria-label="Sort projects">
+          <option value="newest">Newest</option>
+          <option value="featured">Featured first</option>
+          <option value="mobile">Mobile first</option>
+          <option value="offline">Offline-first</option>
+        </select>
+      </label>
+      <span class="filter-result"><i class="fa-solid fa-grid-2"></i> Showing {{ featured.length + regular.length + (localOpen ? local.length : 0) }} visible</span>
     </div>
 
-    <div class="project-section">
+    <template v-if="featured.length">
       <h2 class="project-section-title">
-        <span class="status-dot-sm status-dot-sm--building"></span> Currently building
+        <span class="status-dot-sm status-dot-sm--shipped"></span> Featured
+      </h2>
+      <div class="featured-grid">
+        <ProjectCard v-for="(p, i) in featured" :key="p.id" :project="p" featured :reveal-index="i" />
+      </div>
+    </template>
+
+    <template v-if="regular.length">
+      <h2 class="project-section-title">
+        <span class="status-dot-sm status-dot-sm--shipped"></span> Everything else
       </h2>
       <div class="project-grid">
-        <ProjectCard v-for="(p, i) in building" :key="p.id" :project="p" :reveal-index="i" />
+        <ProjectCard v-for="(p, i) in regular" :key="p.id" :project="p" :reveal-index="i" />
       </div>
+    </template>
+
+    <template v-if="local.length">
+      <div class="local-block">
+        <button type="button" class="local-toggle" :aria-expanded="localOpen" @click="localOpen = !localOpen">
+          <span>
+            <i class="fa-solid fa-hard-drive"></i>
+            Local — not yet published
+            <b>{{ local.length }}</b>
+          </span>
+          <i class="fa-solid fa-chevron-down" :class="{ open: localOpen }"></i>
+        </button>
+        <p class="local-note">Private and client systems that run on-site rather than on a public URL.</p>
+
+        <ul v-show="localOpen" class="local-list">
+          <li v-for="p in local" :key="p.id">
+            <button type="button" class="local-row" @click="open(p)">
+              <span class="local-name">
+                {{ p.title }}
+                <span class="local-status">{{ statusChip(p) }}</span>
+              </span>
+              <span class="local-desc">{{ p.caseStudy || p.summary }}</span>
+              <span class="local-stack">{{ stack(p) }}</span>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </template>
+
+    <div v-if="!featured.length && !regular.length && !local.length" class="empty-note">
+      <i class="fa-solid fa-filter-circle-xmark"></i>
+      <strong>No projects match this view.</strong>
+      <span>Try another category or reset the project filters.</span>
+      <button type="button" class="empty-reset" @click="activeFilter = 'all'; sortMode = 'newest'">
+        Reset filters <i class="fa-solid fa-arrow-rotate-left"></i>
+      </button>
     </div>
 
-    <div class="project-section">
-      <h2 class="project-section-title">
-        <span class="status-dot-sm status-dot-sm--local"></span> Local — not yet published
-      </h2>
-      <div class="project-grid">
-        <ProjectCard v-for="(p, i) in local" :key="p.id" :project="p" :reveal-index="i" />
-      </div>
+    <div class="work-cta">
+      <p>Need something like this built?</p>
+      <button type="button" class="cta-pill" @click="goTo('contact')">
+        Get in touch <i class="fa-solid fa-arrow-right"></i>
+      </button>
     </div>
   </section>
 </template>

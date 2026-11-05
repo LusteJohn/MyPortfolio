@@ -29,15 +29,21 @@ onUnmounted(() => clearInterval(timer))
 <template>
   <div class="testi-carousel">
     <div class="testi-slide" :key="index">
-      <h4>{{ testimonials[index].quote }}</h4>
-      <p>{{ testimonials[index].meta }}</p>
+      <p class="testi-quote">{{ testimonials[index].quote }}</p>
+      <div class="testi-person">
+        <span class="testi-avatar" aria-hidden="true">{{ testimonials[index].initial }}</span>
+        <span class="testi-who">
+          <b>{{ testimonials[index].name }}</b>
+          <small>{{ testimonials[index].role }}</small>
+        </span>
+      </div>
     </div>
   </div>
   <div class="testi-controls">
     <div class="testi-dots">
       <span
         v-for="(t, i) in testimonials"
-        :key="t.meta"
+        :key="t.name"
         :class="{ active: i === index }"
         @click="show(i); restartTimer()"
       ></span>

@@ -2,6 +2,7 @@
 import StatusBadge from '../components/common/StatusBadge.vue'
 import BentoCard from '../components/common/BentoCard.vue'
 import ContactForm from '../components/contact/ContactForm.vue'
+import ContactHeroIllustration from '../components/contact/ContactHeroIllustration.vue'
 import ResumeModal from '../components/common/ResumeModal.vue'
 import { socials } from '../data/social'
 import { CONTACT_EMAIL } from '../data/commands'
@@ -9,12 +10,20 @@ import { CONTACT_EMAIL } from '../data/commands'
 
 <template>
   <section id="contact">
-    <div class="topbar">
+    <div class="topbar page-intro contact-intro">
       <div>
         <StatusBadge />
         <div class="eyebrow">Contact</div>
         <h1>Let's build something worth noticing.</h1>
         <p class="sub">Taking on a small number of new engagements this quarter. Send a few details and I'll reply within two business days.</p>
+        <div class="contact-proof">
+          <span><i class="fa-solid fa-bolt"></i> Clear scope first</span>
+          <span><i class="fa-solid fa-clock"></i> 1–2 day reply</span>
+          <span><i class="fa-solid fa-earth-americas"></i> GMT+8 / remote</span>
+        </div>
+      </div>
+      <div class="hero-side contact-hero-side">
+        <ContactHeroIllustration />
       </div>
     </div>
 

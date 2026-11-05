@@ -1,6 +1,8 @@
 export const services = [
-  { label: 'Personal projects', count: 'Solo' },
-  { label: 'Capstone systems', count: 'Solo' },
-  { label: 'Client customization', count: 'Solo' },
-  { label: 'App development', count: 'OJT — Team' }
+  { label: 'Web apps', count: 'Vue & Laravel' },
+  { label: 'Offline-first apps', count: 'PWA & mobile' },
+  { label: 'System design docs', count: 'ERD, DFD, UML' },
+  { label: 'Client customizations', count: 'Extend existing' }
 ]
+
+export const availabilityNote = 'Available for freelance, contract, and full-time roles.'
