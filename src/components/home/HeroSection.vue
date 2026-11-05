@@ -93,6 +93,16 @@ onBeforeUnmount(() => observer?.disconnect())
     </div>
 
     <div class="hero-side">
+      <svg class="hero-orbit" viewBox="0 0 180 120" aria-hidden="true">
+        <path class="orbit-line orbit-line--one" d="M18 72C30 20 85 8 151 34" />
+        <path class="orbit-line orbit-line--two" d="M35 105C82 68 108 62 166 82" />
+        <rect class="orbit-pixel orbit-pixel--one" x="24" y="58" width="6" height="6" />
+        <rect class="orbit-pixel orbit-pixel--two" x="142" y="27" width="8" height="8" />
+        <rect class="orbit-pixel orbit-pixel--three" x="157" y="76" width="5" height="5" />
+        <rect class="orbit-pixel orbit-pixel--four" x="74" y="12" width="4" height="4" />
+        <circle class="orbit-dot orbit-dot--one" cx="52" cy="27" r="3" />
+        <circle class="orbit-dot orbit-dot--two" cx="132" cy="91" r="3" />
+      </svg>
       <div
         ref="scene"
         class="hero-scene"
@@ -250,7 +260,7 @@ onBeforeUnmount(() => observer?.disconnect())
 
 <style scoped>
 /*
-  One 14s loop tells the whole story:
+  One 10s loop tells the whole story:
    0–38%   seated, typing
   38–48%   stands up, walks to the door (door opens)
   48–52%   steps through and fades out
@@ -263,10 +273,12 @@ onBeforeUnmount(() => observer?.disconnect())
   prefers-reduced-motion the scene is a clean static frame.
 */
 .hero-scene {
-  --loop: 14s;
+  --loop: 10s;
   --ink: #171B24;
   --accent: #EE7B33;
   line-height: 0;
+  position: relative;
+  z-index: 1;
 }
 .hero-scene svg { width: 100%; height: auto; display: block; }
 .hero-scene svg * { transform-box: fill-box; }

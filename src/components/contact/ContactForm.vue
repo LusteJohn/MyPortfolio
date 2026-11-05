@@ -100,6 +100,6 @@ async function handleSubmit() {
       <i class="fa-solid fa-circle-exclamation"></i> Something went wrong — try again, or email me directly.
     </div>
 
-    <p class="form-note">Sent directly from this form — no email client required.</p>
+    <p class="form-note"><i class="fa-solid fa-lock"></i> Sent directly from this form — no email client required.</p>
   </form>
 </template>

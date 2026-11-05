@@ -24,6 +24,7 @@ export const projects = [
     offline: true,
     featured: true,
     role: 'Client',
+    year: 2026,
     images: 'agrilearn'
   },
   {
@@ -79,6 +80,7 @@ export const projects = [
     traits: ['offline-first'],
     offline: true,
     role: 'Client',
+    year: 2026,
     images: 'fluentflow'
   },
   {
@@ -142,7 +144,7 @@ export const projects = [
     status: 'shipped',
     platform: 'web',
     traits: ['pwa'],
-    role: 'Solo',
+    role: 'Client',
     year: 2026,
     images: 'edutour'
   },
@@ -180,6 +182,23 @@ export const projects = [
     year: 2026,
     images: 'svpmfs'
   },
+  {
+    id: 'student_tracking',
+    icon: 'fa-solid fa-bus',
+    title: 'Student Transportation Tracking and Scheduling System',
+    summary: 'A mobile-based transportation management system with real-time student location monitoring, trip scheduling, and offline access.',
+    problem: 'Students and guardians lack a centralized way to monitor transportation activities, track student locations during trips, and stay informed about schedules and arrivals.',
+    outcome: 'A role-based mobile application supporting GPS location tracking, transportation schedules, vehicle plate photo documentation, guardian monitoring, notifications, and offline data synchronization.',
+    challenge: 'Implementing reliable GPS tracking, offline-first functionality, and data synchronization between SQLite and Supabase while supporting multiple user roles and transportation trip segments.',
+    context: ['Capstone Project', 'Android', 'Offline-first', 'Real-time GPS Tracking'],
+    tools: ['React Native', 'Expo', 'TypeScript', 'Node.js', 'Express.js', 'Supabase', 'PostgreSQL', 'SQLite', 'OpenStreetMap', 'MapLibre'],
+    status: 'shipped',
+    platform: 'mobile-app',
+    traits: ['offline-first', 'real-time-tracking', 'gps', 'role-based-access'],
+    role: 'Client',
+    year: 2026,
+    images: 'student_tracking'
+},
 
   // ---------- Local — not yet published ----------
   {
