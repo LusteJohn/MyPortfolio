@@ -12,6 +12,7 @@
   --success: #2e7d4f;
   --success-solid: #2f7d52;
   --cta-text: #fff;
+  --grid-line: rgba(23, 27, 36, .08);
   --radius: 16px;
   --sidebar-w: 230px;
   color-scheme: light;
@@ -42,6 +43,7 @@ body,
   --success: #73c58f;
   --success-solid: #3f8e63;
   --cta-text: #171B24;
+  --grid-line: rgba(244, 241, 232, .1);
   color-scheme: dark;
 }
 
@@ -2347,8 +2349,8 @@ section[id]::after {
 body {
   background-color: var(--bg);
   background-image:
-    linear-gradient(rgba(23, 27, 36, .035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(23, 27, 36, .035) 1px, transparent 1px);
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
   background-size: 8px 8px;
   font-family: 'Pixelify Sans', sans-serif;
   font-size: 15px;
