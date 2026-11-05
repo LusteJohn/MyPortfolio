@@ -2,6 +2,7 @@
 import StatusBadge from '../components/common/StatusBadge.vue'
 import BentoCard from '../components/common/BentoCard.vue'
 import ContactForm from '../components/contact/ContactForm.vue'
+import ContactHeroIllustration from '../components/contact/ContactHeroIllustration.vue'
 import ResumeModal from '../components/common/ResumeModal.vue'
 import { socials } from '../data/social'
 import { CONTACT_EMAIL } from '../data/commands'
@@ -20,6 +21,9 @@ import { CONTACT_EMAIL } from '../data/commands'
           <span><i class="fa-solid fa-clock"></i> 1–2 day reply</span>
           <span><i class="fa-solid fa-earth-americas"></i> GMT+8 / remote</span>
         </div>
+      </div>
+      <div class="hero-side contact-hero-side">
+        <ContactHeroIllustration />
       </div>
     </div>
 

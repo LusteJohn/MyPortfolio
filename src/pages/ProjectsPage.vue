@@ -1,6 +1,7 @@
 <script setup>
 import { computed, ref } from 'vue'
 import ProjectCard from '../components/work/ProjectCard.vue'
+import ProjectHeroIllustration from '../components/work/ProjectHeroIllustration.vue'
 import GitHubActivity from '../components/home/GitHubActivity.vue'
 import {
   projects,
@@ -84,6 +85,7 @@ function stack(p) {
         </p>
       </div>
       <div class="hero-side">
+        <ProjectHeroIllustration />
         <div class="project-signal" aria-hidden="true">
           <span class="signal-line"></span>
           <span class="signal-dot"></span>
