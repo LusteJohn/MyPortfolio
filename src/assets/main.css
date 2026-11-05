@@ -8,8 +8,39 @@
   --line: #E7E0CE;
   --orange: #EE7B33;
   --orange-soft: #FBE6D4;
+  --body-copy: #3A3530;
+  --success: #2e7d4f;
+  --success-solid: #2f7d52;
   --radius: 16px;
   --sidebar-w: 230px;
+  color-scheme: light;
+}
+
+/* Keep long-form copy readable when dark mode replaces the light-theme
+   hardcoded brown used by the original visual system. */
+body,
+#app p,
+#app .b-card p,
+#app .pcard-outcome,
+#app .local-desc,
+#app .modal-details dd {
+  color: var(--body-copy);
+}
+
+:root[data-theme="dark"] {
+  --bg: #11151d;
+  --card: #1b222d;
+  --card-2: #222b38;
+  --ink: #f4f1e8;
+  --muted: #b7b29f;
+  --muted-2: #918c7c;
+  --line: #3a4655;
+  --orange: #f28a45;
+  --orange-soft: #4a2d21;
+  --body-copy: #e2ded2;
+  --success: #73c58f;
+  --success-solid: #3f8e63;
+  color-scheme: dark;
 }
 
 * {
@@ -29,6 +60,7 @@ body {
   font-family: 'Inter', sans-serif;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+  transition: background-color .25s ease, color .25s ease;
 }
 
 h1,
@@ -145,7 +177,7 @@ button:focus-visible {
   padding: 4px 7px;
   border: 1px solid #bfe6cc;
   background: #e7f6ec;
-  color: #2f7d52;
+  color: var(--success);
   font-family: 'Pixelify Sans', sans-serif;
   font-size: .66rem;
   letter-spacing: .02em;
@@ -153,6 +185,35 @@ button:focus-visible {
 
 .sidebar .resume-actions {
   margin-top: 12px;
+}
+
+.sidebar .theme-toggle {
+  margin-top: 10px;
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  width: 100%;
+  padding: 7px 10px;
+  border: 2px solid var(--line);
+  background: var(--card-2);
+  color: var(--muted);
+  font-family: 'Pixelify Sans', sans-serif;
+  font-size: .72rem;
+  cursor: pointer;
+  transition: border-color .2s ease, color .2s ease, background .2s ease;
+}
+
+.theme-toggle:hover {
+  border-color: var(--orange);
+  color: var(--orange);
+}
+
+.theme-toggle i {
+  color: var(--orange);
 }
 
 .sidebar .resume-cta {
@@ -331,7 +392,7 @@ button:focus-visible {
 
   .menu-toggle {
     display: flex;
-    margin-left: auto;
+    margin-left: 8px;
     width: 36px;
     height: 36px;
     border-radius: 9px;
@@ -340,6 +401,18 @@ button:focus-visible {
     align-items: center;
     justify-content: center;
     cursor: pointer;
+  }
+
+  .sidebar .theme-toggle {
+    display: flex;
+    margin-left: auto;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+  }
+
+  .sidebar .theme-toggle span {
+    display: none;
   }
 }
 
@@ -809,7 +882,7 @@ main.content {
   letter-spacing: .06em;
   text-transform: uppercase;
   color: #fff;
-  background: #2f7d52;
+  background: var(--success-solid);
   padding: 2px 6px;
 }
 
@@ -1185,7 +1258,7 @@ main.content {
 
 .status-pill--shipped {
   background: #e7f6ec;
-  color: #2e7d4f;
+  color: var(--success);
 }
 
 .status-pill--shipped::before {
@@ -1514,7 +1587,7 @@ main.content {
   font-family: 'Inter', sans-serif;
   font-size: .84rem;
   line-height: 1.45;
-  color: #3A3530;
+  color: var(--body-copy);
 }
 
 .local-stack {
@@ -1723,7 +1796,7 @@ main.content {
   align-items: center;
   gap: 8px;
   font-size: .82rem;
-  color: #2e7d4f;
+  color: var(--success);
   background: #e7f6ec;
   border: 1px solid #bfe6cc;
   padding: 9px 14px;
@@ -2151,7 +2224,7 @@ select {
 
 #app .b-card p {
   font-size: .95rem;
-  color: #3A3530;
+  color: var(--body-copy);
 }
 
 #app .b-card .tag-row span {
@@ -2194,7 +2267,7 @@ select {
 #app .gh-when,
 #app .cmdk-item span,
 #app .credential-item p {
-  color: #3A3530;
+  color: var(--body-copy);
 }
 
 #app .b-card .b-eyebrow,
@@ -3170,7 +3243,7 @@ select {
   letter-spacing: .04em;
   text-transform: uppercase;
   color: #fff;
-  background: #2f7d52;
+  background: var(--success-solid);
   padding: 2px 6px;
 }
 
@@ -3205,7 +3278,7 @@ select {
   font-family: 'Inter', sans-serif !important;
   font-size: .88rem !important;
   line-height: 1.5 !important;
-  color: #3A3530;
+  color: var(--body-copy);
   margin: 0 0 12px;
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -3316,8 +3389,8 @@ select {
 }
 
 .pcard-status.is-shipped {
-  color: #2f7d52;
-  border-color: #2f7d52;
+  color: var(--success);
+  border-color: var(--success);
 }
 
 .pcard-status.is-building {
@@ -3905,8 +3978,8 @@ select {
 }
 
 .modal-status.is-shipped {
-  color: #2f7d52;
-  border-color: #2f7d52;
+  color: var(--success);
+  border-color: var(--success);
 }
 
 .modal-status.is-building {
@@ -3951,7 +4024,7 @@ select {
   font-family: 'Inter', sans-serif;
   font-size: .92rem;
   line-height: 1.55;
-  color: #3A3530;
+  color: var(--body-copy);
   margin: 0;
 }
 
