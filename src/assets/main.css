@@ -11,6 +11,7 @@
   --body-copy: #3A3530;
   --success: #2e7d4f;
   --success-solid: #2f7d52;
+  --cta-text: #fff;
   --radius: 16px;
   --sidebar-w: 230px;
   color-scheme: light;
@@ -40,6 +41,7 @@ body,
   --body-copy: #e2ded2;
   --success: #73c58f;
   --success-solid: #3f8e63;
+  --cta-text: #171B24;
   color-scheme: dark;
 }
 
@@ -98,6 +100,21 @@ button:focus-visible {
   outline: 2px solid var(--orange);
   outline-offset: 2px;
   border-radius: 6px;
+}
+
+.page-enter-active,
+.page-leave-active {
+  transition: opacity .18s ease, transform .18s ease;
+}
+
+.page-enter-from {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+.page-leave-to {
+  opacity: 0;
+  transform: translateY(-5px);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -191,6 +208,10 @@ button:focus-visible {
   margin-top: 10px;
 }
 
+.mobile-actions {
+  display: contents;
+}
+
 .theme-toggle {
   display: inline-flex;
   align-items: center;
@@ -235,6 +256,26 @@ button:focus-visible {
 
 .resume-download:hover {
   color: var(--orange);
+}
+
+.hero-resume-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.hero-resume-actions .resume-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.hero-resume-actions .resume-download {
+  margin-top: 0;
+  min-height: 36px;
 }
 
 .sidebar-status span {
@@ -392,7 +433,6 @@ button:focus-visible {
 
   .menu-toggle {
     display: flex;
-    margin-left: 8px;
     width: 36px;
     height: 36px;
     border-radius: 9px;
@@ -403,12 +443,21 @@ button:focus-visible {
     cursor: pointer;
   }
 
+  .mobile-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: auto;
+    flex-shrink: 0;
+  }
+
   .sidebar .theme-toggle {
     display: flex;
-    margin-left: auto;
+    margin: 0;
     width: 36px;
     height: 36px;
     padding: 0;
+    flex-shrink: 0;
   }
 
   .sidebar .theme-toggle span {
@@ -781,7 +830,7 @@ main.content {
   align-items: center;
   gap: 8px;
   background: var(--ink);
-  color: #fff;
+  color: var(--cta-text);
   padding: 12px 20px;
   border-radius: 999px;
   font-size: .88rem;
@@ -807,6 +856,14 @@ main.content {
   background: var(--orange-soft);
   color: var(--orange);
   border-color: var(--orange);
+}
+
+@media (max-width: 520px) {
+  .hero-resume-actions .resume-actions {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 6px;
+  }
 }
 
 .tip-pill {
@@ -1178,6 +1235,100 @@ main.content {
 .b-card:hover {
   transform: translateY(-4px);
   border-color: var(--orange);
+}
+
+.home-details-grid {
+  display: grid;
+  grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.home-details-grid h2 {
+  font-size: 1.15rem;
+  margin-bottom: 16px;
+}
+
+.now-list {
+  display: grid;
+  gap: 12px;
+  margin-top: auto;
+}
+
+.now-list li {
+  display: grid;
+  gap: 3px;
+  padding: 10px 0;
+  border-top: 1px solid var(--line);
+}
+
+.now-list span {
+  color: var(--orange);
+  font-family: 'Pixelify Sans', sans-serif;
+  font-size: .72rem;
+  text-transform: uppercase;
+}
+
+.now-list strong {
+  color: var(--body-copy);
+  font-size: .84rem;
+  font-weight: 500;
+}
+
+.timeline {
+  display: grid;
+  gap: 0;
+  margin-top: auto;
+}
+
+.timeline li {
+  display: grid;
+  grid-template-columns: 34px 1fr;
+  gap: 12px;
+  position: relative;
+  padding-bottom: 16px;
+}
+
+.timeline li:last-child {
+  padding-bottom: 0;
+}
+
+.timeline li:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 28px;
+  bottom: 0;
+  left: 16px;
+  width: 1px;
+  background: var(--line);
+}
+
+.timeline-mark {
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  z-index: 1;
+  color: var(--orange);
+  background: var(--orange-soft);
+  border: 1px solid var(--orange);
+  font-family: 'Pixelify Sans', sans-serif;
+  font-size: .7rem;
+}
+
+.timeline strong,
+.timeline span {
+  display: block;
+}
+
+.timeline strong {
+  margin: 3px 0 2px;
+  font-size: .86rem;
+}
+
+.timeline li div > span {
+  color: var(--muted);
+  font-size: .78rem;
 }
 
 .b-icon {
@@ -3765,6 +3916,7 @@ select {
    instead of cropping — the "section" box keeps a consistent footprint, the image scales inside it.
    Portrait images get real vertical room (viewport-relative) instead of a small fixed cap. */
 .modal-gallery-main-wrap {
+  position: relative;
   background: var(--card-2);
   border: 1px solid var(--line);
   border-radius: 12px;
@@ -3774,6 +3926,44 @@ select {
   padding: 8px;
   min-height: 180px;
   overflow: hidden;
+}
+
+.modal-gallery-nav {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  transform: translateY(-50%);
+  color: var(--ink);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  box-shadow: 2px 2px 0 rgba(23, 27, 36, .15);
+  cursor: pointer;
+}
+
+.modal-gallery-nav:hover {
+  color: #fff;
+  background: var(--orange);
+  border-color: var(--orange);
+}
+
+.modal-gallery-nav--prev {
+  left: 12px;
+}
+
+.modal-gallery-nav--next {
+  right: 12px;
+}
+
+.modal-gallery-count {
+  color: var(--muted);
+  font-family: 'Pixelify Sans', sans-serif;
+  font-size: .68rem;
+  text-align: right;
 }
 
 .modal-gallery-main {
@@ -3830,6 +4020,10 @@ select {
 }
 
 @media (max-width:700px) {
+  .home-details-grid {
+    grid-template-columns: 1fr;
+  }
+
   .modal-body {
     flex-direction: column;
   }

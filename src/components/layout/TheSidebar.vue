@@ -47,17 +47,19 @@ function select(page) {
     <div class="handle">@johnmarkdev</div>
     <div class="sidebar-status"><span></span> Open to new roles</div>
     <ResumeModal show-download source="sidebar" label="Resume" />
-    <ThemeToggle />
+    <div class="mobile-actions">
+      <ThemeToggle />
+
+      <button class="menu-toggle" aria-label="Toggle menu" :aria-expanded="isMobileNavOpen" @click="isMobileNavOpen = !isMobileNavOpen">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </div>
 
     <div class="social-row">
       <a v-for="s in socials" :key="s.label" :href="s.href" :aria-label="s.label">
         <i :class="s.icon"></i>
       </a>
     </div>
-
-    <button class="menu-toggle" aria-label="Toggle menu" :aria-expanded="isMobileNavOpen" @click="isMobileNavOpen = !isMobileNavOpen">
-      <i class="fa-solid fa-bars"></i>
-    </button>
 
     <nav class="side-nav" :class="{ open: isMobileNavOpen }">
       <button

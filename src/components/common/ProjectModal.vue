@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, watch, nextTick } from 'vue'
+import { ref, computed, watch, nextTick, onMounted, onUnmounted } from 'vue'
 import { useProjectModal } from '../../composables/useProjectModal'
 import { statusMeta } from '../../data/projectStatus'
 import { getProjectImages } from '../../utils/projectImages'
@@ -55,6 +55,20 @@ function onImageLoad(e) {
   isLandscape.value = e.target.naturalWidth >= e.target.naturalHeight
   zoom?.reset()
 }
+
+function stepImage(direction) {
+  if (images.value.length < 2) return
+  activeImage.value = (activeImage.value + direction + images.value.length) % images.value.length
+}
+
+function onGalleryKeydown(e) {
+  if (!state.isOpen || images.value.length < 2) return
+  if (e.key === 'ArrowLeft') stepImage(-1)
+  if (e.key === 'ArrowRight') stepImage(1)
+}
+
+onMounted(() => window.addEventListener('keydown', onGalleryKeydown))
+onUnmounted(() => window.removeEventListener('keydown', onGalleryKeydown))
 
 /** "Your role / year" line for the header. */
 const roleLine = computed(() => {
@@ -152,13 +166,31 @@ const detailRows = computed(() => {
         <!-- Right (portrait) / top (landscape): image gallery -->
         <div v-if="images.length" class="modal-media">
           <div class="modal-gallery-main-wrap" ref="galleryWrapRef">
+            <button
+              v-if="images.length > 1"
+              type="button"
+              class="modal-gallery-nav modal-gallery-nav--prev"
+              aria-label="Previous screenshot"
+              @click="stepImage(-1)"
+            >
+              <i class="fa-solid fa-chevron-left"></i>
+            </button>
             <img
               ref="imageRef"
               :src="images[activeImage]"
-              :alt="state.project?.title"
+              :alt="`${state.project?.title} screenshot ${activeImage + 1}`"
               class="modal-gallery-main"
               @load="onImageLoad"
             >
+            <button
+              v-if="images.length > 1"
+              type="button"
+              class="modal-gallery-nav modal-gallery-nav--next"
+              aria-label="Next screenshot"
+              @click="stepImage(1)"
+            >
+              <i class="fa-solid fa-chevron-right"></i>
+            </button>
           </div>
           <div v-if="images.length > 1" class="modal-gallery-thumbs">
             <button
@@ -171,6 +203,9 @@ const detailRows = computed(() => {
               <img :src="img" :alt="`${state.project?.title} screenshot ${i + 1}`">
             </button>
           </div>
+          <span v-if="images.length > 1" class="modal-gallery-count">
+            {{ activeImage + 1 }} / {{ images.length }} · Use ← → to browse
+          </span>
         </div>
       </div>
     </div>
