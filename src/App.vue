@@ -62,7 +62,11 @@ onUnmounted(() => window.removeEventListener('shortcut-navigate', onShortcutNavi
   <TheSidebar />
 
   <main class="content">
-    <router-view />
+    <router-view v-slot="{ Component, route: viewRoute }">
+      <Transition name="page" mode="out-in">
+        <component :is="Component" :key="viewRoute.name" />
+      </Transition>
+    </router-view>
     <CtaBand />
   </main>
 

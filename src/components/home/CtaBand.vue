@@ -62,7 +62,7 @@ const { goTo } = useNavigation()
   gap: 8px;
   margin-top: 6px;
   background: var(--ink);
-  color: #fff;
+  color: var(--cta-text);
   border: 2px solid var(--ink);
   border-radius: 0;
   padding: 10px 18px;

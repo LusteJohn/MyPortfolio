@@ -153,6 +153,44 @@ function openFeatured(p) {
       </BentoCard>
     </div>
 
+    <div class="home-details-grid">
+      <section class="b-card now-card" aria-labelledby="now-title">
+        <div class="b-icon"><i class="fa-solid fa-sparkles"></i></div>
+        <div class="b-eyebrow">Right now</div>
+        <h2 id="now-title">A small snapshot of what I’m doing.</h2>
+        <ul class="now-list">
+          <li><span>Current focus</span><strong>Offline-first systems that stay useful without a connection.</strong></li>
+          <li><span>Currently learning</span><strong>Better product polish, accessibility, and practical AI workflows.</strong></li>
+          <li><span>Available for</span><strong>Freelance web apps, internal tools, and mobile builds.</strong></li>
+          <li><span>Latest shipped</span><strong>AgriLearnApp — an offline learning app for organic agriculture.</strong></li>
+        </ul>
+      </section>
+
+      <section class="b-card timeline-card" aria-labelledby="timeline-title">
+        <div class="b-icon"><i class="fa-solid fa-route"></i></div>
+        <div class="b-eyebrow">The path so far</div>
+        <h2 id="timeline-title">Learning by building real things.</h2>
+        <ol class="timeline">
+          <li>
+            <span class="timeline-mark">01</span>
+            <div><strong>Education</strong><span>Built the foundation in web, mobile, databases, and system analysis.</span></div>
+          </li>
+          <li>
+            <span class="timeline-mark">02</span>
+            <div><strong>Freelance &amp; client work</strong><span>Turned briefs into focused websites, internal tools, and custom workflows.</span></div>
+          </li>
+          <li>
+            <span class="timeline-mark">03</span>
+            <div><strong>Major projects</strong><span>Shipped attendance, learning, mapping, relief, and agriculture systems.</span></div>
+          </li>
+          <li>
+            <span class="timeline-mark">04</span>
+            <div><strong>Certifications</strong><span>Certified Cloud System Analyst, plus workplace and innovation experience.</span></div>
+          </li>
+        </ol>
+      </section>
+    </div>
+
     <CredentialViewer :items="credentials.credentials" :index="viewing" @close="viewing = null" />
   </section>
 </template>

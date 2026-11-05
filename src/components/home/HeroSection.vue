@@ -90,7 +90,9 @@ onBeforeUnmount(() => observer?.disconnect())
           Get in touch
         </button>
       </div>
-      <ResumeModal show-download source="hero" label="View résumé" />
+      <div class="hero-resume-actions">
+        <ResumeModal show-download source="hero" label="View résumé" />
+      </div>
       <StatRow />
     </div>
 
