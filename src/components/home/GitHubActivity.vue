@@ -646,6 +646,35 @@ onUnmounted(() => {
 }
 
 @media (max-width: 900px) {
-  .gh-card { max-width: 420px; }
+  .gh-card {
+    max-width: 420px;
+    min-width: 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .gh-card {
+    width: 100%;
+    max-width: none;
+    padding: 14px;
+    gap: 11px;
+  }
+
+  .gh-head {
+    gap: 8px;
+  }
+
+  .gh-user {
+    font-size: .88rem;
+  }
+
+  .gh-chart {
+    max-width: 100%;
+  }
+
+  .gh-foot {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
 }
 </style>
