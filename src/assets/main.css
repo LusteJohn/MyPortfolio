@@ -151,6 +151,31 @@ button:focus-visible {
   letter-spacing: .02em;
 }
 
+.sidebar .resume-actions {
+  margin-top: 12px;
+}
+
+.sidebar .resume-cta {
+  width: 100%;
+  justify-content: center;
+  padding: 7px 10px;
+  font-size: .76rem;
+}
+
+.resume-download {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 7px;
+  color: var(--muted);
+  font-family: 'Pixelify Sans', sans-serif;
+  font-size: .68rem;
+}
+
+.resume-download:hover {
+  color: var(--orange);
+}
+
 .sidebar-status span {
   width: 6px;
   height: 6px;
@@ -282,6 +307,7 @@ button:focus-visible {
   .sidebar .name,
   .sidebar .handle,
   .sidebar .sidebar-status,
+  .sidebar .resume-actions,
   .social-row,
   .sidebar-foot {
     display: none;
@@ -1316,6 +1342,33 @@ main.content {
   white-space: nowrap;
 }
 
+.sort-control {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-left: auto;
+  font-family: 'Pixelify Sans', sans-serif;
+  font-size: .72rem;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.sort-control select {
+  appearance: none;
+  border: 2px solid var(--line);
+  background: var(--card-2);
+  color: var(--ink);
+  padding: 6px 24px 6px 8px;
+  font-family: 'Pixelify Sans', sans-serif;
+  font-size: .72rem;
+  cursor: pointer;
+}
+
+.sort-control select:focus {
+  outline: 2px solid var(--orange);
+  outline-offset: 2px;
+}
+
 .filter-result i {
   color: var(--orange);
   margin-right: 4px;
@@ -1471,9 +1524,45 @@ main.content {
 }
 
 .empty-note {
-  font-family: 'Inter', sans-serif;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  padding: 24px;
+  border: 2px dashed var(--line);
+  background: var(--card);
   color: var(--muted);
-  padding: 20px 0;
+}
+
+.empty-note > i {
+  color: var(--orange);
+  font-size: 1.1rem;
+}
+
+.empty-note strong {
+  color: var(--ink);
+  font-family: 'Pixelify Sans', sans-serif;
+}
+
+.empty-note span {
+  flex-basis: 100%;
+  font-family: 'Inter', sans-serif;
+  font-size: .84rem;
+}
+
+.empty-reset {
+  border: 2px solid var(--ink);
+  background: var(--card-2);
+  color: var(--ink);
+  padding: 6px 9px;
+  font-family: 'Pixelify Sans', sans-serif;
+  font-size: .72rem;
+  cursor: pointer;
+}
+
+.empty-reset:hover {
+  background: var(--orange-soft);
+  border-color: var(--orange);
 }
 
 /* ---------- PAGE CLOSING CTA ---------- */
