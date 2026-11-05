@@ -25,6 +25,7 @@ const filters = [
 ]
 
 const activeFilter = ref('all')
+const sortMode = ref('newest')
 const localOpen = ref(false)
 
 const active = computed(() => filters.find((f) => f.key === activeFilter.value) || filters[0])
@@ -34,15 +35,24 @@ function matches(p) {
   return active.value.match(p)
 }
 
+function sortProjects(list) {
+  return [...list].sort((a, b) => {
+    if (sortMode.value === 'featured') return Number(Boolean(b.featured)) - Number(Boolean(a.featured)) || (b.year || 0) - (a.year || 0)
+    if (sortMode.value === 'mobile') return Number(b.platform === 'mobile') - Number(a.platform === 'mobile') || (b.year || 0) - (a.year || 0)
+    if (sortMode.value === 'offline') return Number(b.traits?.includes('offline-first')) - Number(a.traits?.includes('offline-first')) || (b.year || 0) - (a.year || 0)
+    return (b.year || 0) - (a.year || 0)
+  })
+}
+
 const featured = computed(() =>
-  projects.filter((p) => featuredProjectIds.includes(p.id)).filter(matches)
+  sortProjects(projects.filter((p) => featuredProjectIds.includes(p.id)).filter(matches))
 )
 
 const regular = computed(() =>
-  projects.filter((p) => !featuredProjectIds.includes(p.id) && p.status !== 'local').filter(matches)
+  sortProjects(projects.filter((p) => !featuredProjectIds.includes(p.id) && p.status !== 'local').filter(matches))
 )
 
-const local = computed(() => projects.filter((p) => p.status === 'local').filter(matches))
+const local = computed(() => sortProjects(projects.filter((p) => p.status === 'local').filter(matches)))
 
 /** Per-filter counts so the chips show what's behind them. */
 const counts = computed(() =>
@@ -109,6 +119,15 @@ function stack(p) {
           <b>{{ counts[f.key] }}</b>
         </button>
       </div>
+      <label class="sort-control">
+        <span>Sort</span>
+        <select v-model="sortMode" aria-label="Sort projects">
+          <option value="newest">Newest</option>
+          <option value="featured">Featured first</option>
+          <option value="mobile">Mobile first</option>
+          <option value="offline">Offline-first</option>
+        </select>
+      </label>
       <span class="filter-result"><i class="fa-solid fa-grid-2"></i> Showing {{ featured.length + regular.length + (localOpen ? local.length : 0) }} visible</span>
     </div>
 
@@ -158,7 +177,12 @@ function stack(p) {
     </template>
 
     <div v-if="!featured.length && !regular.length && !local.length" class="empty-note">
-      No projects match this filter yet.
+      <i class="fa-solid fa-filter-circle-xmark"></i>
+      <strong>No projects match this view.</strong>
+      <span>Try another category or reset the project filters.</span>
+      <button type="button" class="empty-reset" @click="activeFilter = 'all'; sortMode = 'newest'">
+        Reset filters <i class="fa-solid fa-arrow-rotate-left"></i>
+      </button>
     </div>
 
     <div class="work-cta">

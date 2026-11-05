@@ -2,6 +2,7 @@
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import StatusBadge from '../common/StatusBadge.vue'
 import StatRow from './StatRow.vue'
+import ResumeModal from '../common/ResumeModal.vue'
 import { useTypewriter } from '../../composables/useTypewriter'
 import { useNavigation } from '../../composables/useNavigation'
 
@@ -89,6 +90,7 @@ onBeforeUnmount(() => observer?.disconnect())
           Get in touch
         </button>
       </div>
+      <ResumeModal show-download source="hero" label="View résumé" />
       <StatRow />
     </div>
 

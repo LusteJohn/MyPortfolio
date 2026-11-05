@@ -5,6 +5,7 @@ import { useNavigation } from '../../composables/useNavigation'
 import { useCommandPalette } from '../../composables/useCommandPalette'
 import { socials } from '../../data/social'
 import { modShortcut } from '../../utils/modKey'
+import ResumeModal from '../common/ResumeModal.vue'
 
 const { currentPage, goTo } = useNavigation()
 const { open: openCmdk } = useCommandPalette()
@@ -44,6 +45,7 @@ function select(page) {
     <div class="name">John Mark Luste</div>
     <div class="handle">@johnmarkdev</div>
     <div class="sidebar-status"><span></span> Open to new roles</div>
+    <ResumeModal show-download source="sidebar" label="Resume" />
 
     <div class="social-row">
       <a v-for="s in socials" :key="s.label" :href="s.href" :aria-label="s.label">
