@@ -34,7 +34,7 @@ function runCommand(cmd) {
       navigator.clipboard?.writeText(CONTACT_EMAIL).catch(() => {})
       break
     case 'resume':
-      alert('Add your résumé link here.')
+      window.dispatchEvent(new CustomEvent('resume-open'))
       break
     case 'link':
       window.open(cmd.target, '_blank')
