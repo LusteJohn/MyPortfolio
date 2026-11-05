@@ -1,11 +1,13 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import resumePdf from '../../assets/resume/jmluste.pdf'
 
 const props = defineProps({
   showDownload: { type: Boolean, default: false },
   source: { type: String, default: 'resume' },
-  label: { type: String, default: 'View résumé' }
+  label: { type: String, default: 'View résumé' },
+  keyboard: { type: Boolean, default: false },
+  visible: { type: Boolean, default: true }
 })
 
 const isOpen = ref(false)
@@ -21,10 +23,17 @@ function close() {
 function trackDownload() {
   window.dispatchEvent(new CustomEvent('resume-download', { detail: { source: props.source } }))
 }
+
+function openFromShortcut() {
+  if (props.keyboard) open()
+}
+
+onMounted(() => window.addEventListener('resume-open', openFromShortcut))
+onUnmounted(() => window.removeEventListener('resume-open', openFromShortcut))
 </script>
 
 <template>
-  <div class="resume-actions">
+  <div v-if="visible" class="resume-actions">
     <button type="button" class="resume-cta" @click="open">
       <i class="fa-solid fa-file-arrow-down"></i> {{ label }}
     </button>

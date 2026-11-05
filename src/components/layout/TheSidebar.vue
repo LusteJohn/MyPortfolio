@@ -55,7 +55,7 @@ function select(page) {
       </a>
     </div>
 
-    <button class="menu-toggle" aria-label="Toggle menu" @click="isMobileNavOpen = !isMobileNavOpen">
+    <button class="menu-toggle" aria-label="Toggle menu" :aria-expanded="isMobileNavOpen" @click="isMobileNavOpen = !isMobileNavOpen">
       <i class="fa-solid fa-bars"></i>
     </button>
 
@@ -64,6 +64,7 @@ function select(page) {
         v-for="item in navItems"
         :key="item.page"
         :class="{ active: currentPage === item.page }"
+        :aria-current="currentPage === item.page ? 'page' : undefined"
         @click="select(item.page)"
       >
         <i :class="item.icon"></i>
