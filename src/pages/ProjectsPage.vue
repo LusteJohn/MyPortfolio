@@ -73,7 +73,7 @@ function stack(p) {
 <template>
   <section id="work">
     <div class="tip-pill"><i class="fa-solid fa-hand-pointer"></i> Open any card for screenshots, stack, and outcome</div>
-    <div class="topbar">
+    <div class="topbar page-intro">
       <div>
         <div class="eyebrow">Projects</div>
         <h1>Shipped, building, and running local.</h1>
@@ -84,22 +84,30 @@ function stack(p) {
         </p>
       </div>
       <div class="hero-side">
+        <div class="project-signal" aria-hidden="true">
+          <span class="signal-line"></span>
+          <span class="signal-dot"></span>
+          <span class="signal-label">BUILD / SHIP / REPEAT</span>
+        </div>
         <GitHubActivity />
       </div>
     </div>
 
-    <div class="filter-row" role="group" aria-label="Filter projects">
-      <button
-        v-for="f in filters"
-        :key="f.key"
-        type="button"
-        class="filter-chip"
-        :class="{ active: activeFilter === f.key }"
-        @click="activeFilter = f.key"
-      >
-        {{ f.label }}
-        <b>{{ counts[f.key] }}</b>
-      </button>
+    <div class="project-toolbar">
+      <div class="filter-row" role="group" aria-label="Filter projects">
+        <button
+          v-for="f in filters"
+          :key="f.key"
+          type="button"
+          class="filter-chip"
+          :class="{ active: activeFilter === f.key }"
+          @click="activeFilter = f.key"
+        >
+          {{ f.label }}
+          <b>{{ counts[f.key] }}</b>
+        </button>
+      </div>
+      <span class="filter-result"><i class="fa-solid fa-grid-2"></i> Showing {{ featured.length + regular.length + (localOpen ? local.length : 0) }} visible</span>
     </div>
 
     <template v-if="featured.length">

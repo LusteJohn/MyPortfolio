@@ -43,6 +43,7 @@ function select(page) {
     <div v-else class="avatar avatar-initials">{{ avatarInitials }}</div>
     <div class="name">John Mark Luste</div>
     <div class="handle">@johnmarkdev</div>
+    <div class="sidebar-status"><span></span> Open to new roles</div>
 
     <div class="social-row">
       <a v-for="s in socials" :key="s.label" :href="s.href" :aria-label="s.label">
@@ -61,7 +62,9 @@ function select(page) {
         :class="{ active: currentPage === item.page }"
         @click="select(item.page)"
       >
-        <i :class="item.icon"></i> {{ item.label }}
+        <i :class="item.icon"></i>
+        <span>{{ item.label }}</span>
+        <b aria-hidden="true">→</b>
       </button>
     </nav>
 
