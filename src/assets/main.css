@@ -4257,6 +4257,43 @@ select {
   margin: 0;
 }
 
+.modal-case-study {
+  display: grid;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.modal-case-study-section {
+  padding: 12px 14px;
+  background: var(--card-2);
+  border-left: 3px solid var(--orange);
+}
+
+.modal-case-study-section h4 {
+  margin: 0 0 4px;
+  color: var(--orange);
+  font-family: 'Pixelify Sans', sans-serif;
+  font-size: .72rem;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+
+.modal-case-study-section p {
+  margin: 0;
+  color: var(--body-copy);
+  font-family: 'Inter', sans-serif;
+  font-size: .84rem;
+  line-height: 1.55;
+}
+
+.modal-media-label {
+  color: var(--muted);
+  font-family: 'Pixelify Sans', sans-serif;
+  font-size: .72rem;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+
 .modal-context {
   display: flex;
   flex-wrap: wrap;

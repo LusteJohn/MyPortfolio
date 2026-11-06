@@ -78,13 +78,18 @@ const roleLine = computed(() => {
   return p.year ? `${role} · ${p.year}` : role
 })
 
-const detailRows = computed(() => {
+const caseStudySections = computed(() => {
   const p = state.project
   if (!p) return []
   return [
     { label: 'Problem', value: p.problem },
+    { label: 'Your solution', value: p.solution },
+    { label: 'Architecture / stack', value: p.architecture },
+    { label: 'Offline behavior', value: p.offlineBehavior },
+    { label: 'Outcome / results', value: p.results || p.outcome },
     { label: 'What was hard', value: p.challenge },
-    { label: 'Outcome', value: p.outcome }
+    { label: 'Your role', value: p.role },
+    { label: 'Timeline', value: p.timeline || (p.year ? String(p.year) : '') }
   ].filter((row) => row.value)
 })
 </script>
@@ -117,12 +122,12 @@ const detailRows = computed(() => {
           <p class="modal-role">{{ roleLine }}</p>
           <p class="modal-summary">{{ state.project?.summary }}</p>
 
-          <dl class="modal-details">
-            <div v-for="row in detailRows" :key="row.label">
-              <dt>{{ row.label }}</dt>
-              <dd>{{ row.value }}</dd>
-            </div>
-          </dl>
+          <div v-if="caseStudySections.length" class="modal-case-study">
+            <section v-for="row in caseStudySections" :key="row.label" class="modal-case-study-section">
+              <h4>{{ row.label }}</h4>
+              <p>{{ row.value }}</p>
+            </section>
+          </div>
 
           <!-- context tags are plain text, tech chips are outlined -->
           <div v-if="state.project?.context?.length" class="modal-context">
@@ -165,6 +170,7 @@ const detailRows = computed(() => {
 
         <!-- Right (portrait) / top (landscape): image gallery -->
         <div v-if="images.length" class="modal-media">
+          <div class="modal-media-label">Screenshots / demo</div>
           <div class="modal-gallery-main-wrap" ref="galleryWrapRef">
             <button
               v-if="images.length > 1"
