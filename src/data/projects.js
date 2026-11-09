@@ -81,6 +81,29 @@ export const projects = [
 
   // ---------- Shipped & live (grid) ----------
   {
+    id: 'interntrack',
+    icon: 'fa-solid fa-user-graduate',
+    title: 'InternTrack',
+    summary: 'Web-based internship tracking and documentation compliance system for CICTE at State University of Northern Negros (SUNN).',
+    problem: 'The College of Information, Communication, Technology, and Engineering (CICTE) relied on manual processes and paper-based records to monitor internship students and manage their required documentation, making information tracking and document retrieval less efficient.',
+    solution: 'Developed a centralized web-based system that automates internship student tracking and documentation management, allowing authorized personnel, OJT coordinators, and OJT advisers to access and monitor internship records digitally.',
+    architecture: 'PHP handles the server-side application logic, MySQL manages centralized internship records, and HTML, CSS, and Bootstrap provide the responsive web-based user interface.',
+    offlineBehavior: 'Requires an internet connection to access the centralized internship records and system functionalities.',
+    results: 'Digitized internship tracking and documentation management through a centralized platform, reducing dependence on manual paperwork and improving access to student internship records.',
+    outcome: 'A web-based internship management platform that streamlines student monitoring, documentation compliance, and record accessibility for authorized CICTE personnel.',
+    challenge: 'Transforming manual internship tracking and paper-based documentation workflows into an organized centralized digital system.',
+    timeline: '2025 · Capstone Project',
+    context: ['Academic', 'Capstone Project'],
+    tools: ['PHP', 'HTML', 'CSS', 'Bootstrap', 'MySQL'],
+    status: 'shipped',
+    platform: 'web',
+    traits: ['centralized-system', 'documentation-management'],
+    offline: false,
+    role: 'Full-stack Developer',
+    year: 2025,
+    images: 'internTrack'
+},
+  {
     id: 'fluentflow',
     icon: 'fa-solid fa-language',
     title: 'FluentFlow',

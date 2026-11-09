@@ -1628,13 +1628,60 @@ main.content {
 }
 
 .filter-chip.active {
-  color: #fff;
+  color: var(--cta-text);
   background: var(--ink);
   border-color: var(--ink);
 }
 
 .filter-chip.active b {
   color: var(--orange);
+}
+
+@media (max-width: 700px) {
+  .project-toolbar {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: start;
+    gap: 12px;
+    padding: 10px;
+  }
+
+  .project-toolbar .filter-row {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 6px;
+    width: 100%;
+  }
+
+  .project-toolbar .filter-chip {
+    min-width: 0;
+    min-height: 36px;
+    justify-content: space-between;
+    text-align: left;
+    line-height: 1.15;
+    padding: 6px 8px;
+  }
+
+  .sort-control {
+    grid-column: 1;
+    margin-left: 0;
+    min-width: 0;
+  }
+
+  .sort-control select {
+    min-width: 0;
+    max-width: 116px;
+  }
+
+  .filter-result {
+    grid-column: 2;
+    align-self: center;
+    justify-self: end;
+    white-space: normal;
+    text-align: right;
+    line-height: 1.2;
+  }
 }
 
 /* ---------- LOCAL (collapsed) ---------- */
