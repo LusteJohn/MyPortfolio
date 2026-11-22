@@ -1,5 +1,6 @@
 <script setup>
 import { ref, watch, nextTick, onUnmounted } from 'vue'
+import { useFocusTrap } from '../../composables/useFocusTrap'
 
 const props = defineProps({
   items: { type: Array, default: () => [] },
@@ -7,6 +8,10 @@ const props = defineProps({
 })
 
 const emit = defineEmits(['close'])
+
+const panelRef = ref(null)
+const isOpen = () => props.index !== null && props.items.length > 0
+useFocusTrap(isOpen, panelRef)
 
 const zoomed = ref(false)
 
@@ -49,7 +54,7 @@ function step(dir) {
 <template>
   <Teleport to="body">
     <div v-if="index !== null && items.length" class="cred-viewer-backdrop" @click.self="emit('close')">
-      <div class="cred-viewer" role="dialog" aria-modal="true" aria-label="Credential viewer">
+      <div ref="panelRef" class="cred-viewer" role="dialog" aria-modal="true" aria-label="Credential viewer">
         <button class="cred-viewer-close" aria-label="Close viewer" @click="emit('close')">
           <i class="fa-solid fa-xmark"></i>
         </button>

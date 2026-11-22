@@ -1,12 +1,19 @@
 <script setup>
 import { ref, computed, watch, nextTick, onMounted, onUnmounted } from 'vue'
 import { useProjectModal } from '../../composables/useProjectModal'
+import { useFocusTrap } from '../../composables/useFocusTrap'
 import { statusMeta } from '../../data/projectStatus'
 import { getProjectImages } from '../../utils/projectImages'
 import { getToolIcon } from '../../data/toolIcons'
 import { createImageZoom } from '../../utils/imageZoom'
 
 const { state, close } = useProjectModal()
+
+const panelRef = ref(null)
+useFocusTrap(
+  computed(() => state.isOpen),
+  panelRef
+)
 
 const activeImage = ref(0)
 const isLandscape = ref(false)
@@ -97,11 +104,15 @@ const caseStudySections = computed(() => {
 <template>
   <div v-if="state.isOpen" class="modal-backdrop" @click.self="close">
     <div
+      ref="panelRef"
       class="modal-panel"
       :class="{
         'modal-panel--wide': images.length && !isLandscape,
         'modal-panel--tall': images.length && isLandscape
       }"
+      role="dialog"
+      aria-modal="true"
+      :aria-label="state.project?.title"
     >
       <button class="modal-close" aria-label="Close" @click="close"><i class="fa-solid fa-xmark"></i></button>
 

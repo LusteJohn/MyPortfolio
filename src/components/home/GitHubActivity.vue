@@ -1,7 +1,6 @@
 <script setup>
 import { ref, watch, onUnmounted } from 'vue'
 import { useGithubActivity, GITHUB_URL, timeAgo } from '../../composables/useGithubActivity'
-import { CONTACT_EMAIL } from '../../data/commands'
 
 const {
   status, grid, totalLabel, activeDays, streakLabel, topRepos, privateRepos,

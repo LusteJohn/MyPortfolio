@@ -1,8 +1,8 @@
-import ccsaImage from '../assets/credential/ccsa.png'
-import ojtImage from '../assets/credential/ojt.jpg'
-import orgsImage from '../assets/credential/orgs.jpg'
-import participantImage from '../assets/credential/participant.jpg'
-import seminarImage from '../assets/credential/seminar.jpg'
+import ccsaImage from '../assets/credential/ccsa.webp'
+import ojtImage from '../assets/credential/ojt.webp'
+import orgsImage from '../assets/credential/orgs.webp'
+import participantImage from '../assets/credential/participant.webp'
+import seminarImage from '../assets/credential/seminar.webp'
 
 export const credentials = {
   icon: 'fa-solid fa-award',
@@ -21,7 +21,7 @@ export const credentials = {
       title: 'IT Innovation Showcase',
       issuer: 'Participant',
       image: participantImage,
-      details: 'Presented an technology project in an innovation showcase.'
+      details: 'Presented a technology project in an innovation showcase.'
     },
     {
       title: 'On-the-Job Training',
@@ -33,13 +33,13 @@ export const credentials = {
       title: 'University Organization',
       issuer: 'Completed',
       image: orgsImage,
-      details: 'Learn and adopt on modern web development, and networking on seminar and sessions.'
+      details: 'Learned modern web development practice and networked through seminars and sessions.'
     },
     {
       title: 'Figma UX/UI Seminar',
       issuer: 'Completed',
       image: seminarImage,
-      details: 'Learn about UX/UI on Figma for modern web development mockups and design.'
+      details: 'Learned UX/UI in Figma for modern web development mockups and design.'
     }
   ]
 }

@@ -11,8 +11,7 @@ import { credentials } from '../data/credentials-list.js'
 import { services } from '../data/services'
 import { projects } from '../data/projects'
 import { featuredProjects } from '../data/featuredProjects'
-import profileImage from '../assets/images/profile_pixel.jpeg'
-import ccsaImage from '../assets/credential/ccsa.png'
+import profileImage from '../assets/images/profile_pixel.webp'
 
 const { open } = useProjectModal()
 const { goTo } = useNavigation()
@@ -49,7 +48,10 @@ function openFeatured(p) {
           <li v-for="p in featuredProjects" :key="p.id">
             <button type="button" class="shot" @click="openFeatured(p)">
               <img :src="p.image" :alt="`${p.name} screenshot`" loading="lazy">
-              <span class="shot-live"><i class="fa-solid fa-circle"></i> Live</span>
+              <span class="shot-live" :class="{ 'is-offline': p.offline }">
+                <i :class="p.offline ? 'fa-solid fa-wifi' : 'fa-solid fa-circle'"></i>
+                {{ p.offline ? 'Offline' : p.badge }}
+              </span>
               <span class="shot-meta">
                 <b>{{ p.name }}</b>
                 <small>{{ p.caption }}</small>

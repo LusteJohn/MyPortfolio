@@ -1,12 +1,12 @@
-import agri1 from '../assets/projects/agrilearn/pic1.jpg'
-
 /**
  * Context tags deliberately describe *situation*, not technology — the stack
  * lives in `tools`, the situation in `context`. `role` and `year` feed the
  * card footer; `live`/`code` drive the "Live ↗" / "Code ↗" buttons and are
  * rendered only when present.
  */
-export const projects = [
+const GITHUB_PROFILE = 'https://github.com/LusteJohn'
+
+const projectList = [
   // ---------- Featured ----------
   {
     id: 'agrilearn-app',
@@ -268,15 +268,16 @@ export const projects = [
     outcome: 'A role-based mobile application supporting GPS location tracking, transportation schedules, vehicle plate photo documentation, guardian monitoring, notifications, and offline data synchronization.',
     challenge: 'Implementing reliable GPS tracking, offline-first functionality, and data synchronization between SQLite and Supabase while supporting multiple user roles and transportation trip segments.',
     timeline: '2026 · Capstone build',
-    context: ['Capstone Project', 'Android', 'Offline-first', 'Real-time GPS Tracking'],
+    context: ['Capstone Project'],
     tools: ['React Native', 'Expo', 'TypeScript', 'Node.js', 'Express.js', 'Supabase', 'PostgreSQL', 'SQLite', 'OpenStreetMap', 'MapLibre'],
     status: 'shipped',
-    platform: 'mobile-app',
+    platform: 'mobile',
     traits: ['offline-first', 'real-time-tracking', 'gps', 'role-based-access'],
+    offline: true,
     role: 'Client',
     year: 2026,
     images: 'student_tracking'
-},
+  },
 
   // ---------- Local — not yet published ----------
   {
@@ -318,6 +319,16 @@ export const projects = [
     role: 'Solo'
   }
 ]
+
+/**
+ * Every project links to the GitHub profile by default so the "Code ↗" button
+ * always leads somewhere real. Override per project with an explicit `code`
+ * (or `live`) URL when you have one.
+ */
+export const projects = projectList.map((project) => ({
+  code: GITHUB_PROFILE,
+  ...project
+}))
 
 /** Cards promoted to the large featured treatment at the top of the page. */
 export const featuredProjectIds = ['agrilearn-app', 'ojt-attendance', 'eggplant-leaf-care-ai']

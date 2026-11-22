@@ -1,0 +1,55 @@
+/**
+ * Generates the social share card (1200x630) and a small favicon from SVG.
+ * Output is raster PNG because Twitter/LinkedIn/Slack reject SVG og:image.
+ *
+ *   npm run images:social
+ */
+import { writeFile } from 'node:fs/promises'
+import sharp from 'sharp'
+
+const OG = 'public/og-image.png'
+const ICON = 'public/favicon.png'
+
+const ogSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#F6F2E8"/>
+  <rect x="0" y="0" width="1200" height="630" fill="none" stroke="#171B24" stroke-width="8"/>
+
+  <rect x="64" y="64" width="10" height="10" fill="#EE7B33"/>
+  <rect x="80" y="64" width="10" height="10" fill="#171B24"/>
+  <rect x="64" y="80" width="10" height="10" fill="#171B24"/>
+
+  <text x="64" y="180" font-family="monospace" font-size="26" fill="#767258" letter-spacing="4">WEB &amp; SYSTEM DEVELOPER</text>
+
+  <text x="64" y="290" font-family="monospace" font-size="92" font-weight="bold" fill="#171B24">JOHN MARK LUSTE</text>
+
+  <text x="64" y="360" font-family="monospace" font-size="34" fill="#3A3530">Offline-first web, mobile, and system apps.</text>
+  <text x="64" y="410" font-family="monospace" font-size="34" fill="#3A3530">Shipped for clients, capstones, and small business.</text>
+
+  <rect x="64" y="470" width="300" height="56" fill="#171B24"/>
+  <text x="90" y="508" font-family="monospace" font-size="26" font-weight="bold" fill="#FFFFFF">VIEW THE WORK</text>
+
+  <rect x="384" y="470" width="230" height="56" fill="none" stroke="#171B24" stroke-width="4"/>
+  <text x="408" y="508" font-family="monospace" font-size="26" font-weight="bold" fill="#171B24">GET IN TOUCH</text>
+
+  <rect x="1000" y="470" width="136" height="56" fill="#EE7B33"/>
+  <text x="1024" y="508" font-family="monospace" font-size="24" font-weight="bold" fill="#171B24">3 YRS</text>
+
+  <text x="64" y="580" font-family="monospace" font-size="22" fill="#767258">github.com/LusteJohn</text>
+</svg>`
+
+await sharp(Buffer.from(ogSvg)).png().toFile(OG)
+console.log(`wrote ${OG}`)
+
+const iconSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 16 16">
+  <rect width="16" height="16" fill="#171B24"/>
+  <rect x="3" y="3" width="4" height="4" fill="#EE7B33"/>
+  <rect x="9" y="3" width="4" height="4" fill="#F6F2E8"/>
+  <rect x="3" y="9" width="4" height="4" fill="#F6F2E8"/>
+  <rect x="9" y="9" width="4" height="4" fill="#EE7B33"/>
+</svg>`
+
+await sharp(Buffer.from(iconSvg)).resize(64, 64, { kernel: 'nearest' }).png().toFile(ICON)
+console.log(`wrote ${ICON}`)
+
+await writeFile('public/og-image.svg', ogSvg)
+console.log('wrote public/og-image.svg')

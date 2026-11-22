@@ -64,7 +64,7 @@ defineProps({
   </svg>
 
   <!-- Green Nest: plant + leaf + pot -->
-   <svg v-else-if="id === 'green-nest'" viewBox="0 0 160 100" xmlns="http://www.w3.org/2000/svg">
+  <svg v-else-if="id === 'green-nest'" viewBox="0 0 160 100" xmlns="http://www.w3.org/2000/svg">
     <circle cx="65" cy="50" r="34" fill="#FBE6D4"/>
     <path class="px-sway" d="M65 25 q26 8 14 40 q-16 -2 -20 -22 q-2 12 6 22 q-22 -4 -22 -28 q0 -16 22 -12z" fill="#EE7B33"/>
     <circle class="px-scan" cx="112" cy="68" r="15" fill="none" stroke="#171B24" stroke-width="4"/>

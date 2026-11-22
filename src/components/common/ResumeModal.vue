@@ -1,6 +1,7 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
 import resumePdf from '../../assets/resume/jmluste.pdf'
+import { useFocusTrap } from '../../composables/useFocusTrap'
 
 const props = defineProps({
   showDownload: { type: Boolean, default: false },
@@ -11,7 +12,10 @@ const props = defineProps({
 })
 
 const isOpen = ref(false)
+const panelRef = ref(null)
 const pdfUrl = resumePdf
+
+useFocusTrap(isOpen, panelRef)
 
 function open() {
   isOpen.value = true
@@ -49,7 +53,7 @@ onUnmounted(() => window.removeEventListener('resume-open', openFromShortcut))
 
     <teleport to="body">
       <div v-if="isOpen" class="resume-modal-backdrop" @click.self="close">
-        <div class="resume-modal-panel">
+        <div ref="panelRef" class="resume-modal-panel" role="dialog" aria-modal="true" aria-label="Résumé">
           <button class="resume-modal-close" aria-label="Close" @click="close">
             <i class="fa-solid fa-xmark"></i>
           </button>
@@ -60,7 +64,7 @@ onUnmounted(() => window.removeEventListener('resume-open', openFromShortcut))
             loading="lazy"
           >
             <p>Your browser does not support embedded PDFs.
-              <a :href="pdfUrl" target="_blank" rel="noopener noreferrer">Download the résumé instead</a>.
+            <a :href="pdfUrl" target="_blank" rel="noopener noreferrer">Download the résumé instead</a>.
             </p>
           </iframe>
         </div>

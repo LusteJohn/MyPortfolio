@@ -16,6 +16,7 @@ const budgetOptions = [
   'Part-time / consulting'
 ]
 const message = ref('')
+const company = ref('')
 const touched = ref({ name: false, email: false, message: false })
 
 const status = ref('idle') // 'idle' | 'sending' | 'success' | 'error'
@@ -40,6 +41,14 @@ function resetStatusAfterDelay() {
 async function handleSubmit() {
   touched.value = { name: true, email: true, message: true }
   if (!isValid.value) return
+
+  // Silently drop bot submissions that filled the honeypot
+  if (company.value.trim()) {
+    status.value = 'success'
+    resetStatusAfterDelay()
+    return
+  }
+
   status.value = 'sending'
 
   try {
@@ -59,6 +68,7 @@ async function handleSubmit() {
     email.value = ''
     budget.value = ''
     message.value = ''
+    company.value = ''
   } catch (err) {
     console.error('EmailJS error:', err)
     status.value = 'error'
@@ -110,10 +120,23 @@ async function handleSubmit() {
       <template v-else>Send message <i class="fa-solid fa-arrow-right"></i></template>
     </button>
 
-    <div class="form-toast" :class="{ show: status === 'success' }">
+    <!-- Honeypot: hidden from users, catches naive bots. Bots fill every field. -->
+    <div class="hp-field" aria-hidden="true">
+      <label for="fCompany">Company</label>
+      <input
+        id="fCompany"
+        v-model="company"
+        type="text"
+        tabindex="-1"
+        autocomplete="off"
+        name="company"
+      >
+    </div>
+
+    <div class="form-toast" :class="{ show: status === 'success' }" role="status" aria-live="polite">
       <i class="fa-solid fa-circle-check"></i> Message sent — I'll get back to you soon.
     </div>
-    <div class="form-toast form-toast--error" :class="{ show: status === 'error' }">
+    <div class="form-toast form-toast--error" :class="{ show: status === 'error' }" role="alert" aria-live="assertive">
       <i class="fa-solid fa-circle-exclamation"></i> Something went wrong — try again, or email me directly.
     </div>
 
