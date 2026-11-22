@@ -56,6 +56,11 @@ function onShortcutNavigate(e) {
 }
 onMounted(() => window.addEventListener('shortcut-navigate', onShortcutNavigate))
 onUnmounted(() => window.removeEventListener('shortcut-navigate', onShortcutNavigate))
+
+// Analytics only makes sense on a real deployment; inject() is a no-op locally
+if (import.meta.env.VITE_VERCEL_ENV) {
+  import('@vercel/analytics').then(({ inject }) => inject())
+}
 </script>
 
 <template>

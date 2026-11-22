@@ -40,13 +40,18 @@ onUnmounted(() => clearInterval(timer))
     </div>
   </div>
   <div class="testi-controls">
-    <div class="testi-dots">
-      <span
+    <div class="testi-dots" role="tablist" aria-label="Testimonials">
+      <button
         v-for="(t, i) in testimonials"
         :key="t.name"
+        type="button"
+        role="tab"
+        class="testi-dot"
         :class="{ active: i === index }"
+        :aria-selected="i === index"
+        :aria-label="`Testimonial ${i + 1} of ${testimonials.length} from ${t.name}`"
         @click="show(i); restartTimer()"
-      ></span>
+      ></button>
     </div>
     <div class="testi-arrows">
       <button aria-label="Previous testimonial" @click="prev(true)"><i class="fa-solid fa-chevron-left"></i></button>

@@ -25,11 +25,6 @@ const isMobile = computed(() => props.project.platform === 'mobile')
 function openProject() {
   open(props.project)
 }
-
-/** Live/Code buttons stop propagation so the card doesn't also open. */
-function external(url) {
-  if (url) window.open(url, '_blank', 'noopener,noreferrer')
-}
 </script>
 
 <template>
@@ -55,7 +50,7 @@ function external(url) {
 
     <h3 class="pcard-title">{{ project.title }}</h3>
 
-    <p class="pcard-outcome">{{ project.summary }}</p>
+    <p class="pcard-outcome">{{ project.outcome || project.summary }}</p>
 
     <div class="pcard-tech">
       <span v-for="t in tech" :key="t" class="tech-chip"><i :class="getToolIcon(t)"></i> {{ t }}</span>
@@ -70,10 +65,22 @@ function external(url) {
         {{ project.role || 'Solo' }}<template v-if="project.year"> · {{ project.year }}</template>
       </span>
       <span class="pcard-actions" v-if="project.live || project.code">
-        <a v-if="project.live" :href="project.live" target="_blank" rel="noopener noreferrer" @click.stop>
+        <a
+          v-if="project.live"
+          :href="project.live"
+          target="_blank"
+          rel="noopener noreferrer"
+          @click.stop
+        >
           Live <i class="fa-solid fa-arrow-up-right-from-square"></i>
         </a>
-        <a v-if="project.code" :href="project.code" target="_blank" rel="noopener noreferrer" @click.stop>
+        <a
+          v-if="project.code"
+          :href="project.code"
+          target="_blank"
+          rel="noopener noreferrer"
+          @click.stop
+        >
           Code <i class="fa-solid fa-arrow-up-right-from-square"></i>
         </a>
       </span>

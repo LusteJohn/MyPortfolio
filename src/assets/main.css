@@ -949,6 +949,16 @@ main.content {
   font-size: .38rem;
 }
 
+/* offline projects get a distinct chip so "Live" isn't claimed falsely */
+.shot-live.is-offline {
+  background: var(--ink);
+  color: #fff;
+}
+
+.shot-live.is-offline i {
+  font-size: .55rem;
+}
+
 .shot-meta {
   display: flex;
   flex-direction: column;
@@ -2001,6 +2011,17 @@ main.content {
   margin-right: 4px;
 }
 
+/* Honeypot: off-screen, untabbable, invisible to assistive tech */
+.hp-field {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
 .form-toast {
   display: none;
   align-items: center;
@@ -2366,6 +2387,10 @@ footer.credit {
 }
 
 /* ---------- POINTER GLOW ---------- */
+/* isolation: isolate keeps the ::after glow (z-index: -1) painted above the
+   section background but below its content. Side effect: it creates a stacking
+   context, which traps any `position: fixed` descendant inside the section.
+   Modals therefore have to be teleported to <body> (see CredentialViewer). */
 section[id] {
   position: relative;
   isolation: isolate;
@@ -2566,7 +2591,7 @@ select {
 #app .status-dot,
 #app .status-dot-sm,
 #app .mock-browser .bar span,
-#app .testi-dots span {
+#app .testi-dots .testi-dot {
   image-rendering: pixelated;
 }
 
@@ -3348,17 +3373,19 @@ select {
   gap: 6px;
 }
 
-.testi-dots span {
+.testi-dots .testi-dot {
   width: 6px;
   height: 6px;
+  border: none;
   border-radius: 50%;
   background: var(--line);
   cursor: pointer;
+  padding: 0;
   transition: background .2s ease, width .2s ease;
   display: inline-block;
 }
 
-.testi-dots span.active {
+.testi-dots .testi-dot.active {
   background: var(--orange);
   width: 16px;
   border-radius: 4px;
